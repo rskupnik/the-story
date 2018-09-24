@@ -9,4 +9,4 @@
 
 rootProject.name = 'the-story-kotlin'
 
-include "api", "glue", "core:shared"
+include "api", "glue", "test", "core:shared"
