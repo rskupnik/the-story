@@ -7,7 +7,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 
-    compile project("api")
+    compile project(":api")
 }
 compileKotlin {
     kotlinOptions {
