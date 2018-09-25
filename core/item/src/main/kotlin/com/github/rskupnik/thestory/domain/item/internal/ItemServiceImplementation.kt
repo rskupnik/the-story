@@ -30,9 +30,9 @@ internal class ItemServiceImplementation(
 
     override fun instantiate(blueprintReference: Reference): Reference? {
         val blueprint = blueprintRepository.find(blueprintReference) ?: return null
-        val instance = ItemInstance.fromBlueprintWithRandomId(blueprint)
+        val instance = ItemInstance(blueprint)
         instance.externalState = ExternalState.fromExistingState(blueprint.initialState)
-        return instanceRepository.save(instance)
+        return instanceRepository.save(instance)externalState
     }
 
     override fun getItemView(reference: Reference): ItemView? {
@@ -74,9 +74,9 @@ internal class ItemServiceImplementation(
     }
 
     private fun instantiateFromState(state: ItemPersistableState): ItemInstance? {
-        val blueprint = blueprintRepository.find(Reference.from(state.blueprint)) ?: return null
+        val blueprint = blueprintRepository.find(Reference(state.blueprint)) ?: return null
         return ItemInstance.restore(state.id, blueprint, state.externalState,
-                if (state.currentImage != null) Reference.from(state.currentImage) else null,
+                if (state.currentImage != null) Reference(state.currentImage) else null,
                 state.placement
         )
     }
