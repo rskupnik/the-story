@@ -1,7 +1,9 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
+import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.item.ItemView
+import com.github.rskupnik.thestory.domain.shared.ExternalState
 import com.github.rskupnik.thestory.domain.shared.Reference
 import com.github.rskupnik.thestory.domain.shared.external.FileLoader
 import com.github.rskupnik.thestory.domain.shared.external.JsonParser
@@ -29,7 +31,7 @@ internal class ItemServiceImplementation(
     override fun instantiate(blueprintReference: Reference): Reference? {
         val blueprint = blueprintRepository.find(blueprintReference) ?: return null
         val instance = ItemInstance.fromBlueprintWithRandomId(blueprint)
-        instance.externalState = ExternalState.fromExistingState(blueprint.initialState) ?: null
+        instance.externalState = ExternalState.fromExistingState(blueprint.initialState)
         return instanceRepository.save(instance)
     }
 
