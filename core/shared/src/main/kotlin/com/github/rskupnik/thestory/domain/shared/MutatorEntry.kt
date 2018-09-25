@@ -10,8 +10,8 @@ package com.github.rskupnik.thestory.domain.shared
  * matching each of those cases.
  */
 class MutatorEntry<T> private constructor(
-        private val enabled: Boolean,
-        private val value: T?
+        val enabled: Boolean,
+        val value: T?
 ) {
     companion object {
         fun <T> disabled(): MutatorEntry<T> = MutatorEntry(false, null)
