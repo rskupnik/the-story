@@ -1,12 +1,13 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
+import com.github.rskupnik.thestory.domain.shared.ExternalState
 import com.github.rskupnik.thestory.domain.shared.persistence.PersistableState
 
 internal data class ItemPersistableState(
-        private val id: String,
-        private val blueprint: String,
-        //private val externalState: ExternalState,
-        private val currentImage: String
+        internal val id: String,
+        internal val blueprint: String,
+        internal val externalState: ExternalState,
+        internal val currentImage: String?
         //private val placement: ItemPlacement
 ) : PersistableState {
 
@@ -14,7 +15,7 @@ internal data class ItemPersistableState(
         fun fromRawData(map: Map<String, Any>): ItemPersistableState = ItemPersistableState(
                 map["id"] as String,
                 map["blueprint"] as String,
-                // ExternalState
+                ExternalState.fromExistingState(map["externalState"] as Map<String, Any>),
                 map["currentImage"] as String
                 // ItemPlacement
         )

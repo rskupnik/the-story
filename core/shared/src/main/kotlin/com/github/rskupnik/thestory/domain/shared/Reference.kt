@@ -6,7 +6,7 @@ import java.util.*
  * Represents a reference to something, interpretation of the reference depends on
  * internal workings of particular modules.
  */
-class Reference(private val value: String) {
+class Reference(val value: String) {
 
     companion object {
         fun generate(): Reference = Reference(UUID.randomUUID().toString())

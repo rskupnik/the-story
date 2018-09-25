@@ -32,7 +32,7 @@ internal class ItemServiceImplementation(
         val blueprint = blueprintRepository.find(blueprintReference) ?: return null
         val instance = ItemInstance(blueprint)
         instance.externalState = ExternalState.fromExistingState(blueprint.initialState)
-        return instanceRepository.save(instance)externalState
+        return instanceRepository.save(instance)
     }
 
     override fun getItemView(reference: Reference): ItemView? {
@@ -57,7 +57,7 @@ internal class ItemServiceImplementation(
     }*/
 
     override fun mutate(itemReference: Reference, mutator: ItemMutator): Boolean {
-        mutator.mutate(instanceRepository.find(itemReference))
+        mutator.mutate(instanceRepository.find(itemReference) ?: return false)
         return true
     }
 
@@ -67,7 +67,7 @@ internal class ItemServiceImplementation(
         return commonFacadeOperations.getPersistableState(instanceRepository.fetchAll())
     }
 
-    override fun loadPersistableState(state: MutableList<MutableMap<String, Any>>?) {
+    override fun loadPersistableState(state: List<Map<String, Any>>) {
         val loadedState = ItemPersistableState.fromRawData(state)
         val instances = loadedState.map { instantiateFromState(it) }.filterNotNull()
         instanceRepository.save(instances)
@@ -75,14 +75,15 @@ internal class ItemServiceImplementation(
 
     private fun instantiateFromState(state: ItemPersistableState): ItemInstance? {
         val blueprint = blueprintRepository.find(Reference(state.blueprint)) ?: return null
-        return ItemInstance.restore(state.id, blueprint, state.externalState,
+        return ItemInstance.restore(state.id, blueprint,
                 if (state.currentImage != null) Reference(state.currentImage) else null,
-                state.placement
+                state.externalState
+                //state.placement
         )
     }
 
     private fun buildItemView(item: ItemInstance): ItemView? {
-        val imageReference = item.currentImage ?: item.blueprint.image
+        val imageReference = item.currentImageReference ?: item.blueprint.imageReference
         val imageOpt: Optional<Image> = moduleFacade.getImage(imageReference)
         val image: Image = if (imageOpt.isPresent) imageOpt.get() else return null
         return ItemView.fromInstance(item, image)
