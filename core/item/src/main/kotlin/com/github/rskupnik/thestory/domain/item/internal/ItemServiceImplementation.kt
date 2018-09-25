@@ -12,8 +12,8 @@ internal class ItemServiceImplementation(
         private val fileLoader: FileLoader,
         private val jsonParser: JsonParser,
         private val moduleFacade: ModuleFacade,
-        private val blueprintRepository: ItemBlueprintRepositoryK,
-        private val instanceRepository: ItemInstanceRepositoryK
+        private val blueprintRepository: ItemBlueprintRepository,
+        private val instanceRepository: ItemInstanceRepository
         //private val commonFacadeOperations: CommonFacadeOperations
 ) : ItemService {
 
