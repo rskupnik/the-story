@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.shared.persistence
+package com.github.rskupnik.thestory.persistence
 
 /**
  * Represents an object that can be persisted.

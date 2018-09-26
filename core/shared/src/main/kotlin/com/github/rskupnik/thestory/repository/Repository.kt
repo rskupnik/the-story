@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.shared.repository
+package com.github.rskupnik.thestory.repository
 
 import com.github.rskupnik.thestory.domain.shared.Referable
 import com.github.rskupnik.thestory.domain.shared.Reference

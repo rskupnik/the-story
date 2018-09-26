@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.shared.external
+package com.github.rskupnik.thestory.external
 
 /**
  * This class is the main [Port] that the Application uses to interact with the underlying OS, storage hardware or

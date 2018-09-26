@@ -4,7 +4,7 @@ import com.github.rskupnik.thestory.domain.item.ItemPlacement
 import com.github.rskupnik.thestory.domain.shared.BlueprintInstance
 import com.github.rskupnik.thestory.domain.shared.ExternalState
 import com.github.rskupnik.thestory.domain.shared.Reference
-import com.github.rskupnik.thestory.domain.shared.persistence.Persistable
+import com.github.rskupnik.thestory.persistence.Persistable
 import java.util.*
 
 internal class ItemInstance(
