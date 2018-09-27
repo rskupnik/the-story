@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.persistence
+package com.github.rskupnik.thestory.shared.persistence
 
 /**
  * Represents classes that are able to provide a [PersistableState].

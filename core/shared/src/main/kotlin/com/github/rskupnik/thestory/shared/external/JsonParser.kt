@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.external
+package com.github.rskupnik.thestory.shared.external
 
 
 interface JsonParser {

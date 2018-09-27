@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.shared
+package com.github.rskupnik.thestory.shared
 
 /**
  * Represents an external state of an object in the form of arbitrary [String] - [Any] pairs.

@@ -1,7 +1,7 @@
 package com.github.rskupnik.thestory.domain.item
 
 import com.github.rskupnik.thestory.domain.item.internal.ItemInstance
-import com.github.rskupnik.thestory.domain.shared.Reference
+import com.github.rskupnik.thestory.shared.Reference
 
 data class ItemView(
         private val id: Reference,

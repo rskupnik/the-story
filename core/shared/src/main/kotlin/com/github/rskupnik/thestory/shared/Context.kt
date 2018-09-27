@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.shared
+package com.github.rskupnik.thestory.shared
 
 enum class Context {
     INVENTORY, EQUIPMENT;

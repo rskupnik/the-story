@@ -1,7 +1,7 @@
-package com.github.rskupnik.thestory.repository
+package com.github.rskupnik.thestory.shared.repository
 
-import com.github.rskupnik.thestory.domain.shared.Referable
-import com.github.rskupnik.thestory.domain.shared.Reference
+import com.github.rskupnik.thestory.shared.Referable
+import com.github.rskupnik.thestory.shared.Reference
 
 /**
  * Represents classes used as repositories for holding [Referable]s of type [T].

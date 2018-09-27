@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.shared
+package com.github.rskupnik.thestory.shared
 
 /**
  * Represents classes that can be referenced.

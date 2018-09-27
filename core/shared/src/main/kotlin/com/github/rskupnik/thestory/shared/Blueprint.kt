@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.shared
+package com.github.rskupnik.thestory.shared
 
 /**
  * Represents Blueprints - classes that serve as templates to creates [Instance]s from.

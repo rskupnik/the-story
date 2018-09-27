@@ -1,10 +1,10 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
 import com.github.rskupnik.thestory.domain.item.ItemPlacement
-import com.github.rskupnik.thestory.domain.shared.BlueprintInstance
-import com.github.rskupnik.thestory.domain.shared.ExternalState
-import com.github.rskupnik.thestory.domain.shared.Reference
-import com.github.rskupnik.thestory.persistence.Persistable
+import com.github.rskupnik.thestory.shared.BlueprintInstance
+import com.github.rskupnik.thestory.shared.ExternalState
+import com.github.rskupnik.thestory.shared.Reference
+import com.github.rskupnik.thestory.shared.persistence.Persistable
 import java.util.*
 
 internal class ItemInstance(
@@ -18,7 +18,7 @@ internal class ItemInstance(
     internal var externalState: ExternalState = ExternalState()
     internal var placement: ItemPlacement? = null
 
-    override fun getPersistableState(): ItemPersistableState =
+    override fun toPersistableState(): ItemPersistableState =
             ItemPersistableState(id, blueprint.id, ExternalState.fromExistingState(externalState), currentImageReference?.value,
                     placement)
 

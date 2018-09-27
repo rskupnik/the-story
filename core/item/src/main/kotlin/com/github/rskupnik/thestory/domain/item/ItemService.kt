@@ -1,9 +1,8 @@
 package com.github.rskupnik.thestory.domain.item
 
-import com.github.rskupnik.thestory.domain.shared.Context
-import com.github.rskupnik.thestory.domain.shared.Reference
-import com.github.rskupnik.thestory.persistence.PersistableProvider
-import com.github.rskupnik.thestory.persistence.PersistableState
+import com.github.rskupnik.thestory.shared.Reference
+import com.github.rskupnik.thestory.shared.persistence.PersistableProvider
+import com.github.rskupnik.thestory.shared.persistence.PersistableState
 
 interface ItemService : PersistableProvider<PersistableState> {
 

@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.shared
+package com.github.rskupnik.thestory.shared
 
 /**
  * Used by [Mutator] classes, it's needed because the [Mutator] needs to differentiate three cases:

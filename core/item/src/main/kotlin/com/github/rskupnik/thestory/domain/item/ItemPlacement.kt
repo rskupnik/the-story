@@ -1,6 +1,6 @@
 package com.github.rskupnik.thestory.domain.item
 
-import com.github.rskupnik.thestory.domain.shared.Context
+import com.github.rskupnik.thestory.shared.Context
 
 data class ItemPlacement(
         val context: Context,

@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.persistence
+package com.github.rskupnik.thestory.shared.persistence
 
 /**
  * Represents an object that can be persisted.
@@ -6,5 +6,5 @@ package com.github.rskupnik.thestory.persistence
  * Objects are persisted by providing their respective [PersistableState] to be serialized to JSON.
  */
 interface Persistable<T : PersistableState> {
-    fun getPersistableState(): T
+    fun toPersistableState(): T
 }

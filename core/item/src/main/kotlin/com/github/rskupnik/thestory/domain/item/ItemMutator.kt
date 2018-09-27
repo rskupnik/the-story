@@ -1,9 +1,9 @@
 package com.github.rskupnik.thestory.domain.item
 
 import com.github.rskupnik.thestory.domain.item.internal.ItemInstance
-import com.github.rskupnik.thestory.domain.shared.Mutator
-import com.github.rskupnik.thestory.domain.shared.MutatorEntry
-import com.github.rskupnik.thestory.domain.shared.Reference
+import com.github.rskupnik.thestory.shared.Mutator
+import com.github.rskupnik.thestory.shared.MutatorEntry
+import com.github.rskupnik.thestory.shared.Reference
 
 class ItemMutator private constructor(
         currentImage: Reference?,

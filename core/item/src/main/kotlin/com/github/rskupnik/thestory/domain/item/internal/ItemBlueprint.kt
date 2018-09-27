@@ -1,7 +1,7 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
-import com.github.rskupnik.thestory.domain.shared.Blueprint
-import com.github.rskupnik.thestory.domain.shared.Reference
+import com.github.rskupnik.thestory.shared.Blueprint
+import com.github.rskupnik.thestory.shared.Reference
 
 internal data class ItemBlueprint(
         val id: String,

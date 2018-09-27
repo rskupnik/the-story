@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.shared
+package com.github.rskupnik.thestory.shared
 
 /**
  * This is a self-designed design pattern used to mutate internal objects from the outside.
@@ -7,6 +7,8 @@ package com.github.rskupnik.thestory.domain.shared
  * piece of logic that does the updating of the actual, hidden, internal object.
  */
 abstract class Mutator {
+
+    internal abstract fun <T> mutate(instance: T)
 
     protected fun <R> set(value: R?): MutatorEntry<R> =
             if (value == null) MutatorEntry.disabled() else MutatorEntry.enabled(value)

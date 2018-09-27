@@ -3,11 +3,11 @@ package com.github.rskupnik.thestory.domain.item.internal
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.item.ItemView
-import com.github.rskupnik.thestory.domain.shared.ExternalState
-import com.github.rskupnik.thestory.domain.shared.Reference
-import com.github.rskupnik.thestory.external.FileLoader
-import com.github.rskupnik.thestory.external.Image
-import com.github.rskupnik.thestory.external.JsonParser
+import com.github.rskupnik.thestory.shared.ExternalState
+import com.github.rskupnik.thestory.shared.Reference
+import com.github.rskupnik.thestory.shared.external.FileLoader
+import com.github.rskupnik.thestory.shared.external.Image
+import com.github.rskupnik.thestory.shared.external.JsonParser
 
 internal class ItemServiceImplementation(
         private val fileLoader: FileLoader,

@@ -1,8 +1,8 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
 import com.github.rskupnik.thestory.domain.item.ItemPlacement
-import com.github.rskupnik.thestory.domain.shared.ExternalState
-import com.github.rskupnik.thestory.persistence.PersistableState
+import com.github.rskupnik.thestory.shared.ExternalState
+import com.github.rskupnik.thestory.shared.persistence.PersistableState
 
 internal data class ItemPersistableState(
         internal val id: String,
