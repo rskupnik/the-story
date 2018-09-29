@@ -3,6 +3,7 @@ package com.github.rskupnik.thestory.domain.item.internal
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.item.ItemView
+import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.external.file.FileLoader
@@ -13,7 +14,7 @@ import com.github.rskupnik.thestory.shared.util.CommonFacadeOperations
 internal class ItemServiceImplementation(
         private val fileLoader: FileLoader,
         private val jsonParser: JsonParser,
-        private val moduleFacade: ModuleFacade,
+        private val moduleService: ModuleService,
         private val blueprintRepository: ItemBlueprintRepository,
         private val instanceRepository: ItemInstanceRepository
         //private val commonFacadeOperations: CommonFacadeOperations
@@ -26,10 +27,9 @@ internal class ItemServiceImplementation(
     }
 
     override fun loadBlueprints(moduleReference: Reference) {
-        val blueprints: List<ItemBlueprint> = CommonFacadeOperations.loadBlueprints(
-                moduleReference, fileLoader, DEFINITION_PATH, jsonParser, ItemJson::class)
-
-        blueprintRepository.save(blueprints)
+        blueprintRepository.save(
+                CommonFacadeOperations.loadBlueprints(moduleReference, fileLoader, DEFINITION_PATH, jsonParser, ItemJson::class)
+        )
     }
 
     override fun instantiate(blueprintReference: Reference): Reference? {
@@ -40,13 +40,11 @@ internal class ItemServiceImplementation(
     }
 
     override fun getItemView(reference: Reference): ItemView? {
-        val item = instanceRepository.find(reference) ?: return null
-        return buildItemView(item)
+        return buildItemView(instanceRepository.find(reference) ?: return null)
     }
 
-    override fun getAllItemsView(): List<ItemView> {
-        return instanceRepository.fetchAll().map { buildItemView(it) }.filterNotNull()
-    }
+    override fun getAllItemsView(): List<ItemView> =
+            instanceRepository.fetchAll().map { buildItemView(it) }.filterNotNull()
 
     /*override fun getOptions(reference: Reference, context: Context?): List<Option> {
         val instance = instanceRepository.find(reference) ?: return emptyList()
@@ -85,9 +83,7 @@ internal class ItemServiceImplementation(
     }
 
     private fun buildItemView(item: ItemInstance): ItemView? {
-        val imageReference = item.currentImageReference ?: item.blueprint.imageReference
-        val imageOpt: Optional<Image> = moduleFacade.getImage(imageReference)
-        val image: Image = if (imageOpt.isPresent) imageOpt.get() else return null
+        val image: Image = moduleService.getImage(item.currentImageReference ?: item.blueprint.imageReference) ?: return null
         return ItemView.fromInstance(item, image)
     }
 }
