@@ -5,9 +5,9 @@ import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.item.ItemView
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.external.FileLoader
-import com.github.rskupnik.thestory.shared.external.Image
-import com.github.rskupnik.thestory.shared.external.JsonParser
+import com.github.rskupnik.thestory.shared.external.file.FileLoader
+import com.github.rskupnik.thestory.shared.external.asset.Image
+import com.github.rskupnik.thestory.shared.json.JsonParser
 import com.github.rskupnik.thestory.shared.util.CommonFacadeOperations
 
 internal class ItemServiceImplementation(

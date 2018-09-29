@@ -1,7 +1,7 @@
 package com.github.rskupnik.thestory.shared
 
-import com.github.rskupnik.thestory.shared.external.JacksonJsonParser
-import com.github.rskupnik.thestory.shared.external.JsonParser
+import com.github.rskupnik.thestory.shared.json.JacksonJsonParser
+import com.github.rskupnik.thestory.shared.json.JsonParser
 
 object DefaultImplementationProvider {
 

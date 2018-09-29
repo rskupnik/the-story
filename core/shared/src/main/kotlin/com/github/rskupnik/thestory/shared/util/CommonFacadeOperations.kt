@@ -4,8 +4,8 @@ import com.github.rskupnik.thestory.shared.Blueprint
 import com.github.rskupnik.thestory.shared.Instance
 import com.github.rskupnik.thestory.shared.Mutator
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.external.FileLoader
-import com.github.rskupnik.thestory.shared.external.JsonParser
+import com.github.rskupnik.thestory.shared.external.file.FileLoader
+import com.github.rskupnik.thestory.shared.json.JsonParser
 import com.github.rskupnik.thestory.shared.json.BlueprintJsonRepresentation
 import com.github.rskupnik.thestory.shared.persistence.Persistable
 import com.github.rskupnik.thestory.shared.persistence.PersistableState

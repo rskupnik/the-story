@@ -4,9 +4,9 @@ import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.domain.module.ModuleType
 import com.github.rskupnik.thestory.domain.module.ModuleView
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.external.FileLoader
-import com.github.rskupnik.thestory.shared.external.Image
-import com.github.rskupnik.thestory.shared.external.JsonParser
+import com.github.rskupnik.thestory.shared.external.file.FileLoader
+import com.github.rskupnik.thestory.shared.external.asset.Image
+import com.github.rskupnik.thestory.shared.json.JsonParser
 
 internal class ModuleServiceImplementation(
         private val fileLoader: FileLoader,

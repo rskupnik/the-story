@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.shared.external
+package com.github.rskupnik.thestory.shared.json
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper

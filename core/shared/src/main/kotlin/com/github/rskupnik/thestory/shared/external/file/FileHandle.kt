@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.shared.external
+package com.github.rskupnik.thestory.shared.external.file
 
 /**
  * An abstraction that represents a handle to a file.
