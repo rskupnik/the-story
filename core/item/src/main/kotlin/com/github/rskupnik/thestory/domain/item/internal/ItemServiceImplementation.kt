@@ -8,6 +8,7 @@ import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.external.FileLoader
 import com.github.rskupnik.thestory.shared.external.Image
 import com.github.rskupnik.thestory.shared.external.JsonParser
+import com.github.rskupnik.thestory.shared.util.CommonFacadeOperations
 
 internal class ItemServiceImplementation(
         private val fileLoader: FileLoader,
@@ -23,7 +24,7 @@ internal class ItemServiceImplementation(
     }
 
     override fun loadBlueprints(moduleReference: Reference) {
-        val blueprints: List<ItemBlueprint> = commonFacadeOperations.loadBlueprints(
+        val blueprints: List<ItemBlueprint> = CommonFacadeOperations.loadBlueprints(
                 moduleReference, fileLoader, DEFINITION_PATH, jsonParser, ItemJsonRepresentation::class.java)
 
         blueprintRepository.save(blueprints)
@@ -64,8 +65,8 @@ internal class ItemServiceImplementation(
 
     override fun getPersistableKey(): String = "items"
 
-    override fun getPersistableState(): MutableList<ItemPersistableState> {
-        return commonFacadeOperations.getPersistableState(instanceRepository.fetchAll())
+    override fun getPersistableState(): List<ItemPersistableState> {
+        return CommonFacadeOperations.getPersistableState(instanceRepository.fetchAll())
     }
 
     override fun loadPersistableState(state: List<Map<String, Any>>) {
