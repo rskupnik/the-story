@@ -7,7 +7,7 @@ import com.github.rskupnik.thestory.shared.persistence.PersistableState
 
 interface ModuleService : PersistableProvider<PersistableState> {
 
-    fun load(module: String): List<Reference>
+    fun load(moduleId: String): List<Reference>
 
     fun getLoadedModules(): List<ModuleView>
 
