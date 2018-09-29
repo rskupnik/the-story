@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
+import com.github.rskupnik.thestory.domain.option.OptionJson
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.json.BlueprintJsonRepresentation
 
@@ -8,8 +9,8 @@ internal data class ItemJson(
         val label: String,
         val image: String,
         val type: String?,
-        val initialState: Map<String, Any>
-        // TODO options
+        val initialState: Map<String, Any>,
+        val options: List<OptionJson>
         // TODO callbacks
 ) : BlueprintJsonRepresentation<ItemBlueprint> {
     override fun toBlueprint(): ItemBlueprint = ItemBlueprint(
@@ -17,6 +18,7 @@ internal data class ItemJson(
             label,
             Reference.to(image),
             if (type != null) ItemBlueprint.Type.valueOf(type) else ItemBlueprint.Type.REGULAR,
-            initialState
+            initialState,
+            null //options
     )
 }
