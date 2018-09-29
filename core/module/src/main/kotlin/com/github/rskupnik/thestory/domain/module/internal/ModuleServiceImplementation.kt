@@ -7,7 +7,6 @@ import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.external.FileLoader
 import com.github.rskupnik.thestory.shared.external.Image
 import com.github.rskupnik.thestory.shared.external.JsonParser
-import com.github.rskupnik.thestory.shared.persistence.PersistableState
 
 internal class ModuleServiceImplementation(
         private val fileLoader: FileLoader,
@@ -16,10 +15,10 @@ internal class ModuleServiceImplementation(
         private val repository: ModuleRepository
 ) : ModuleService {
 
-    override val persistableKey: String = "module"
-
     companion object {
         const val DEFINITION_PATH = "modules/unpacked/%s/module.json"
+        const val IMAGE_ATLAS_PATH = "modules/unpacked/%s/assets.atlas"
+        const val GFX_IMAGE_PATH = "modules/unpacked/%s/gfx/%s"
     }
 
     override fun load(moduleId: String): List<Reference> {
@@ -36,23 +35,13 @@ internal class ModuleServiceImplementation(
         return output.toList()
     }
 
-    override fun getLoadedModules(): List<ModuleView> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    // TODO: Fail on invalid state (not loaded yet)
+    override fun getLoadedModules(): List<ModuleView> = repository.fetchAll().map { ModuleView.fromModule(it) }
 
-    override fun getLoadedStandaloneModule(): ModuleView? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getLoadedStandaloneModule(): ModuleView? =
+            getLoadedModules().first { it.type == ModuleType.STANDALONE }
 
     override fun getImage(ref: Reference): Image? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getPersistableState(): List<PersistableState> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun loadPersistableState(state: List<Map<String, Any>>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

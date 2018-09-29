@@ -2,10 +2,8 @@ package com.github.rskupnik.thestory.domain.module
 
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.external.Image
-import com.github.rskupnik.thestory.shared.persistence.PersistableProvider
-import com.github.rskupnik.thestory.shared.persistence.PersistableState
 
-interface ModuleService : PersistableProvider<PersistableState> {
+interface ModuleService {
 
     fun load(moduleId: String): List<Reference>
 
