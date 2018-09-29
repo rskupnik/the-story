@@ -11,5 +11,5 @@ interface Instance : Referable {
     val id: String
 
     override val reference: Reference
-        get() = Reference(id)
+        get() = Reference.to(id)
 }

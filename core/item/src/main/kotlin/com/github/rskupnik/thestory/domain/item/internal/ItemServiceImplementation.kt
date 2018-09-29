@@ -25,7 +25,7 @@ internal class ItemServiceImplementation(
 
     override fun loadBlueprints(moduleReference: Reference) {
         val blueprints: List<ItemBlueprint> = CommonFacadeOperations.loadBlueprints(
-                moduleReference, fileLoader, DEFINITION_PATH, jsonParser, ItemJsonRepresentation::class.java)
+                moduleReference, fileLoader, DEFINITION_PATH, jsonParser, ItemJson::class)
 
         blueprintRepository.save(blueprints)
     }
@@ -76,9 +76,9 @@ internal class ItemServiceImplementation(
     }
 
     private fun instantiateFromState(state: ItemPersistableState): ItemInstance? {
-        val blueprint = blueprintRepository.find(Reference(state.blueprint)) ?: return null
+        val blueprint = blueprintRepository.find(Reference.to(state.blueprint)) ?: return null
         return ItemInstance.restore(state.id, blueprint,
-                if (state.currentImage != null) Reference(state.currentImage) else null,
+                if (state.currentImage != null) Reference.to(state.currentImage) else null,
                 state.externalState
                 //state.placement
         )

@@ -13,7 +13,7 @@ internal data class ItemBlueprint(
         //val callbacks: List<Callback>
 ) : Blueprint {
     override val reference: Reference
-        get() = Reference(id)
+        get() = Reference.to(id)
 
     internal enum class Type {
         REGULAR, WEAPON
