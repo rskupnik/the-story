@@ -4,13 +4,15 @@ import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.domain.module.ModuleType
 import com.github.rskupnik.thestory.domain.module.ModuleView
 import com.github.rskupnik.thestory.shared.Reference
+import com.github.rskupnik.thestory.shared.external.asset.AssetLoader
 import com.github.rskupnik.thestory.shared.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.external.asset.Image
+import com.github.rskupnik.thestory.shared.external.asset.ImageProvider
 import com.github.rskupnik.thestory.shared.json.JsonParser
 
 internal class ModuleServiceImplementation(
         private val fileLoader: FileLoader,
-        //private val assetLoader: AssetLoader
+        private val assetLoader: AssetLoader,
         private val jsonParser: JsonParser,
         private val repository: ModuleRepository
 ) : ModuleService {
@@ -21,7 +23,7 @@ internal class ModuleServiceImplementation(
         const val GFX_IMAGE_PATH = "modules/unpacked/%s/gfx/%s"
     }
 
-    override fun load(moduleId: String): List<Reference> {
+    /*override fun load(moduleId: String): List<Reference> {
         val module: Module = parseModule(moduleId)
         if (module.definition.type != ModuleType.STANDALONE) {
             throw IllegalArgumentException("Cannot load module $moduleId because it's not a STANDALONE module")
@@ -33,7 +35,21 @@ internal class ModuleServiceImplementation(
         output.addAll(loadDependencies(module.definition.dependencies) { IllegalStateException("Error loading required dependency modules") })
         output.addAll(loadDependencies(module.definition.optionalDependencies, null))
         return output.toList()
-    }
+    }*/
+
+    override fun load(moduleId: String): List<Reference> = parseModule(moduleId)
+            .let {
+                if (it.definition.type != ModuleType.STANDALONE) {
+                    throw IllegalArgumentException("Cannot load module $moduleId because it's not a STANDALONE module")
+                } else it
+            }
+            .also { repository.save(it) }
+            .let {
+                val output: MutableList<Reference> = mutableListOf(it.reference)
+                output.addAll(loadDependencies(it.definition.dependencies) { IllegalStateException("Error loading required dependency modules") })
+                output.addAll(loadDependencies(it.definition.optionalDependencies, null))
+                return output.toList()
+            }
 
     // TODO: Fail on invalid state (not loaded yet)
     override fun getLoadedModules(): List<ModuleView> = repository.fetchAll().map { ModuleView.fromModule(it) }
@@ -41,9 +57,7 @@ internal class ModuleServiceImplementation(
     override fun getLoadedStandaloneModule(): ModuleView? =
             getLoadedModules().first { it.type == ModuleType.STANDALONE }
 
-    override fun getImage(ref: Reference): Image? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getImage(ref: Reference): Image? = findImageInProvider(ref) ?: findImageInGfx(ref)
 
     /**
      * Parse a single [Module] identified by [moduleId].
@@ -56,13 +70,11 @@ internal class ModuleServiceImplementation(
                 .let { jsonParser.parse(ModuleJson::class.java, it) }         // Parse JSON to object
                 ?.toDefinition() ?: throw IllegalStateException("Error parsing module $moduleId")
 
-        val imageProvider = loadImageProvider(moduleId)
-
-        return Module(definition)
+        return Module(definition, loadImageProvider(moduleId))
     }
 
-    private fun loadImageProvider(moduleId: String): Any? {
-        TODO("not yet implemented")
+    private fun loadImageProvider(moduleId: String): ImageProvider? {
+        return assetLoader.loadImageProvider(fileLoader.getFileHandle(IMAGE_ATLAS_PATH.format(moduleId)) ?: return null)
     }
 
     private fun loadDependencies(dependencies: List<String>?, onError: (() -> RuntimeException)?): List<Reference> {
@@ -77,4 +89,18 @@ internal class ModuleServiceImplementation(
             return if (onError != null) throw onError() else emptyList()
         }
     }
+
+    private fun findImageInProvider(reference: Reference): Image? =
+            repository.fetchAll()
+                    .asSequence()
+                    .mapNotNull { it.imageProvider }
+                    .first { it.getImage(reference.value) != null }
+                    .getImage(reference.value)
+
+    private fun findImageInGfx(reference: Reference): Image? =
+            repository.fetchAll()
+                    .asSequence()
+                    .mapNotNull { fileLoader.getFileHandle(GFX_IMAGE_PATH.format(it.definition.id, reference.value)) }
+                    .first()
+                    .let { fileLoader.loadAsImage(it) }
 }
