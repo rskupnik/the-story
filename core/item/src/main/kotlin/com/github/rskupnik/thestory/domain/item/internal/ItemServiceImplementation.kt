@@ -19,6 +19,8 @@ internal class ItemServiceImplementation(
         //private val commonFacadeOperations: CommonFacadeOperations
 ) : ItemService {
 
+    override val persistableKey: String = "item"
+
     companion object {
         const val DEFINITION_PATH = "modules/unpacked/%s/definitions/items.json"
     }
@@ -62,8 +64,6 @@ internal class ItemServiceImplementation(
         mutator.mutate(instanceRepository.find(itemReference) ?: return false)
         return true
     }
-
-    override fun getPersistableKey(): String = "items"
 
     override fun getPersistableState(): List<ItemPersistableState> {
         return CommonFacadeOperations.getPersistableState(instanceRepository.fetchAll())
