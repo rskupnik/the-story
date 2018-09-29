@@ -9,9 +9,9 @@ interface ModuleService : PersistableProvider<PersistableState> {
 
     fun load(module: String): List<Reference>
 
-    //fun getLoadedModules(): List<ModuleView>
+    fun getLoadedModules(): List<ModuleView>
 
-    //fun getLoadedStandaloneModule(): ModuleView?
+    fun getLoadedStandaloneModule(): ModuleView?
 
     // TODO: Should this be here or in a separate component that deals with assets?
     fun getImage(ref: Reference): Image?
