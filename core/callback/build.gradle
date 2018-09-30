@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.71"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'org.jetbrains.dokka'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+    
+    compile project(":core:shared")
+    compile project(":core:action")
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.6"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.6"
+    }
+}
+
+dokka {
+    outputFormat = 'markdown'
+    outputDirectory = "$buildDir/doc"
+}
+
