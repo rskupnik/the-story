@@ -8,8 +8,8 @@ import com.github.rskupnik.thestory.domain.option.Option
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.external.asset.Image
+import com.github.rskupnik.thestory.shared.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.json.JsonParser
 import com.github.rskupnik.thestory.shared.util.CommonFacadeOperations
 
@@ -19,7 +19,6 @@ internal class ItemServiceImplementation(
         private val moduleService: ModuleService,
         private val blueprintRepository: ItemBlueprintRepository,
         private val instanceRepository: ItemInstanceRepository
-        //private val commonFacadeOperations: CommonFacadeOperations
 ) : ItemService {
 
     override val persistableKey: String = "item"
@@ -71,7 +70,7 @@ internal class ItemServiceImplementation(
 
     override fun loadPersistableState(state: List<Map<String, Any>>) {
         val loadedState = ItemPersistableState.fromRawData(state)
-        val instances = loadedState.map { instantiateFromState(it) }.filterNotNull()
+        val instances = loadedState.mapNotNull { instantiateFromState(it) }
         instanceRepository.save(instances)
     }
 
@@ -79,8 +78,7 @@ internal class ItemServiceImplementation(
         val blueprint = blueprintRepository.find(Reference.to(state.blueprint)) ?: return null
         return ItemInstance.restore(state.id, blueprint,
                 if (state.currentImage != null) Reference.to(state.currentImage) else null,
-                state.externalState
-                //state.placement
+                state.externalState, state.placement
         )
     }
 
