@@ -1,5 +1,7 @@
 package com.github.rskupnik.thestory.domain.item
 
+import com.github.rskupnik.thestory.domain.option.Option
+import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.persistence.PersistableProvider
 import com.github.rskupnik.thestory.shared.persistence.PersistableState
@@ -14,7 +16,7 @@ interface ItemService : PersistableProvider<PersistableState> {
 
     fun getAllItemsView(): List<ItemView>
 
-    //fun getOptions(reference: Reference, context: Context?): List<Option>
+    fun getOptions(reference: Reference, context: Context?): List<Option>
 
     //fun getCallbacks(reference: Reference): List<Callback>
 

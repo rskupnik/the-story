@@ -4,6 +4,8 @@ import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.item.ItemView
 import com.github.rskupnik.thestory.domain.module.ModuleService
+import com.github.rskupnik.thestory.domain.option.Option
+import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.external.file.FileLoader
@@ -46,14 +48,14 @@ internal class ItemServiceImplementation(
     override fun getAllItemsView(): List<ItemView> =
             instanceRepository.fetchAll().map { buildItemView(it) }.filterNotNull()
 
-    /*override fun getOptions(reference: Reference, context: Context?): List<Option> {
+    override fun getOptions(reference: Reference, context: Context?): List<Option> {
         val instance = instanceRepository.find(reference) ?: return emptyList()
-        val filteredByContext = if (context == null) instance.blueprint.options else Option.Filter.byContext(instance.blueprint.options, context)
-        val filteredByConditions = Option.Filter.byConditions(filteredByContext, instance.externalState)
-        return filteredByConditions
+        return instance.blueprint.options
+                .let { if (context == null) it else Option.filterByContext(it, context) }
+                .let { Option.filterByConditions(it, instance.externalState) }
     }
 
-    override fun getCallbacks(reference: Reference): List<Callback> {
+    /*override fun getCallbacks(reference: Reference): List<Callback> {
         val instance = instanceRepository.find(reference) ?: return emptyList()
         return instance.blueprint.callbacks.toList()
     }*/

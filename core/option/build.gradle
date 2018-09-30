@@ -20,6 +20,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
     
     compile project(":core:shared")
+    compile project(":core:action")
 }
 
 compileKotlin {
