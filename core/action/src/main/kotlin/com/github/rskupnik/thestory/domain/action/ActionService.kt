@@ -4,5 +4,5 @@ import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
 interface ActionService {
-    fun dispatch(action: Action, context: Context, entityId: EntityId, data: Map<String, Any>)
+    fun execute(action: Action, context: Context?, entityId: EntityId?, data: Map<String, Any>?)
 }

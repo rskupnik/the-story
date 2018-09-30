@@ -6,12 +6,12 @@ import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.external.asset.Image
 
 data class ItemView(
-        private val id: Reference,
-        private val blueprintId: Reference,
-        private val label: String,
-        private val image: Image,
-        private val externalState: ExternalState,
-        private val placement: ItemPlacement?
+        val id: Reference,
+        val blueprintId: Reference,
+        val label: String,
+        val image: Image,
+        val externalState: ExternalState,
+        val placement: ItemPlacement?
 ) {
     companion object {
         internal fun fromInstance(instance: ItemInstance, image: Image): ItemView = ItemView(
