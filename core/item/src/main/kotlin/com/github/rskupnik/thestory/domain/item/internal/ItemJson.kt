@@ -3,6 +3,7 @@ package com.github.rskupnik.thestory.domain.item.internal
 import com.github.rskupnik.thestory.domain.option.OptionJson
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.json.BlueprintJsonRepresentation
+import com.github.rskupnik.thestory.shared.json.DefinitionJsonRepresentation
 
 internal data class ItemJson(
         val id: String,
@@ -19,6 +20,6 @@ internal data class ItemJson(
             Reference.to(image),
             if (type != null) ItemBlueprint.Type.valueOf(type) else ItemBlueprint.Type.REGULAR,
             initialState,
-            null //options
+            DefinitionJsonRepresentation.convertList(options)
     )
 }
