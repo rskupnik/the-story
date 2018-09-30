@@ -1,13 +1,16 @@
 package com.github.rskupnik.thestory.domain.option
 
+import com.github.rskupnik.thestory.domain.action.ActionService
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
 internal class OptionServiceImplementation(
-        //val eventDispatcher: EventDispatcher
+        private val actionService: ActionService
 ) : OptionService {
 
     override fun execute(option: Option, externalData: Map<String, Any>, context: Context, entityId: EntityId) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        option.actions.forEach {
+            actionService.execute(it, context, entityId, externalData)
+        }
     }
 }
