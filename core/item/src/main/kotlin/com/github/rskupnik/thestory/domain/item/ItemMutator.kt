@@ -15,9 +15,8 @@ class ItemMutator private constructor(
 
     internal fun mutate(item: ItemInstance) {
         item.currentImageReference = if (currentImageMutator.enabled) currentImageMutator.value else item.currentImageReference
-        //if (externalStateMutator.enabled) {
-
-        //}
+        if (externalStateMutator.enabled)
+            item.externalState = mutateState(item.externalState, externalStateMutator.value ?: return)
     }
 
     data class Builder(

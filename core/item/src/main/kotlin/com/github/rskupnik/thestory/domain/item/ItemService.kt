@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.domain.item
 
+import com.github.rskupnik.thestory.domain.callback.Callback
 import com.github.rskupnik.thestory.domain.option.Option
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
@@ -18,7 +19,7 @@ interface ItemService : PersistableProvider<PersistableState> {
 
     fun getOptions(reference: Reference, context: Context?): List<Option>
 
-    //fun getCallbacks(reference: Reference): List<Callback>
+    fun getCallbacks(reference: Reference): List<Callback>
 
     fun mutate(itemReference: Reference, mutator: ItemMutator): Boolean
 }

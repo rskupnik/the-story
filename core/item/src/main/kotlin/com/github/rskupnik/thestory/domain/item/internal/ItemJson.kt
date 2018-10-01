@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
+import com.github.rskupnik.thestory.domain.callback.CallbackJson
 import com.github.rskupnik.thestory.domain.option.OptionJson
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.json.BlueprintJsonRepresentation
@@ -11,8 +12,8 @@ internal data class ItemJson(
         val image: String,
         val type: String?,
         val initialState: Map<String, Any>,
-        val options: List<OptionJson>
-        // TODO callbacks
+        val options: List<OptionJson>,
+        val callbacks: List<CallbackJson>
 ) : BlueprintJsonRepresentation<ItemBlueprint> {
     override fun toBlueprint(): ItemBlueprint = ItemBlueprint(
             id,
@@ -20,6 +21,7 @@ internal data class ItemJson(
             Reference.to(image),
             if (type != null) ItemBlueprint.Type.valueOf(type) else ItemBlueprint.Type.REGULAR,
             initialState,
-            DefinitionJsonRepresentation.convertList(options)
+            DefinitionJsonRepresentation.convertList(options),
+            DefinitionJsonRepresentation.convertList(callbacks)
     )
 }

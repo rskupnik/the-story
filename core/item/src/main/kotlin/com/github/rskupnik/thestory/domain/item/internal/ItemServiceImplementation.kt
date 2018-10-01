@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
+import com.github.rskupnik.thestory.domain.callback.Callback
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.item.ItemView
@@ -54,10 +55,10 @@ internal class ItemServiceImplementation(
                 .let { Option.filterByConditions(it, instance.externalState) }
     }
 
-    /*override fun getCallbacks(reference: Reference): List<Callback> {
+    override fun getCallbacks(reference: Reference): List<Callback> {
         val instance = instanceRepository.find(reference) ?: return emptyList()
         return instance.blueprint.callbacks.toList()
-    }*/
+    }
 
     override fun mutate(itemReference: Reference, mutator: ItemMutator): Boolean {
         mutator.mutate(instanceRepository.find(itemReference) ?: return false)
