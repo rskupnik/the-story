@@ -65,9 +65,8 @@ internal class ItemServiceImplementation(
         return true
     }
 
-    override fun getPersistableState(): List<ItemPersistableState> {
-        return CommonFacadeOperations.getPersistableState(instanceRepository.fetchAll())
-    }
+    override fun getPersistableState(): List<ItemPersistableState> =
+        CommonFacadeOperations.getPersistableState(instanceRepository.fetchAll())
 
     override fun loadPersistableState(state: List<Map<String, Any>>) {
         val loadedState = ItemPersistableState.fromRawData(state)
