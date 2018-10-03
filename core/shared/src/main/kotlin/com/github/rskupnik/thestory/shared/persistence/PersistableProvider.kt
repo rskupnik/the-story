@@ -5,11 +5,11 @@ package com.github.rskupnik.thestory.shared.persistence
  *
  * TODO: Is this actually needed?
  */
-interface PersistableProvider<R : PersistableState> {
+interface PersistableProvider {
 
     val persistableKey: String
 
-    fun getPersistableState(): List<R>
+    fun getPersistableState(): List<PersistableState>
 
     // TODO: This should probably be pulled out to a `PersistableConsumer` or something like that
     fun loadPersistableState(state: List<Map<String, Any>>)

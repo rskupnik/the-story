@@ -7,7 +7,7 @@ import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.persistence.PersistableProvider
 import com.github.rskupnik.thestory.shared.persistence.PersistableState
 
-interface ItemService : PersistableProvider<PersistableState> {
+interface ItemService : PersistableProvider {
 
     fun loadBlueprints(moduleReference: Reference)
 
