@@ -23,4 +23,7 @@ abstract class Mutator {
             currentState
         }
     }
+
+    protected fun <R> mutateValue(mutator: MutatorEntry<R>, currentValue: R? = null): R? =
+        if (mutator.enabled) mutator.value else currentValue
 }

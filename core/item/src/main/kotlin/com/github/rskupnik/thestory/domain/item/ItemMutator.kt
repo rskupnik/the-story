@@ -7,24 +7,33 @@ import com.github.rskupnik.thestory.shared.Reference
 
 class ItemMutator private constructor(
         currentImage: Reference?,
-        externalState: Map<String, Any>?
+        externalState: Map<String, Any>?,
+        placement: ItemPlacement?
 ) : Mutator() {
+
+    companion object {
+        fun new(): Builder = Builder()
+    }
 
     private val currentImageMutator: MutatorEntry<Reference> = set(currentImage)
     private val externalStateMutator: MutatorEntry<Map<String, Any>> = set(externalState)
+    private val placementMutator: MutatorEntry<ItemPlacement> = set(placement)
 
     internal fun mutate(item: ItemInstance) {
-        item.currentImageReference = if (currentImageMutator.enabled) currentImageMutator.value else item.currentImageReference
+        item.currentImageReference = mutateValue(currentImageMutator, item.currentImageReference)
         if (externalStateMutator.enabled)
             item.externalState = mutateState(item.externalState, externalStateMutator.value ?: return)
+        item.placement = mutateValue(placementMutator, item.placement)
     }
 
-    data class Builder(
+    data class Builder internal constructor(
             var currentImage: Reference? = null,
-            var externalState: Map<String, Any>? = null
+            var externalState: Map<String, Any>? = null,
+            var placement: ItemPlacement? = null
     ) {
         fun currentImage(currentImage: Reference) = apply { this.currentImage = currentImage }
         fun externalState(externalState: Map<String, Any>) = apply { this.externalState = externalState }
-        fun build() = ItemMutator(currentImage, externalState)
+        fun placement(placement: ItemPlacement) = apply { this.placement = placement }
+        fun build() = ItemMutator(currentImage, externalState, placement)
     }
 }
