@@ -25,27 +25,66 @@ internal class DefaultInventory(
     }
 
     override fun put(reference: Reference) {
-
+        put(reference, getFirstFreeSlot() ?: return)
     }
 
-    override fun get(slot: InventorySlot): Reference? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun get(slot: InventorySlot): Reference? = items[slot.x][slot.y]
 
-    override fun getAll(): Map<InventorySlot, ItemView> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getAll(): Map<InventorySlot, ItemView> =
+            items.mapIndexed { i, arrayOfReferences ->
+                arrayOfReferences.mapIndexedNotNull { j, reference ->
+                    val itemView: ItemView? = reference?.let { itemService.getItemView(it) }
+                    Pair(InventorySlot(i, j), itemView)
+                }
+            }
+            .flatMap { it }
+            .asSequence()
+            .filter { it.second != null }
+            .map { Pair(it.first, it.second!!) }
+            .toList()
+            .toMap()
 
     override fun remove(reference: Reference) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val slot = findItem(reference) ?: return
+        items[slot.x][slot.y] = null
     }
 
-    override fun findFreeSlot(): InventorySlot? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun findFreeSlot(): InventorySlot? = getFirstFreeSlot()
 
     override fun refresh() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // Get all available items
+        val existingItems = itemService.getAllItemsView()
+
+        // Purge the existing storage
+        clear()
+
+        // Put all existing items in the storage if their placement is in inventory
+        existingItems.forEach {
+            if (it.placement != null && it.placement?.context == Context.INVENTORY) {
+                val slot = it.placement?.slot as InventorySlot
+                items[slot.x][slot.y] = it.id.clone()
+            }
+        }
+
+        // TODO: Inform the OutputReceiver
+    }
+
+    private fun clear() {
+        items.forEachIndexed { i, v1 ->
+            v1.forEachIndexed { j, _ ->
+                items[i][j] = null
+            }
+        }
+    }
+
+    private fun findItem(item: Reference): InventorySlot? {
+        items.forEachIndexed { i, v1 ->
+            v1.forEachIndexed { j, v2 ->
+                if (v2 != null && v2 == item)
+                    return InventorySlot(i, j)
+            }
+        }
+        return null
     }
 
     private fun getFirstFreeSlot(): InventorySlot? {
