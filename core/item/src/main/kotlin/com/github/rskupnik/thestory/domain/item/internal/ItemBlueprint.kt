@@ -14,8 +14,7 @@ internal data class ItemBlueprint(
         val options: List<Option>,
         val callbacks: List<Callback>
 ) : Blueprint {
-    override val reference: Reference
-        get() = Reference.to(id)
+    override val reference: Reference = Reference.to(id)
 
     internal enum class Type {
         REGULAR, WEAPON
