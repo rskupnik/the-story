@@ -21,6 +21,7 @@ dependencies {
     
     compile project(":core:shared")
     compile project(":core:option")
+    compile project(":core:location")
 }
 
 compileKotlin {
