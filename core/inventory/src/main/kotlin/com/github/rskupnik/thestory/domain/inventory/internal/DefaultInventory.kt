@@ -1,5 +1,7 @@
-package com.github.rskupnik.thestory.domain.inventory
+package com.github.rskupnik.thestory.domain.inventory.internal
 
+import com.github.rskupnik.thestory.domain.inventory.Inventory
+import com.github.rskupnik.thestory.domain.inventory.InventorySlot
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemPlacement
 import com.github.rskupnik.thestory.domain.item.ItemService

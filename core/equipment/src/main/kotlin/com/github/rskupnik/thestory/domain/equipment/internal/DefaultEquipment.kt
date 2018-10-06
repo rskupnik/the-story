@@ -1,7 +1,9 @@
-package com.github.rskupnik.thestory.domain.equipment
+package com.github.rskupnik.thestory.domain.equipment.internal
 
 import com.github.rskupnik.thestory.domain.callback.CallbackId
 import com.github.rskupnik.thestory.domain.callback.CallbackService
+import com.github.rskupnik.thestory.domain.equipment.Equipment
+import com.github.rskupnik.thestory.domain.equipment.EquipmentSlot
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemPlacement
 import com.github.rskupnik.thestory.domain.item.ItemService
