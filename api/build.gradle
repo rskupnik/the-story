@@ -19,7 +19,17 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 
-    compile project(":glue")
+    implementation project(":glue")
+    implementation project(":core:shared")
+    implementation project(":core:location")
+    implementation project(":core:item")
+    implementation project(":core:object")
+    implementation project(":core:npc")
+    implementation project(":core:module")
+    implementation project(":core:player")
+    implementation project(":core:option")
+    implementation project(":core:inventory")
+    implementation project(":core:equipment")
 }
 
 compileKotlin {
