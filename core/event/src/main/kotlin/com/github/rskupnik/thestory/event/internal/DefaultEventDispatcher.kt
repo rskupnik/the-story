@@ -1,5 +1,7 @@
-package com.github.rskupnik.thestory.event
+package com.github.rskupnik.thestory.event.internal
 
+import com.github.rskupnik.thestory.event.Event
+import com.github.rskupnik.thestory.event.EventDispatcher
 import kotlin.reflect.KClass
 
 internal class DefaultEventDispatcher : EventDispatcher {
