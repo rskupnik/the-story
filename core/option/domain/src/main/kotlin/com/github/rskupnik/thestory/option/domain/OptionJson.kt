@@ -1,6 +1,6 @@
-package com.github.rskupnik.thestory.domain.option
+package com.github.rskupnik.thestory.option.domain
 
-import com.github.rskupnik.thestory.domain.action.ActionJson
+import com.github.rskupnik.thestory.action.domain.ActionJson
 import com.github.rskupnik.thestory.shared.json.DefinitionJsonRepresentation
 
 data class OptionJson(

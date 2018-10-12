@@ -1,16 +1,16 @@
 package com.github.rskupnik.thestory.domain.option
 
-import com.github.rskupnik.thestory.domain.action.ActionService
+import com.github.rskupnik.thestory.domain.option.event.OptionSelectedEvent
+import com.github.rskupnik.thestory.event.EventDispatcher
+import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
 internal class OptionServiceImplementation(
-        private val actionService: ActionService
+        private val eventDispatcher: EventDispatcher
 ) : OptionService {
 
     override fun execute(option: Option, externalData: Map<String, Any>, context: Context, entityId: EntityId) {
-        option.actions.forEach {
-            actionService.execute(it, context, entityId, externalData)
-        }
+        eventDispatcher.dispatch(OptionSelectedEvent(option, externalData, context, entityId))
     }
 }

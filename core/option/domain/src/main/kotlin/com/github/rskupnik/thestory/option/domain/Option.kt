@@ -1,6 +1,6 @@
-package com.github.rskupnik.thestory.domain.option
+package com.github.rskupnik.thestory.option.domain
 
-import com.github.rskupnik.thestory.domain.action.Action
+import com.github.rskupnik.thestory.action.domain.Action
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Definition
 

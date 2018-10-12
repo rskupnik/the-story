@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.action
+package com.github.rskupnik.thestory.action.domain
 
 import com.github.rskupnik.thestory.shared.Definition
 
