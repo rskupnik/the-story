@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.shared.external.file
 
+import com.github.rskupnik.thestory.shared.external.Port
 import com.github.rskupnik.thestory.shared.external.asset.Image
 
 /**
@@ -8,7 +9,7 @@ import com.github.rskupnik.thestory.shared.external.asset.Image
  *
  * The user of the Application must provide an implementation for this interface.
  */
-interface FileLoader {
+interface FileLoader : Port {
 
     /**
      * Get a [FileHandle] object, which represents a handle to a file.
