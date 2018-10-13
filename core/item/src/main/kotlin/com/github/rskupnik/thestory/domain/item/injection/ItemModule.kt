@@ -11,10 +11,13 @@ import com.github.rskupnik.thestory.shared.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.json.JsonParser
 import com.github.rskupnik.thestory.shared.repository.Repository
 import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 class ItemModule {
 
+    @Provides @Singleton
     fun service(fileLoader: FileLoader, jsonParser: JsonParser, moduleService: ModuleService,
                 blueprintRepository: Repository<Blueprint>, instanceRepository: Repository<Blueprint>
     ): ItemService = ItemServiceImplementation(
@@ -22,7 +25,9 @@ class ItemModule {
             instanceRepository as ItemInstanceRepository
     )
 
+    @Provides @Singleton
     fun blueprintRepository(): Repository<out Blueprint> = ItemBlueprintRepository()
 
+    @Provides @Singleton
     fun instanceRepository(): Repository<out Instance> = ItemInstanceRepository()
 }

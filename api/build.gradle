@@ -18,18 +18,19 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+    compile 'com.google.dagger:dagger:2.17'
 
-    implementation project(":glue")
-    implementation project(":core:shared")
-    implementation project(":core:location")
-    implementation project(":core:item")
-    implementation project(":core:object")
-    implementation project(":core:npc")
-    implementation project(":core:module")
-    implementation project(":core:player")
-    implementation project(":core:option")
-    implementation project(":core:inventory")
-    implementation project(":core:equipment")
+    compile project(":core:shared")
+    compile project(":core:location")
+    compile project(":core:item")
+    compile project(":core:object")
+    compile project(":core:npc")
+    compile project(":core:module")
+    compile project(":core:player")
+    compile project(":core:option")
+    compile project(":core:option:domain")
+    compile project(":core:inventory")
+    compile project(":core:equipment")
 }
 
 compileKotlin {

@@ -7,7 +7,6 @@ import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.domain.npc.NpcMutator
 import com.github.rskupnik.thestory.domain.npc.NpcService
-import com.github.rskupnik.thestory.domain.option.Option
 import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.shared.Context
