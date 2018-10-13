@@ -4,7 +4,7 @@ import com.github.rskupnik.thestory.shared.external.asset.Image
 import com.github.rskupnik.thestory.shared.external.file.FileHandle
 import com.github.rskupnik.thestory.shared.external.file.FileLoader
 
-internal class FileLoaderDelegate : ImplementationDelegate<FileLoader>(), FileLoader{
+internal class FileLoaderDelegate : ImplementationDelegate<FileLoader>(), FileLoader {
 
     override fun getFileHandle(path: String): FileHandle? = getImplementation()?.getFileHandle(path)
 
