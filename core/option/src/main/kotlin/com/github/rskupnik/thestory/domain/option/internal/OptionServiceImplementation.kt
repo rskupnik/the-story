@@ -1,5 +1,6 @@
-package com.github.rskupnik.thestory.domain.option
+package com.github.rskupnik.thestory.domain.option.internal
 
+import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.option.event.OptionSelectedEvent
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.option.domain.Option
