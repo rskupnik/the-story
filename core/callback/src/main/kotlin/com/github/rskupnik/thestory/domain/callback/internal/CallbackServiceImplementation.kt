@@ -1,14 +1,15 @@
 package com.github.rskupnik.thestory.domain.callback.internal
 
-import com.github.rskupnik.thestory.domain.action.ActionService
-import com.github.rskupnik.thestory.domain.callback.Callback
+import com.github.rskupnik.thestory.core.callback.domain.Callback
+import com.github.rskupnik.thestory.core.callback.event.CallbackTriggeredEvent
 import com.github.rskupnik.thestory.domain.callback.CallbackService
+import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
 internal class CallbackServiceImplementation(
-        private val actionService: ActionService
+        private val eventDispatcher: EventDispatcher
 ) : CallbackService {
     override fun execute(callback: Callback, entityId: EntityId) {
-        callback.actions.forEach { actionService.execute(it, null, entityId, null) }
+        eventDispatcher.dispatch(CallbackTriggeredEvent(callback, entityId))
     }
 }

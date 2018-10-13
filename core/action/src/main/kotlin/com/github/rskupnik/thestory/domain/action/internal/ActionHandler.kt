@@ -1,6 +1,6 @@
 package com.github.rskupnik.thestory.domain.action.internal
 
-import com.github.rskupnik.thestory.domain.action.Action
+import com.github.rskupnik.thestory.action.domain.Action
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
 internal interface ActionHandler {

@@ -22,8 +22,8 @@ dependencies {
     
     compile project(":core:shared")
     compile project(":core:module")
-    implementation project(":core:option")
-    compile project(":core:callback")
+    compile project(":core:option:domain")
+    compile project(":core:callback:domain")
 }
 
 compileKotlin {

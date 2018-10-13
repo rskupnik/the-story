@@ -1,11 +1,11 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
-import com.github.rskupnik.thestory.domain.callback.Callback
+import com.github.rskupnik.thestory.core.callback.domain.Callback
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.item.ItemView
 import com.github.rskupnik.thestory.domain.module.ModuleService
-import com.github.rskupnik.thestory.domain.option.Option
+import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference

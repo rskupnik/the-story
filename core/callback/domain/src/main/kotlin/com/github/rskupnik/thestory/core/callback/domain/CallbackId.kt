@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.callback
+package com.github.rskupnik.thestory.core.callback.domain
 
 enum class CallbackId {
     ON_EQUIP, ON_REMOVE;

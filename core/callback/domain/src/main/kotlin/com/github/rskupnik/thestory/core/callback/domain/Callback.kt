@@ -1,6 +1,6 @@
-package com.github.rskupnik.thestory.domain.callback
+package com.github.rskupnik.thestory.core.callback.domain
 
-import com.github.rskupnik.thestory.domain.action.Action
+import com.github.rskupnik.thestory.action.domain.Action
 import com.github.rskupnik.thestory.shared.Definition
 
 data class Callback(

@@ -1,7 +1,7 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
-import com.github.rskupnik.thestory.domain.callback.CallbackJson
-import com.github.rskupnik.thestory.domain.option.OptionJson
+import com.github.rskupnik.thestory.core.callback.domain.CallbackJson
+import com.github.rskupnik.thestory.option.domain.OptionJson
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.json.BlueprintJsonRepresentation
 import com.github.rskupnik.thestory.shared.json.DefinitionJsonRepresentation

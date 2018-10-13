@@ -1,6 +1,6 @@
 package com.github.rskupnik.thestory.domain.`object`
 
-import com.github.rskupnik.thestory.domain.option.Option
+import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.persistence.PersistableProvider
 

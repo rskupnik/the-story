@@ -1,6 +1,6 @@
 package com.github.rskupnik.thestory.domain.npc.internal
 
-import com.github.rskupnik.thestory.domain.option.OptionJson
+import com.github.rskupnik.thestory.option.domain.OptionJson
 import com.github.rskupnik.thestory.shared.json.BlueprintJsonRepresentation
 import com.github.rskupnik.thestory.shared.json.DefinitionJsonRepresentation
 

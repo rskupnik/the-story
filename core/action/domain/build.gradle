@@ -17,9 +17,9 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
-    
-    compile project(":core:shared")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+
+    implementation project(":core:shared")
 }
 
 compileKotlin {

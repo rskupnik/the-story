@@ -3,7 +3,7 @@ package com.github.rskupnik.thestory.domain.`object`.internal
 import com.github.rskupnik.thestory.domain.`object`.ObjectMutator
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.`object`.ObjectView
-import com.github.rskupnik.thestory.domain.option.Option
+import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.external.file.FileLoader

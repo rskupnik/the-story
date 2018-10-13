@@ -1,8 +1,11 @@
 package com.github.rskupnik.thestory.domain.action.internal
 
-import com.github.rskupnik.thestory.domain.action.Action
+import com.github.rskupnik.thestory.action.domain.Action
+import com.github.rskupnik.thestory.core.callback.event.CallbackTriggeredEvent
 import com.github.rskupnik.thestory.domain.action.ActionService
 import com.github.rskupnik.thestory.domain.item.ItemService
+import com.github.rskupnik.thestory.domain.option.event.OptionSelectedEvent
+import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
@@ -10,11 +13,28 @@ import com.github.rskupnik.thestory.shared.entity.EntityId
 import com.github.rskupnik.thestory.shared.entity.EntityType
 
 internal class ActionServiceImplementation(
-        private val itemService: ItemService
+        private val itemService: ItemService,
         // TODO: add objectService
+        eventDispatcher: EventDispatcher
 ) : ActionService, ActionExecutor {
 
     private val handlers: MutableMap<String, ActionHandler> = HashMap()
+
+    init {
+        eventDispatcher.register(OptionSelectedEvent::class) { event ->
+            event as OptionSelectedEvent
+            event.option.actions.forEach { action ->
+                execute(action, event.context, event.entityId, event.externalData)
+            }
+        }
+
+        eventDispatcher.register(CallbackTriggeredEvent::class) { event ->
+            event as CallbackTriggeredEvent
+            event.callback.actions.forEach { action ->
+                execute(action, null, event.entityId, null)
+            }
+        }
+    }
 
     override fun register(id: String, handler: ActionHandler) {
         handlers[id] = handler

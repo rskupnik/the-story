@@ -1,13 +1,14 @@
 package com.github.rskupnik.thestory.domain.equipment.internal
 
-import com.github.rskupnik.thestory.domain.callback.CallbackId
-import com.github.rskupnik.thestory.domain.callback.CallbackService
+import com.github.rskupnik.thestory.core.callback.domain.CallbackId
+import com.github.rskupnik.thestory.core.callback.event.CallbackTriggeredEvent
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.equipment.EquipmentSlot
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemPlacement
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.item.ItemView
+import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
@@ -15,7 +16,7 @@ import com.github.rskupnik.thestory.shared.entity.EntityType
 
 internal class DefaultEquipment(
         private val itemService: ItemService,
-        private val callbackService: CallbackService
+        private val eventDispatcher: EventDispatcher
 ) : Equipment {
 
     private val items: MutableMap<EquipmentSlot, Reference> = HashMap()
@@ -88,7 +89,7 @@ internal class DefaultEquipment(
     private fun executeCallback(reference: Reference, callbackId: CallbackId) {
         val callback = callbackId.findInList(itemService.getCallbacks(reference))
         if (callback != null) {
-            callbackService.execute(callback, EntityId(reference.value, EntityType.ITEM))
+            eventDispatcher.dispatch(CallbackTriggeredEvent(callback, EntityId(reference.value, EntityType.ITEM)))
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
-import com.github.rskupnik.thestory.domain.callback.Callback
-import com.github.rskupnik.thestory.domain.option.Option
+import com.github.rskupnik.thestory.core.callback.domain.Callback
+import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.Blueprint
 import com.github.rskupnik.thestory.shared.Reference
 

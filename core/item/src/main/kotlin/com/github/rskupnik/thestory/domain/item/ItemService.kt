@@ -1,11 +1,10 @@
 package com.github.rskupnik.thestory.domain.item
 
-import com.github.rskupnik.thestory.domain.callback.Callback
-import com.github.rskupnik.thestory.domain.option.Option
+import com.github.rskupnik.thestory.core.callback.domain.Callback
+import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.persistence.PersistableProvider
-import com.github.rskupnik.thestory.shared.persistence.PersistableState
 
 interface ItemService : PersistableProvider {
 
