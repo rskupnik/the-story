@@ -17,13 +17,12 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
-    compile 'com.google.dagger:dagger:2.17'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 
-    implementation project(":core:shared")
-    implementation project(":core:event")
-    implementation project(":core:option:event")
-    implementation project(":core:option:domain")
+    compile project(":core:shared")
+    compile project(":core:event")
+    compile project(":core:option:event")
+    compile project(":core:option:domain")
 }
 
 compileKotlin {

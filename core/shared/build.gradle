@@ -17,8 +17,8 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
-    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
 }
 
 compileKotlin {

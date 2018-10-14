@@ -19,13 +19,12 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
-    implementation 'com.google.dagger:dagger:2.17'
-
-    implementation project(":api")
-    implementation project(":core:shared")
-    implementation project(":core:item")
-
+    compile 'com.google.dagger:dagger:2.17'
     kapt 'com.google.dagger:dagger-compiler:2.17'
+
+    compile project(":api")
+    compile project(":core:shared")
+    compile project(":core:item")
 }
 
 compileKotlin {

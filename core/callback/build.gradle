@@ -20,10 +20,10 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
     
     compile project(":core:shared")
-    implementation project(":core:callback:domain")
-    implementation project(":core:callback:event")
-    implementation project(":core:action:domain")
-    implementation project(":core:event")
+    compile project(":core:callback:domain")
+    compile project(":core:callback:event")
+    compile project(":core:action:domain")
+    compile project(":core:event")
 }
 
 compileKotlin {
