@@ -14,5 +14,8 @@ internal class ImplementationExchange : ImplementationProvider, ImplementationSu
         (delegates[klass] as ImplementationDelegate<T>).setImplementation(implementation)
     }
 
-    override fun <T : Port> getImplementation(klass: KClass<T>): T = delegates[klass] as T
+    override fun <T : Port> getImplementation(klass: KClass<T>): T {
+        val impl = delegates[klass] ?: throw IllegalStateException("Implementation not provided for $klass")
+        return impl as T
+    }
 }
