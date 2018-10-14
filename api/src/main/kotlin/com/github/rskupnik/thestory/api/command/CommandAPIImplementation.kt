@@ -12,6 +12,7 @@ import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityType
+import com.github.rskupnik.thestory.shared.external.CallbackReceiver
 
 internal class CommandAPIImplementation(
         private val itemService: ItemService,
@@ -25,10 +26,15 @@ internal class CommandAPIImplementation(
 //        private val wordplayFacade: WordplayFacade,
         private val optionService: OptionService,
         private val equipment: Equipment,
-        private val inventory: Inventory
+        private val inventory: Inventory,
+        private val callbackReceiver: CallbackReceiver
 //        private val outputReceiver: OutputReceiver,
 //        private val eventDispatcher: EventDispatcher
 ) : CommandAPI {
+
+    override fun test(msg: String) {
+        callbackReceiver.onTest(msg)
+    }
 
     /*override fun clickItem(id: String, context: Context) {
         println("CLICK ITEM IN KOTLIN YAY")

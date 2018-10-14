@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.application.adapter
 
+import com.github.rskupnik.thestory.shared.external.CallbackReceiver
 import com.github.rskupnik.thestory.shared.external.asset.AssetLoader
 import com.github.rskupnik.thestory.shared.external.file.FileLoader
 import dagger.Module
@@ -19,4 +20,7 @@ internal class AdaptersModule {
 
     @Provides @Singleton
     fun assetLoader(): AssetLoader = implementationExchange.getImplementation(AssetLoader::class)
+
+    @Provides @Singleton
+    fun callbackReceiver(): CallbackReceiver = implementationExchange.getImplementation(CallbackReceiver::class)
 }
