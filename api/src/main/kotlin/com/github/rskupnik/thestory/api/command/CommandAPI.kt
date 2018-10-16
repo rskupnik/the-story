@@ -7,11 +7,9 @@ import com.github.rskupnik.thestory.shared.entity.EntityType
 
 interface CommandAPI {
 
-    fun test(msg: String)
+    fun clickItem(id: String, context: Context)
 
-    /*fun clickItem(id: String, context: Context)
-
-    fun clickObject(id: String)
+    /*fun clickObject(id: String)
 
     fun executeConsole(id: String, params: Array<String>)
 

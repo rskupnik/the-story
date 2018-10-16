@@ -1,16 +1,19 @@
 package com.github.rskupnik.thestory.api.command
 
+import com.github.rskupnik.thestory.shared.external.dto.OptionLabel
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.inventory.Inventory
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.module.ModuleService
-import com.github.rskupnik.thestory.domain.npc.NpcMutator
 import com.github.rskupnik.thestory.domain.npc.NpcService
 import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
+import com.github.rskupnik.thestory.event.EventDispatcher
+import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
+import com.github.rskupnik.thestory.shared.entity.EntityId
 import com.github.rskupnik.thestory.shared.entity.EntityType
 import com.github.rskupnik.thestory.shared.external.CallbackReceiver
 
@@ -27,22 +30,16 @@ internal class CommandAPIImplementation(
         private val optionService: OptionService,
         private val equipment: Equipment,
         private val inventory: Inventory,
-        private val callbackReceiver: CallbackReceiver
-//        private val outputReceiver: OutputReceiver,
-//        private val eventDispatcher: EventDispatcher
+        private val callbackReceiver: CallbackReceiver,
+        private val eventDispatcher: EventDispatcher
 ) : CommandAPI {
 
-    override fun test(msg: String) {
-        callbackReceiver.onTest(msg)
+    override fun clickItem(id: String, context: Context) {
+        val options = itemService.getOptions(Reference.to(id), context)
+        callbackReceiver.onDisplayOptions(Option.optionsToLabels(EntityId(id, EntityType.ITEM), options, context))
     }
 
-    /*override fun clickItem(id: String, context: Context) {
-        println("CLICK ITEM IN KOTLIN YAY")
-        val options = itemService.getOptions(Reference.from(id), context)
-        outputReceiver.onDisplayOptions(OptionLabel.fromOptions(id, EntityType.ITEM, options, context))
-    }
-
-    override fun clickObject(id: String) {
+    /*override fun clickObject(id: String) {
         println("CLICK OBJECT KOTLIN")
         val options = objectService.getOptions(Reference.from(id))
         outputReceiver.onDisplayOptions(OptionLabel.fromOptions(id, EntityType.OBJECT, options, null))

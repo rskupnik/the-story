@@ -12,6 +12,7 @@ import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.domain.npc.NpcService
 import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
+import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.shared.external.CallbackReceiver
 
 object ApiInjectorHandle {
@@ -21,7 +22,8 @@ object ApiInjectorHandle {
 
     fun commandAPI(itemService: ItemService, objectService: ObjectService, npcService: NpcService,
                    moduleService: ModuleService, playerFacade: PlayerFacade, optionService: OptionService,
-                   equipment: Equipment, inventory: Inventory, callbackReceiver: CallbackReceiver): CommandAPI = CommandAPIImplementation(
-            itemService, objectService, npcService, moduleService, playerFacade, optionService, equipment, inventory, callbackReceiver
+                   equipment: Equipment, inventory: Inventory, callbackReceiver: CallbackReceiver, eventDispatcher: EventDispatcher
+    ): CommandAPI = CommandAPIImplementation(
+            itemService, objectService, npcService, moduleService, playerFacade, optionService, equipment, inventory, callbackReceiver, eventDispatcher
     )
 }
