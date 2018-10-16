@@ -9,9 +9,9 @@ interface CommandAPI {
 
     fun clickItem(id: String, context: Context)
 
-    /*fun clickObject(id: String)
+    fun clickObject(id: String)
 
-    fun executeConsole(id: String, params: Array<String>)
+    /*fun executeConsole(id: String, params: Array<String>)
 
     fun initializeGame(module: String)
 

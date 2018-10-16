@@ -39,13 +39,12 @@ internal class CommandAPIImplementation(
         callbackReceiver.onDisplayOptions(Option.optionsToLabels(EntityId(id, EntityType.ITEM), options, context))
     }
 
-    /*override fun clickObject(id: String) {
-        println("CLICK OBJECT KOTLIN")
-        val options = objectService.getOptions(Reference.from(id))
-        outputReceiver.onDisplayOptions(OptionLabel.fromOptions(id, EntityType.OBJECT, options, null))
+    override fun clickObject(id: String) {
+        val options = objectService.getOptions(Reference.to(id))
+        callbackReceiver.onDisplayOptions(Option.optionsToLabels(EntityId(id, EntityType.OBJECT), options))
     }
 
-    override fun executeConsole(id: String, params: Array<String>) {
+    /*override fun executeConsole(id: String, params: Array<String>) {
         println("EXECUTE CONSOLE KOTLIN")
         eventDispatcher.dispatch(ExecuteConsoleCommandEvent(id, params))
     }

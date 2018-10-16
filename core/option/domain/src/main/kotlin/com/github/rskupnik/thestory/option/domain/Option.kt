@@ -31,6 +31,6 @@ data class Option(
                         }
                         .toList()
 
-        fun optionsToLabels(entityId: EntityId, options: List<Option>, context: Context?) = options.map { OptionLabel(entityId, it.id, context) }
+        fun optionsToLabels(entityId: EntityId, options: List<Option>, context: Context? = null) = options.map { OptionLabel(entityId, it.id, context) }
     }
 }
