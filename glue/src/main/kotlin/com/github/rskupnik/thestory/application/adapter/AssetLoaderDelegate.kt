@@ -6,5 +6,5 @@ import com.github.rskupnik.thestory.shared.external.file.FileHandle
 
 internal class AssetLoaderDelegate : ImplementationDelegate<AssetLoader>(), AssetLoader {
 
-    override fun loadImageProvider(fileHandle: FileHandle): ImageProvider = getImplementation()?.loadImageProvider(fileHandle) ?: throw IllegalStateException("Implementation not provided")
+    override fun loadImageProvider(fileHandle: FileHandle): ImageProvider = getImplementation().loadImageProvider(fileHandle)
 }

@@ -47,13 +47,11 @@ internal class CommandAPIImplementation(
     /*override fun executeConsole(id: String, params: Array<String>) {
         println("EXECUTE CONSOLE KOTLIN")
         eventDispatcher.dispatch(ExecuteConsoleCommandEvent(id, params))
-    }
+    }*/
 
     override fun initializeGame(module: String) {
-        println("INITIALIZE GAME")
-
-        if (!gameStateFacade.gameAtPhase(listOf(GamePhase.UNINITIALIZED)))
-            return
+//        if (!gameStateFacade.gameAtPhase(listOf(GamePhase.UNINITIALIZED)))
+//            return
 
         for (moduleRef in moduleService.load(module)) {
             objectService.loadBlueprints(moduleRef)
@@ -61,10 +59,10 @@ internal class CommandAPIImplementation(
             npcService.loadBlueprints(moduleRef)
         }
 
-        gameStateFacade.phase = GamePhase.RUNNING
+//        gameStateFacade.phase = GamePhase.RUNNING
     }
 
-    override fun instantiateNpc(npc: String, location: LocationId) {
+    /*override fun instantiateNpc(npc: String, location: LocationId) {
         println("INSTANTIATE NPC KOTLIN")
         with(npcService) {
             instantiate(Reference.from(npc))

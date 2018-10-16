@@ -11,11 +11,11 @@ interface CommandAPI {
 
     fun clickObject(id: String)
 
-    /*fun executeConsole(id: String, params: Array<String>)
+    //fun executeConsole(id: String, params: Array<String>)
 
     fun initializeGame(module: String)
 
-    fun instantiateNpc(npc: String, location: LocationId)
+    /*fun instantiateNpc(npc: String, location: LocationId)
 
     fun instantiateObject(id: String, blueprintId: String, unique: Boolean)
 
