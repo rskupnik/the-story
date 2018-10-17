@@ -44,9 +44,7 @@ class Main {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
 
-        override fun loadAsString(fileHandle: FileHandle): String {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+        override fun loadAsString(fileHandle: FileHandle): String = (fileHandle as DummyFileHandle).inputStream.readBytes().toString(Charsets.UTF_8)
 
         override fun loadAsImage(fileHandle: FileHandle): Image {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
