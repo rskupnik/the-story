@@ -6,8 +6,8 @@ import com.github.rskupnik.thestory.shared.json.DefinitionJsonRepresentation
 internal data class ModuleJson(
         val id: String,
         val type: String,
-        val dependencies: List<String>,
-        val optionalDependencies: List<String>
+        val dependencies: List<String>?,
+        val optionalDependencies: List<String>?
 ) : DefinitionJsonRepresentation<ModuleDefinition> {
     override fun toDefinition(): ModuleDefinition = ModuleDefinition(
             id,

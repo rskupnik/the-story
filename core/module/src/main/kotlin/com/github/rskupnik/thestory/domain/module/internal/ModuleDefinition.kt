@@ -6,6 +6,6 @@ import com.github.rskupnik.thestory.shared.Definition
 internal data class ModuleDefinition(
         val id: String,
         val type: ModuleType,
-        val dependencies: List<String>,
-        val optionalDependencies: List<String>
+        val dependencies: List<String>?,
+        val optionalDependencies: List<String>?
 ) : Definition

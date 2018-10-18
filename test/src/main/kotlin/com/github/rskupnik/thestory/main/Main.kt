@@ -32,13 +32,19 @@ class Main {
     }
 
     class DummyAssetLoader : AssetLoader {
-        override fun loadImageProvider(fileHandle: FileHandle): ImageProvider {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+        override fun loadImageProvider(fileHandle: FileHandle): ImageProvider = DummyImageProvider()
     }
 
     class DummyFileLoader : FileLoader {
-        override fun getFileHandle(path: String): FileHandle? = DummyFileHandle(Main::class.java.classLoader.getResourceAsStream(path))
+        override fun getFileHandle(path: String): FileHandle? =
+                when (path) {
+                    "modules/unpacked/demo/module.json",
+                    "modules/unpacked/demoExt/module.json",
+                    "modules/unpacked/demoOpt/module.json",
+                    "modules/unpacked/demo/assets.atlas"
+                    -> DummyFileHandle(path, Main::class.java.classLoader.getResourceAsStream(path))
+                    else -> null
+                }
 
         override fun getHandleToModule(module: String): FileHandle? {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -55,7 +61,11 @@ class Main {
         }
     }
 
-    class DummyFileHandle(val inputStream: InputStream) : FileHandle {
+    class DummyFileHandle(val path: String, val inputStream: InputStream) : FileHandle
 
+    class DummyImageProvider : ImageProvider {
+        override fun getImage(id: String): Image? {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
     }
 }
