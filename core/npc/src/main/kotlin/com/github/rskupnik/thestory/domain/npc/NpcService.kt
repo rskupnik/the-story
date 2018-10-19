@@ -8,5 +8,7 @@ interface NpcService {
 
     fun instantiate(reference: Reference): Reference?
 
+    fun mutate(reference: Reference, mutator: NpcMutator): Boolean
+
     fun getNpcView(reference: Reference): NpcView?
 }

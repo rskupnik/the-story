@@ -1,11 +1,14 @@
 package com.github.rskupnik.thestory.api.command
 
+import com.github.rskupnik.thestory.domain.Direction
+import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.shared.external.dto.OptionLabel
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.inventory.Inventory
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.module.ModuleService
+import com.github.rskupnik.thestory.domain.npc.NpcMutator
 import com.github.rskupnik.thestory.domain.npc.NpcService
 import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
@@ -62,24 +65,22 @@ internal class CommandAPIImplementation(
 //        gameStateFacade.phase = GamePhase.RUNNING
     }
 
-    /*override fun instantiateNpc(npc: String, location: LocationId) {
-        println("INSTANTIATE NPC KOTLIN")
+    override fun instantiateNpc(npc: String, location: LocationId) {
         with(npcService) {
-            instantiate(Reference.from(npc))
-            mutate(Reference.from(npc), NpcMutator.create().location(location).build())
+            instantiate(Reference.to(npc))
+            mutate(Reference.to(npc), NpcMutator.new().location(location).build())
         }
     }
 
     override fun instantiateObject(id: String, blueprintId: String, unique: Boolean) {
-        println("INSTANTIATE OBJECT KOTLIN")
         val method = if (unique) objectService::instantiateUnique else objectService::instantiate
-        method.invoke(id, Reference.from(blueprintId))
+        method.invoke(id, Reference.to(blueprintId))
     }
 
-    override fun loadGame(filename: String) {
-        println("LOAD GAME")
-        if (!gameStateFacade.gameAtPhase(listOf(GamePhase.UNINITIALIZED)))
-            return
+    /*override fun loadGame(filename: String) {
+        // TODO: GameState
+        //if (!gameStateFacade.gameAtPhase(listOf(GamePhase.UNINITIALIZED)))
+        //    return
 
         val snapshot = persistenceFacade.load(filename) ?: return
 
@@ -133,21 +134,22 @@ internal class CommandAPIImplementation(
         }
 
         outputReceiver.onLocationLoaded(parsedScript)
-    }
+    }*/
 
     override fun movePlayer(direction: Direction) {
         println("MOVE PLAYER KOTLIN")
         // Calculate the target location
-        val targetLocation = playerFacade.currentLocation.applyDirection(direction)
+        val targetLocation = playerFacade.getCurrentLocation().applyDirection(direction)
 
         // Load the target location - TODO: check result
-        loadLocation(targetLocation)
+        // TODO: uncomment when loadLocation is ready
+        //loadLocation(targetLocation)
 
         // Update the player's position
-        playerFacade.currentLocation = targetLocation
+        playerFacade.setCurrentLocation(targetLocation)
     }
 
-    override fun selectOption(id: String, type: EntityType, optionId: String, context: Context) {
+    /*override fun selectOption(id: String, type: EntityType, optionId: String, context: Context) {
         println("SELECT OPTION KOTLIN")
         val option = getOption(optionId, id, type, context) ?: return
         optionService.execute(option, null, context, EntityIdentifier(id, type))

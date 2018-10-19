@@ -15,17 +15,17 @@ interface CommandAPI {
 
     fun initializeGame(module: String)
 
-    /*fun instantiateNpc(npc: String, location: LocationId)
+    fun instantiateNpc(npc: String, location: LocationId)
 
     fun instantiateObject(id: String, blueprintId: String, unique: Boolean)
 
-    fun loadGame(filename: String)
+    //fun loadGame(filename: String)
 
-    fun saveGame()
+    //fun saveGame()
 
-    fun loadLocation(location: LocationId)
+    //fun loadLocation(location: LocationId)
 
     fun movePlayer(direction: Direction)
 
-    fun selectOption(id: String, type: EntityType, optionId: String, context: Context)*/
+    /*fun selectOption(id: String, type: EntityType, optionId: String, context: Context)*/
 }

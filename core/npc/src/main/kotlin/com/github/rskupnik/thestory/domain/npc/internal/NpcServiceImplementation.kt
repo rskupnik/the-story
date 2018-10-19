@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.domain.npc.internal
 
+import com.github.rskupnik.thestory.domain.npc.NpcMutator
 import com.github.rskupnik.thestory.domain.npc.NpcService
 import com.github.rskupnik.thestory.domain.npc.NpcView
 import com.github.rskupnik.thestory.shared.Reference
@@ -26,6 +27,11 @@ internal class NpcServiceImplementation(
 
     override fun instantiate(reference: Reference): Reference? {
         return instanceRepository.save(NpcInstance(blueprintRepository.find(reference) ?: return null))
+    }
+
+    override fun mutate(reference: Reference, mutator: NpcMutator): Boolean {
+        mutator.mutate(instanceRepository.find(reference) ?: return false)
+        return true
     }
 
     override fun getNpcView(reference: Reference): NpcView? =
