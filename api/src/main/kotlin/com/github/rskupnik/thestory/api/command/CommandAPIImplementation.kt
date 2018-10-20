@@ -111,7 +111,7 @@ internal class CommandAPIImplementation(
     override fun saveGame() {
         println("SAVE GAME KOTLIN")
         persistenceFacade.save()
-    }
+    }*/
 
     override fun loadLocation(location: LocationId) {
         println("LOAD LOCATION KOTLIN")
@@ -134,7 +134,7 @@ internal class CommandAPIImplementation(
         }
 
         outputReceiver.onLocationLoaded(parsedScript)
-    }*/
+    }
 
     override fun movePlayer(direction: Direction) {
         println("MOVE PLAYER KOTLIN")
