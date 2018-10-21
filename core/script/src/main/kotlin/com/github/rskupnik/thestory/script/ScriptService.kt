@@ -7,5 +7,5 @@ interface ScriptService {
 
     fun loadLocation(locationId: LocationId): WordplayOutput?
 
-    fun parse(input: WordplayOutput): Script?
+    fun parse(input: WordplayOutput): Script
 }
