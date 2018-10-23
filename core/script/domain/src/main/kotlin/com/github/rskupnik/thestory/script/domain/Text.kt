@@ -1,6 +1,6 @@
-package com.github.rskupnik.thestory.script
+package com.github.rskupnik.thestory.script.domain
 
-class Text internal constructor(
+class Text constructor(
         position: Int,
         val text: String,
         val id: String?,

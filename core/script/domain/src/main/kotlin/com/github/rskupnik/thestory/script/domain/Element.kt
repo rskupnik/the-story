@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.script
+package com.github.rskupnik.thestory.script.domain
 
 abstract class Element internal constructor(val position: Int) : Comparable<Element> {
 

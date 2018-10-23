@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.script
 
+import com.github.rskupnik.thestory.script.domain.*
 import com.github.rskupnik.wordplay.output.AnchoredObject
 import com.github.rskupnik.wordplay.output.MetaList
 import com.github.rskupnik.wordplay.output.WordplayOutput

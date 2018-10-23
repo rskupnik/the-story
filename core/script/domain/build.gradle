@@ -19,11 +19,8 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
-    api 'com.github.rskupnik:wordplay:2.0'
 
-    compile project(":core:script:domain")
-    compile project(":core:location")
-    compile project(":core:module")
+    compile project(":core:shared")
 }
 
 compileKotlin {

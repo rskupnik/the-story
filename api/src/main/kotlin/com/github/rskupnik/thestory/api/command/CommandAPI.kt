@@ -1,9 +1,8 @@
 package com.github.rskupnik.thestory.api.command
 
-import com.github.rskupnik.thestory.domain.Direction
+import com.github.rskupnik.thestory.shared.Direction
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.shared.Context
-import com.github.rskupnik.thestory.shared.entity.EntityType
 
 interface CommandAPI {
 

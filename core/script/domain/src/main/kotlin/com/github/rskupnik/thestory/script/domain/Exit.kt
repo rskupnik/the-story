@@ -1,6 +1,6 @@
-package com.github.rskupnik.thestory.script
+package com.github.rskupnik.thestory.script.domain
 
-import com.github.rskupnik.thestory.domain.Direction
+import com.github.rskupnik.thestory.shared.Direction
 
 enum class Exit {
     NORTH, SOUTH, EAST, WEST;

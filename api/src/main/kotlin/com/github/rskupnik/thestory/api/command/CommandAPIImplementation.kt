@@ -1,8 +1,7 @@
 package com.github.rskupnik.thestory.api.command
 
-import com.github.rskupnik.thestory.domain.Direction
+import com.github.rskupnik.thestory.shared.Direction
 import com.github.rskupnik.thestory.domain.LocationId
-import com.github.rskupnik.thestory.shared.external.dto.OptionLabel
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.inventory.Inventory

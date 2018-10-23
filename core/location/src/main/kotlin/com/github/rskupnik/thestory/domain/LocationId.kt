@@ -1,5 +1,7 @@
 package com.github.rskupnik.thestory.domain
 
+import com.github.rskupnik.thestory.shared.Direction
+
 /**
  * A ValueObject that makes it easy to pass around location identifiers, as locations
  * are identified by the zone they're in and an a pair of x + y coordinates.
