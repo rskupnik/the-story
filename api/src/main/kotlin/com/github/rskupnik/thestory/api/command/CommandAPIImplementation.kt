@@ -14,11 +14,13 @@ import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.option.domain.Option
+import com.github.rskupnik.thestory.script.ScriptService
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
 import com.github.rskupnik.thestory.shared.entity.EntityType
 import com.github.rskupnik.thestory.shared.external.CallbackReceiver
+import com.github.rskupnik.wordplay.output.WordplayOutput
 
 internal class CommandAPIImplementation(
         private val itemService: ItemService,
@@ -29,7 +31,7 @@ internal class CommandAPIImplementation(
 //        private val gameStateFacade: GameStateFacade,
 //        private val persistenceFacade: PersistenceFacade,
 //        private val backgroundService: BackgroundService,
-//        private val wordplayFacade: WordplayFacade,
+        private val scriptService: ScriptService,
         private val optionService: OptionService,
         private val equipment: Equipment,
         private val inventory: Inventory,
@@ -114,26 +116,20 @@ internal class CommandAPIImplementation(
     }*/
 
     override fun loadLocation(location: LocationId) {
-        println("LOAD LOCATION KOTLIN")
         // Load and parse the wordplay script
-        val wordplayOutputOpt = wordplayFacade.loadLocation(location)
-        val wordplayOutput = if (wordplayOutputOpt.isPresent) wordplayOutputOpt.get() else return
+        val wordplayOutput: WordplayOutput = scriptService.loadLocation(location) ?: return
 
         // Transform the wordplay script into an externally available output
-        val parsedScript = wordplayFacade.parse(wordplayOutput)
+        val parsedScript = scriptService.parse(wordplayOutput)
 
         // Instantiate unique objects
-        for (obj in wordplayOutput.getAnchoredObjects()) {
-            val id = obj.getStringParam("id")
-            val definitionId = obj.getStringParam("def")
-            if (id == null || definitionId == null) {
-                continue
-            }
-
-            objectService.instantiateUnique(id, Reference.from(definitionId))
+        for (obj in wordplayOutput.anchoredObjects) {
+            val id = obj.getStringParam("id") ?: continue
+            val definitionId = obj.getStringParam("def") ?: continue
+            objectService.instantiateUnique(id, Reference.to(definitionId))
         }
 
-        outputReceiver.onLocationLoaded(parsedScript)
+        callbackReceiver.onLocationLoaded(parsedScript)
     }
 
     override fun movePlayer(direction: Direction) {

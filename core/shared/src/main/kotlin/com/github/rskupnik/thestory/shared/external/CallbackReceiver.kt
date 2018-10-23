@@ -4,5 +4,7 @@ import com.github.rskupnik.thestory.shared.external.dto.OptionLabel
 
 interface CallbackReceiver : Port {
 
+    fun onLocationLoaded(script: Script)
+
     fun onDisplayOptions(options: List<OptionLabel>)
 }

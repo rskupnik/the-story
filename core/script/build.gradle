@@ -19,7 +19,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
-    compile 'com.github.rskupnik:wordplay:2.0'
+    api 'com.github.rskupnik:wordplay:2.0'
     
     compile project(":core:shared")
     compile project(":core:location")

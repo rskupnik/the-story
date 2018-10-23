@@ -30,6 +30,7 @@ dependencies {
     compile project(":core:option:domain")
     compile project(":core:inventory")
     compile project(":core:equipment")
+    compile project(":core:script")
 }
 
 compileKotlin {
