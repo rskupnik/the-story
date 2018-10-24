@@ -1,6 +1,5 @@
 package com.github.rskupnik.thestory.api.command
 
-import com.github.rskupnik.thestory.shared.Direction
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
@@ -12,13 +11,14 @@ import com.github.rskupnik.thestory.domain.npc.NpcService
 import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
+import com.github.rskupnik.thestory.external.CallbackReceiver
 import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.script.ScriptService
 import com.github.rskupnik.thestory.shared.Context
+import com.github.rskupnik.thestory.shared.Direction
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
 import com.github.rskupnik.thestory.shared.entity.EntityType
-import com.github.rskupnik.thestory.shared.external.CallbackReceiver
 import com.github.rskupnik.wordplay.output.WordplayOutput
 
 internal class CommandAPIImplementation(

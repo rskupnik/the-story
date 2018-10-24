@@ -14,3 +14,4 @@ include ":core:shared", "core:item", "core:module", ":core:option", ":core:actio
 include ":core:inventory", ":core:equipment", ":core:location", ":core:player", ":core:npc", ":core:event", ":core:option:event", ":core:option:domain", ":core:action:domain"
 include ":core:callback:event", ":core:callback:domain"
 include ":core:script", ":core:script:domain"
+include ":core:external"

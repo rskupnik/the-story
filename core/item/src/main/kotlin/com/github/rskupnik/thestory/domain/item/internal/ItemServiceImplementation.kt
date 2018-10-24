@@ -5,12 +5,12 @@ import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.item.ItemView
 import com.github.rskupnik.thestory.domain.module.ModuleService
+import com.github.rskupnik.thestory.external.asset.Image
+import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.external.asset.Image
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.json.JsonParser
 import com.github.rskupnik.thestory.shared.util.CommonFacadeOperations
 
@@ -29,9 +29,14 @@ internal class ItemServiceImplementation(
     }
 
     override fun loadBlueprints(moduleReference: Reference) {
-        blueprintRepository.save(
-                CommonFacadeOperations.loadBlueprints(moduleReference, fileLoader, DEFINITION_PATH, jsonParser, ItemJson::class)
-        )
+        val definition = fileLoader.getFileHandle(String.format(DEFINITION_PATH, moduleReference.value))
+                ?.let { fileLoader.loadAsString(it) } ?: return
+
+        val blueprints = jsonParser.parseList(ItemJson::class.java, definition)
+                .asSequence()
+                .map { it.toBlueprint() }.toList()
+
+        blueprintRepository.save(blueprints)
     }
 
     override fun instantiate(blueprintReference: Reference): Reference? {

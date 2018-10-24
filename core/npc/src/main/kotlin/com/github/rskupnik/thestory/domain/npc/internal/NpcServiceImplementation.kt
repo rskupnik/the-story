@@ -3,10 +3,9 @@ package com.github.rskupnik.thestory.domain.npc.internal
 import com.github.rskupnik.thestory.domain.npc.NpcMutator
 import com.github.rskupnik.thestory.domain.npc.NpcService
 import com.github.rskupnik.thestory.domain.npc.NpcView
+import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.json.JsonParser
-import com.github.rskupnik.thestory.shared.util.CommonFacadeOperations
 
 internal class NpcServiceImplementation(
         private val fileLoader: FileLoader,
@@ -20,9 +19,14 @@ internal class NpcServiceImplementation(
     }
 
     override fun loadBlueprints(moduleReference: Reference) {
-        blueprintRepository.save(
-                CommonFacadeOperations.loadBlueprints(moduleReference, fileLoader, DEFINITION_PATH, jsonParser, NpcJson::class)
-        )
+        val definition = fileLoader.getFileHandle(String.format(DEFINITION_PATH, moduleReference.value))
+                ?.let { fileLoader.loadAsString(it) } ?: return
+
+        val blueprints = jsonParser.parseList(NpcJson::class.java, definition)
+                .asSequence()
+                .map { it.toBlueprint() }.toList()
+
+        blueprintRepository.save(blueprints)
     }
 
     override fun instantiate(reference: Reference): Reference? {

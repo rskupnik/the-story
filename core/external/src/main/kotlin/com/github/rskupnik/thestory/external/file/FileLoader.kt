@@ -1,7 +1,7 @@
-package com.github.rskupnik.thestory.shared.external.file
+package com.github.rskupnik.thestory.external.file
 
-import com.github.rskupnik.thestory.shared.external.Port
-import com.github.rskupnik.thestory.shared.external.asset.Image
+import com.github.rskupnik.thestory.external.Port
+import com.github.rskupnik.thestory.external.asset.Image
 
 /**
  * This class is the main [Port] that the Application uses to interact with the underlying OS, storage hardware or

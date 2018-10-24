@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.shared.external.dto
+package com.github.rskupnik.thestory.external.dto
 
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.entity.EntityId

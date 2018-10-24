@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.shared.external.asset
+package com.github.rskupnik.thestory.external.asset
 
 /**
  * Represents an externally-provided image.

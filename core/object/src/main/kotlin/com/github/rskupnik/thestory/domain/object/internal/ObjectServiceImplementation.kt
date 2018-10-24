@@ -3,10 +3,10 @@ package com.github.rskupnik.thestory.domain.`object`.internal
 import com.github.rskupnik.thestory.domain.`object`.ObjectMutator
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.`object`.ObjectView
+import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.json.JsonParser
 import com.github.rskupnik.thestory.shared.persistence.PersistableState
 import com.github.rskupnik.thestory.shared.util.CommonFacadeOperations
@@ -25,9 +25,14 @@ internal class ObjectServiceImplementation(
     }
 
     override fun loadBlueprints(moduleReference: Reference) {
-        blueprintRepository.save(
-                CommonFacadeOperations.loadBlueprints(moduleReference, fileLoader, DEFINITION_PATH, jsonParser, ObjectJson::class)
-        )
+        val definition = fileLoader.getFileHandle(String.format(DEFINITION_PATH, moduleReference.value))
+                ?.let { fileLoader.loadAsString(it) } ?: return
+
+        val blueprints = jsonParser.parseList(ObjectJson::class.java, definition)
+                .asSequence()
+                .map { it.toBlueprint() }.toList()
+
+        blueprintRepository.save(blueprints)
     }
 
     override fun instantiate(id: String, blueprintReference: Reference): Reference? {
