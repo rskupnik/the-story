@@ -1,10 +1,10 @@
 package com.github.rskupnik.thestory.option.domain
 
 import com.github.rskupnik.thestory.action.domain.Action
+import com.github.rskupnik.thestory.external.dto.OptionLabel
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Definition
 import com.github.rskupnik.thestory.shared.entity.EntityId
-import com.github.rskupnik.thestory.shared.external.dto.OptionLabel
 
 data class Option(
         val id: String,

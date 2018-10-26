@@ -4,7 +4,7 @@ import com.github.rskupnik.thestory.domain.item.internal.ItemBlueprintRepository
 import com.github.rskupnik.thestory.domain.item.internal.ItemInstanceRepository
 import com.github.rskupnik.thestory.domain.item.internal.ItemServiceImplementation
 import com.github.rskupnik.thestory.domain.module.ModuleService
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
+import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.json.JsonParser
 
 object ItemInjectorHandle {

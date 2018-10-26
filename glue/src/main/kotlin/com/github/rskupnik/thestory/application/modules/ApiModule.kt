@@ -12,7 +12,8 @@ import com.github.rskupnik.thestory.domain.npc.NpcService
 import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
-import com.github.rskupnik.thestory.shared.external.CallbackReceiver
+import com.github.rskupnik.thestory.external.CallbackReceiver
+import com.github.rskupnik.thestory.script.ScriptService
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -27,9 +28,9 @@ class ApiModule {
 
     @Provides @Singleton
     fun commandAPI(itemService: ItemService, objectService: ObjectService, npcService: NpcService,
-                   moduleService: ModuleService, playerFacade: PlayerFacade, optionService: OptionService,
+                   moduleService: ModuleService, playerFacade: PlayerFacade, optionService: OptionService, scriptService: ScriptService,
                    equipment: Equipment, inventory: Inventory, callbackReceiver: CallbackReceiver, eventDispatcher: EventDispatcher
     ): CommandAPI = ApiInjectorHandle.commandAPI(
-            itemService, objectService, npcService, moduleService, playerFacade, optionService, equipment, inventory, callbackReceiver, eventDispatcher
+            itemService, objectService, npcService, moduleService, playerFacade, scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
     )
 }

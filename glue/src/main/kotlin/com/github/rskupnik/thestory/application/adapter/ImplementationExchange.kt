@@ -1,9 +1,9 @@
 package com.github.rskupnik.thestory.application.adapter
 
-import com.github.rskupnik.thestory.shared.external.CallbackReceiver
-import com.github.rskupnik.thestory.shared.external.Port
-import com.github.rskupnik.thestory.shared.external.asset.AssetLoader
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
+import com.github.rskupnik.thestory.external.CallbackReceiver
+import com.github.rskupnik.thestory.external.Port
+import com.github.rskupnik.thestory.external.asset.AssetLoader
+import com.github.rskupnik.thestory.external.file.FileLoader
 import kotlin.reflect.KClass
 
 internal class ImplementationExchange : ImplementationProvider, ImplementationSupplier {

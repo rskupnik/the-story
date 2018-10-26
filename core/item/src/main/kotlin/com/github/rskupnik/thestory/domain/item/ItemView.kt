@@ -1,9 +1,9 @@
 package com.github.rskupnik.thestory.domain.item
 
 import com.github.rskupnik.thestory.domain.item.internal.ItemInstance
+import com.github.rskupnik.thestory.external.asset.Image
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.external.asset.Image
 
 data class ItemView(
         val id: Reference,

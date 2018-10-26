@@ -2,8 +2,8 @@ package com.github.rskupnik.thestory.application.modules
 
 import com.github.rskupnik.thestory.domain.module.ModuleInjectorHandle
 import com.github.rskupnik.thestory.domain.module.ModuleService
-import com.github.rskupnik.thestory.shared.external.asset.AssetLoader
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
+import com.github.rskupnik.thestory.external.asset.AssetLoader
+import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.json.JsonParser
 import dagger.Module
 import dagger.Provides

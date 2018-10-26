@@ -2,7 +2,7 @@ package com.github.rskupnik.thestory.application.modules
 
 import com.github.rskupnik.thestory.domain.npc.NpcInjectorHandle
 import com.github.rskupnik.thestory.domain.npc.NpcService
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
+import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.json.JsonParser
 import dagger.Module
 import dagger.Provides

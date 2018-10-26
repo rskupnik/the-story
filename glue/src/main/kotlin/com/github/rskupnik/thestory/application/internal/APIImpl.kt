@@ -3,7 +3,7 @@ package com.github.rskupnik.thestory.application.internal
 import com.github.rskupnik.thestory.api.command.CommandAPI
 import com.github.rskupnik.thestory.api.query.QueryAPI
 import com.github.rskupnik.thestory.application.API
-import com.github.rskupnik.thestory.shared.external.Port
+import com.github.rskupnik.thestory.external.Port
 import kotlin.reflect.KClass
 
 internal class APIImpl(injector: Injector) : API {

@@ -1,7 +1,7 @@
 package com.github.rskupnik.thestory.domain.module
 
+import com.github.rskupnik.thestory.external.asset.Image
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.external.asset.Image
 
 interface ModuleService {
 

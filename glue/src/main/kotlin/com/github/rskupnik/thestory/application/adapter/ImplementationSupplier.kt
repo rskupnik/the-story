@@ -1,6 +1,6 @@
 package com.github.rskupnik.thestory.application.adapter
 
-import com.github.rskupnik.thestory.shared.external.Port
+import com.github.rskupnik.thestory.external.Port
 import kotlin.reflect.KClass
 
 interface ImplementationSupplier {

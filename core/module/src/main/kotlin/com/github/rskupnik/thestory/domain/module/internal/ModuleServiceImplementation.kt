@@ -3,11 +3,11 @@ package com.github.rskupnik.thestory.domain.module.internal
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.domain.module.ModuleType
 import com.github.rskupnik.thestory.domain.module.ModuleView
+import com.github.rskupnik.thestory.external.asset.AssetLoader
+import com.github.rskupnik.thestory.external.asset.Image
+import com.github.rskupnik.thestory.external.asset.ImageProvider
+import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.external.asset.AssetLoader
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
-import com.github.rskupnik.thestory.shared.external.asset.Image
-import com.github.rskupnik.thestory.shared.external.asset.ImageProvider
 import com.github.rskupnik.thestory.shared.json.JsonParser
 
 internal class ModuleServiceImplementation(

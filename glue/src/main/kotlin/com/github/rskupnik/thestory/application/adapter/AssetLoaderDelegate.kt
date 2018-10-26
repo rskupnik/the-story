@@ -1,8 +1,8 @@
 package com.github.rskupnik.thestory.application.adapter
 
-import com.github.rskupnik.thestory.shared.external.asset.AssetLoader
-import com.github.rskupnik.thestory.shared.external.asset.ImageProvider
-import com.github.rskupnik.thestory.shared.external.file.FileHandle
+import com.github.rskupnik.thestory.external.asset.AssetLoader
+import com.github.rskupnik.thestory.external.asset.ImageProvider
+import com.github.rskupnik.thestory.external.file.FileHandle
 
 internal class AssetLoaderDelegate : ImplementationDelegate<AssetLoader>(), AssetLoader {
 

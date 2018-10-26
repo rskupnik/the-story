@@ -1,8 +1,8 @@
 package com.github.rskupnik.thestory.application.adapter
 
-import com.github.rskupnik.thestory.shared.external.CallbackReceiver
-import com.github.rskupnik.thestory.shared.external.asset.AssetLoader
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
+import com.github.rskupnik.thestory.external.CallbackReceiver
+import com.github.rskupnik.thestory.external.asset.AssetLoader
+import com.github.rskupnik.thestory.external.file.FileLoader
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
