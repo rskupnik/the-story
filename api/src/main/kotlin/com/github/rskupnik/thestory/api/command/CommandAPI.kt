@@ -3,6 +3,7 @@ package com.github.rskupnik.thestory.api.command
 import com.github.rskupnik.thestory.shared.Direction
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.shared.Context
+import com.github.rskupnik.thestory.shared.entity.EntityType
 
 interface CommandAPI {
 
@@ -26,5 +27,5 @@ interface CommandAPI {
 
     fun movePlayer(direction: Direction)
 
-    /*fun selectOption(id: String, type: EntityType, optionId: String, context: Context)*/
+    fun selectOption(id: String, type: EntityType, optionId: String, context: Context)
 }

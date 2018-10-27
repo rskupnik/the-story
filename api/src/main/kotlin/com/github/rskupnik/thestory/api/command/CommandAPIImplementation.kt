@@ -144,13 +144,12 @@ internal class CommandAPIImplementation(
         playerFacade.setCurrentLocation(targetLocation)
     }
 
-    /*override fun selectOption(id: String, type: EntityType, optionId: String, context: Context) {
-        println("SELECT OPTION KOTLIN")
+    override fun selectOption(id: String, type: EntityType, optionId: String, context: Context) {
         val option = getOption(optionId, id, type, context) ?: return
-        optionService.execute(option, null, context, EntityIdentifier(id, type))
+        optionService.execute(option, null, context, EntityId(id, type))
     }
 
-    private fun loadGameState(snapshot: Map<String, Any>) {
+    /*private fun loadGameState(snapshot: Map<String, Any>) {
         val gameState = snapshot["gameState"] as Map<String, Any>
         restoreBackground(gameState)
     }
@@ -164,21 +163,15 @@ internal class CommandAPIImplementation(
                 backgroundService.setNormalMappedBackground(background["image"] as String,
                         background["normalImage"] as String)
         }
-    }
+    }*/
 
     private fun getOption(optionId: String, entityId: String, entityType: EntityType, context: Context): Option? {
         val options = when(entityType) {
-            EntityType.OBJECT -> objectService.getOptions(Reference.from(entityId))
-            EntityType.ITEM -> itemService.getOptions(Reference.from(entityId), context)
+            EntityType.OBJECT -> objectService.getOptions(Reference.to(entityId))
+            EntityType.ITEM -> itemService.getOptions(Reference.to(entityId), context)
             else -> return null
         }
 
-        for (option in options) {
-            if (option.id.equals(optionId)) {
-                return option
-            }
-        }
-
-        return null
-    }*/
+        return options.find { it.id == optionId }
+    }
 }
