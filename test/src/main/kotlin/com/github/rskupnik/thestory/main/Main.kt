@@ -1,16 +1,15 @@
 package com.github.rskupnik.thestory.main
 
 import com.github.rskupnik.thestory.application.Application
-import com.github.rskupnik.thestory.shared.external.CallbackReceiver
-import com.github.rskupnik.thestory.shared.external.asset.AssetLoader
-import com.github.rskupnik.thestory.shared.external.asset.Image
-import com.github.rskupnik.thestory.shared.external.asset.ImageProvider
-import com.github.rskupnik.thestory.shared.external.dto.OptionLabel
-import com.github.rskupnik.thestory.shared.external.file.FileHandle
-import com.github.rskupnik.thestory.shared.external.file.FileLoader
-import java.io.File
+import com.github.rskupnik.thestory.external.CallbackReceiver
+import com.github.rskupnik.thestory.external.asset.AssetLoader
+import com.github.rskupnik.thestory.external.asset.Image
+import com.github.rskupnik.thestory.external.asset.ImageProvider
+import com.github.rskupnik.thestory.external.dto.OptionLabel
+import com.github.rskupnik.thestory.external.file.FileHandle
+import com.github.rskupnik.thestory.external.file.FileLoader
+import com.github.rskupnik.thestory.script.domain.Script
 import java.io.InputStream
-import java.nio.file.Files
 
 fun main(args: Array<String>) {
     // For ad-hoc testing
@@ -26,6 +25,10 @@ fun main(args: Array<String>) {
 class Main {
 
     class CallbackReceiverImpl : CallbackReceiver {
+        override fun onLocationLoaded(script: Script) {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
         override fun onDisplayOptions(options: List<OptionLabel>) {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }

@@ -17,7 +17,8 @@ import javax.inject.Singleton
     OptionModule::class,
     JsonModule::class,
     AdaptersModule::class,
-    ModulesModule::class
+    ModulesModule::class,
+    ScriptModule::class
 ])
 @Singleton
 internal interface Injector {

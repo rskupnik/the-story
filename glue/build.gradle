@@ -23,7 +23,7 @@ dependencies {
     compile 'com.google.dagger:dagger:2.17'
     kapt 'com.google.dagger:dagger-compiler:2.17'
 
-    api project(":api")
+    compile project(":api")
     compile project(":core:shared")
     compile project(":core:item")
 }
