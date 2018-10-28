@@ -9,5 +9,6 @@ internal class Root
 @Inject internal constructor(
         val queryAPI: QueryAPI,
         val commandAPI: CommandAPI,
-        val implementationProvider: ImplementationProvider
+        val implementationProvider: ImplementationProvider,
+        val actionInitializer: ActionInitializer
 )

@@ -4,7 +4,7 @@ import com.github.rskupnik.thestory.action.domain.Action
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
 interface ActionHandler {
-    val handledId: String
+    fun id(): String
 
     fun handle(action: Action, entityId: EntityId?, data: Map<String, Any>?)
 }

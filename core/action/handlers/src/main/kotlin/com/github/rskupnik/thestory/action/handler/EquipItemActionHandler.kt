@@ -10,7 +10,12 @@ class EquipItemActionHandler(
         actionExecutor: ActionExecutor,
         private val equipment: Equipment
 ) : AbstractActionHandler(actionExecutor) {
-    override val handledId: String = "equipItem"
+
+    init {
+        println("EQUIP ITEM ACTION HANDLER INITIALIZED")
+    }
+
+    override fun id() = "equipItem"
 
     override fun handle(action: Action, entityId: EntityId?, data: Map<String, Any>?) {
         println("EQUIP ITEM!")

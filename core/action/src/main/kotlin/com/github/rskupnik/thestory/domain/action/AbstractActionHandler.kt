@@ -4,6 +4,6 @@ abstract class AbstractActionHandler(
         executor: ActionExecutor
 ) : ActionHandler {
     init {
-        executor.register(handledId, this)
+        executor.register(id(), this)
     }
 }
