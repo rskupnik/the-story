@@ -8,6 +8,7 @@ import com.github.rskupnik.thestory.domain.action.ActionInjectorHandle
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.event.EventDispatcher
+import com.github.rskupnik.thestory.external.CallbackReceiver
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -23,6 +24,8 @@ internal class ActionModule {
     fun actionInitializer(equipItemActionHandler: EquipItemActionHandler): ActionInitializer = ActionInitializer()
 
     @Provides @Singleton
-    fun equipItemActionHandler(actionExecutor: ActionExecutor, equipment: Equipment): EquipItemActionHandler = ActionHandlerInjectorHandle
-            .equipItemActionHandler(actionExecutor, equipment)
+    fun equipItemActionHandler(actionExecutor: ActionExecutor, equipment: Equipment, itemService: ItemService,
+                               eventDispatcher: EventDispatcher, callbackReceiver: CallbackReceiver
+    ): EquipItemActionHandler = ActionHandlerInjectorHandle
+            .equipItemActionHandler(actionExecutor, equipment, itemService, eventDispatcher, callbackReceiver)
 }
