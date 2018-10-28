@@ -15,3 +15,4 @@ include ":core:inventory", ":core:equipment", ":core:location", ":core:player", 
 include ":core:callback:event", ":core:callback:domain"
 include ":core:script", ":core:script:domain"
 include ":core:external"
+include ":core:action:handlers"

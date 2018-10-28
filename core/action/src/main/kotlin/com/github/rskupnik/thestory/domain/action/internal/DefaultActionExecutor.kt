@@ -2,7 +2,8 @@ package com.github.rskupnik.thestory.domain.action.internal
 
 import com.github.rskupnik.thestory.action.domain.Action
 import com.github.rskupnik.thestory.core.callback.event.CallbackTriggeredEvent
-import com.github.rskupnik.thestory.domain.action.ActionService
+import com.github.rskupnik.thestory.domain.action.ActionExecutor
+import com.github.rskupnik.thestory.domain.action.ActionHandler
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.option.event.OptionSelectedEvent
 import com.github.rskupnik.thestory.event.EventDispatcher
@@ -12,11 +13,11 @@ import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
 import com.github.rskupnik.thestory.shared.entity.EntityType
 
-internal class ActionServiceImplementation(
+internal class DefaultActionExecutor(
         private val itemService: ItemService,
         // TODO: add objectService
         eventDispatcher: EventDispatcher
-) : ActionService, ActionExecutor {
+) : ActionExecutor {
 
     private val handlers: MutableMap<String, ActionHandler> = HashMap()
 
@@ -40,15 +41,15 @@ internal class ActionServiceImplementation(
         handlers[id] = handler
     }
 
-    override fun execute(action: Action, context: Context?, entityId: EntityId?, data: Map<String, Any>?) {
+    private fun execute(action: Action, context: Context?, entityId: EntityId?, data: Map<String, Any>?) {
         if (contextValid(action, context) && conditionsMet(action, entityId)) {
             handlers[action.id]?.handle(action, entityId, data)
         }
     }
 
     private fun contextValid(action: Action, context: Context?): Boolean =
-        if (action.contexts.isEmpty() || context == null) true
-        else action.contexts.firstOrNull { context == Context.fromString(it) } != null
+            if (action.contexts.isEmpty() || context == null) true
+            else action.contexts.firstOrNull { context == Context.fromString(it) } != null
 
     private fun conditionsMet(action: Action, entityId: EntityId?): Boolean {
         if (entityId == null || action.conditions.isEmpty()) return true

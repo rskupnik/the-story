@@ -1,6 +1,6 @@
-package com.github.rskupnik.thestory.domain.action.internal
+package com.github.rskupnik.thestory.domain.action
 
-internal abstract class AbstractActionHandler(
+abstract class AbstractActionHandler(
         executor: ActionExecutor
 ) : ActionHandler {
     init {
