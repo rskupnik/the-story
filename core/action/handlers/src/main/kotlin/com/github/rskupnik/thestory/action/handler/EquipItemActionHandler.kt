@@ -6,6 +6,7 @@ import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.equipment.EquipmentSlot
 import com.github.rskupnik.thestory.domain.item.ItemService
+import com.github.rskupnik.thestory.equipment.event.ItemEquippedEvent
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.external.CallbackReceiver
 import com.github.rskupnik.thestory.shared.Reference
@@ -32,7 +33,7 @@ class EquipItemActionHandler(
 
         if (equipped) {
             // Send an event so other item holders can check if they need to remove the item
-            //eventDispatcher.dispatch(ItemEquippedEvent())
+            eventDispatcher.dispatch(ItemEquippedEvent(Reference.to(entityId.id)))
 
             // Inform the OutputReceiver so external user can refresh equipment and inventory
             //callbackReceiver.onItemEquipped(item)
