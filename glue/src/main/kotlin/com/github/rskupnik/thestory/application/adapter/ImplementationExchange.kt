@@ -1,8 +1,8 @@
 package com.github.rskupnik.thestory.application.adapter
 
-import com.github.rskupnik.thestory.external.CallbackReceiver
 import com.github.rskupnik.thestory.external.Port
 import com.github.rskupnik.thestory.external.asset.AssetLoader
+import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.external.file.FileLoader
 import kotlin.reflect.KClass
 

@@ -23,6 +23,7 @@ dependencies {
     compile project(":core:shared")
     compile project(":core:location")
     compile project(":core:item")
+    compile project(":core:item:domain")
     compile project(":core:object")
     compile project(":core:npc")
     compile project(":core:module")
@@ -32,6 +33,7 @@ dependencies {
     compile project(":core:inventory")
     compile project(":core:equipment")
     compile project(":core:external")
+    compile project(":core:external:feedback")
     compile project(":core:script")
 }
 

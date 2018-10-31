@@ -13,7 +13,7 @@ import com.github.rskupnik.thestory.domain.npc.NpcService
 import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
-import com.github.rskupnik.thestory.external.CallbackReceiver
+import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.script.ScriptService
 
 object ApiInjectorHandle {

@@ -11,7 +11,7 @@ import com.github.rskupnik.thestory.domain.npc.NpcService
 import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
-import com.github.rskupnik.thestory.external.CallbackReceiver
+import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.script.ScriptService
 import com.github.rskupnik.thestory.shared.Context

@@ -5,10 +5,10 @@ import com.github.rskupnik.thestory.core.callback.event.CallbackTriggeredEvent
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.equipment.EquipmentSlot
 import com.github.rskupnik.thestory.domain.item.ItemMutator
-import com.github.rskupnik.thestory.domain.item.ItemPlacement
 import com.github.rskupnik.thestory.domain.item.ItemService
-import com.github.rskupnik.thestory.domain.item.ItemView
 import com.github.rskupnik.thestory.event.EventDispatcher
+import com.github.rskupnik.thestory.item.domain.ItemPlacement
+import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
@@ -46,7 +46,7 @@ internal class DefaultEquipment(
     override fun getAll(): Map<EquipmentSlot, ItemView> = items
             .mapValues { itemService.getItemView(it.value) }
             .filterValues { it != null }
-            .mapValues { it as ItemView }
+            .mapValues { it.value!! }
 
     override fun remove(reference: Reference): Boolean {
         val occupiedSlot = findOccupiedSlot(reference)

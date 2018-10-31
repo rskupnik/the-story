@@ -1,6 +1,7 @@
 package com.github.rskupnik.thestory.domain.item
 
 import com.github.rskupnik.thestory.domain.item.internal.ItemInstance
+import com.github.rskupnik.thestory.item.domain.ItemPlacement
 import com.github.rskupnik.thestory.shared.Mutator
 import com.github.rskupnik.thestory.shared.MutatorEntry
 import com.github.rskupnik.thestory.shared.Reference

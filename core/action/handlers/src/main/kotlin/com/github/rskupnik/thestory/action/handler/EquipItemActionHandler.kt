@@ -8,7 +8,7 @@ import com.github.rskupnik.thestory.domain.equipment.EquipmentSlot
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.equipment.event.ItemEquippedEvent
 import com.github.rskupnik.thestory.event.EventDispatcher
-import com.github.rskupnik.thestory.external.CallbackReceiver
+import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
@@ -36,7 +36,7 @@ class EquipItemActionHandler(
             eventDispatcher.dispatch(ItemEquippedEvent(Reference.to(entityId.id)))
 
             // Inform the OutputReceiver so external user can refresh equipment and inventory
-            //callbackReceiver.onItemEquipped(item)
+            callbackReceiver.onItemEquipped(item)
         }
     }
 

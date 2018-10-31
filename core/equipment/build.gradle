@@ -21,6 +21,7 @@ dependencies {
     
     compile project(":core:shared")
     compile project(":core:item")
+    compile project(":core:item:domain")
     compile project(":core:callback:domain")
     compile project(":core:callback:event")
     compile project(":core:event")

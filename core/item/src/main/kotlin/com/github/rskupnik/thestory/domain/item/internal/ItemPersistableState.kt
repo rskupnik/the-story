@@ -1,6 +1,6 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
-import com.github.rskupnik.thestory.domain.item.ItemPlacement
+import com.github.rskupnik.thestory.item.domain.ItemPlacement
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.persistence.PersistableState
 

@@ -3,9 +3,9 @@ package com.github.rskupnik.thestory.domain.inventory.internal
 import com.github.rskupnik.thestory.domain.inventory.Inventory
 import com.github.rskupnik.thestory.domain.inventory.InventorySlot
 import com.github.rskupnik.thestory.domain.item.ItemMutator
-import com.github.rskupnik.thestory.domain.item.ItemPlacement
 import com.github.rskupnik.thestory.domain.item.ItemService
-import com.github.rskupnik.thestory.domain.item.ItemView
+import com.github.rskupnik.thestory.item.domain.ItemPlacement
+import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
 

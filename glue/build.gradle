@@ -25,7 +25,8 @@ dependencies {
 
     compile project(":api")
     compile project(":core:shared")
-    compile project(":core:item")
+    compile project(":core:external:feedback")
+    compile project(":core:item:domain")
     compile project(":core:action")
     compile project(":core:action:handlers")
 }

@@ -18,11 +18,9 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
-
-    compile project(":core:action")
-    compile project(":core:equipment")
-    compile project(":core:equipment:event")
-    compile project(":core:external:feedback")
+    
+    compile project(":core:shared")
+    compile project(":core:external")
 }
 
 compileKotlin {

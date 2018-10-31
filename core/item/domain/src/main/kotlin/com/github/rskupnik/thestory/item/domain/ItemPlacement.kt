@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.item
+package com.github.rskupnik.thestory.item.domain
 
 import com.github.rskupnik.thestory.shared.Context
 

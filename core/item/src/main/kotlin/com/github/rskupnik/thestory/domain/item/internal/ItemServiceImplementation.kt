@@ -3,10 +3,10 @@ package com.github.rskupnik.thestory.domain.item.internal
 import com.github.rskupnik.thestory.core.callback.domain.Callback
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
-import com.github.rskupnik.thestory.domain.item.ItemView
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.asset.Image
 import com.github.rskupnik.thestory.external.file.FileLoader
+import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.ExternalState
@@ -89,6 +89,13 @@ internal class ItemServiceImplementation(
 
     private fun buildItemView(item: ItemInstance): ItemView? {
         val image: Image = moduleService.getImage(item.currentImageReference ?: item.blueprint.imageReference) ?: return null
-        return ItemView.fromInstance(item, image)
+        return ItemView(
+                item.reference,
+                item.blueprint.reference,
+                item.blueprint.label,
+                image,
+                ExternalState.fromExistingState(item.externalState),
+                item.placement
+        )
     }
 }

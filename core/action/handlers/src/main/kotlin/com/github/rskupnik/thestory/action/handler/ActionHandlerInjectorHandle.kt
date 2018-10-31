@@ -4,7 +4,7 @@ import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.event.EventDispatcher
-import com.github.rskupnik.thestory.external.CallbackReceiver
+import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 
 object ActionHandlerInjectorHandle {
 

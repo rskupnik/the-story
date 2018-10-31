@@ -1,6 +1,7 @@
 package com.github.rskupnik.thestory.domain.item
 
 import com.github.rskupnik.thestory.core.callback.domain.Callback
+import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
