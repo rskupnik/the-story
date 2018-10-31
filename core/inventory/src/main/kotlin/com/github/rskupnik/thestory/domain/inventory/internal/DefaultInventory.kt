@@ -4,17 +4,28 @@ import com.github.rskupnik.thestory.domain.inventory.Inventory
 import com.github.rskupnik.thestory.domain.inventory.InventorySlot
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
+import com.github.rskupnik.thestory.equipment.event.ItemEquippedEvent
+import com.github.rskupnik.thestory.event.EventDispatcher
+import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.item.domain.ItemPlacement
 import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
 
 internal class DefaultInventory(
-        private val itemService: ItemService
-        // TODO: OutputReceiver
+        private val itemService: ItemService,
+        private val callbackReceiver: CallbackReceiver,
+        eventDispatcher: EventDispatcher
 ) : Inventory {
 
     private val items = arrayOf<Array<Reference?>>(arrayOfNulls(4), arrayOfNulls(4), arrayOfNulls(4), arrayOfNulls(4), arrayOfNulls(4))
+
+    init {
+        eventDispatcher.register(ItemEquippedEvent::class) {
+            it as ItemEquippedEvent
+            remove(it.item)
+        }
+    }
 
     override fun put(reference: Reference, slot: InventorySlot) {
         if (itemExists(reference) && slotFree(slot)) {

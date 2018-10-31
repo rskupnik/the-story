@@ -21,6 +21,9 @@ dependencies {
     
     compile project(":core:shared")
     compile project(":core:item")
+    compile project(":core:equipment:event")
+    compile project(":core:external:feedback")
+    compile project(":core:event")
 }
 
 compileKotlin {
