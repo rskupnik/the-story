@@ -28,4 +28,12 @@ object ActionHandlerInjectorHandle {
     ): RemoveItemActionHandler = RemoveItemActionHandler(
             actionExecutor, equipment, inventory, itemService, callbackReceiver
     )
+
+    fun changeImageActinoHandler(
+            actionExecutor: ActionExecutor,
+            itemService: ItemService,
+            callbackReceiver: CallbackReceiver
+    ): ChangeImageActionHandler = ChangeImageActionHandler(
+            actionExecutor, itemService, callbackReceiver
+    )
 }

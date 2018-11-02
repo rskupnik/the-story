@@ -1,9 +1,6 @@
 package com.github.rskupnik.thestory.application.modules
 
-import com.github.rskupnik.thestory.action.handler.ActionHandlerInjectorHandle
-import com.github.rskupnik.thestory.action.handler.EquipItemActionHandler
-import com.github.rskupnik.thestory.action.handler.FindItemActionHandler
-import com.github.rskupnik.thestory.action.handler.RemoveItemActionHandler
+import com.github.rskupnik.thestory.action.handler.*
 import com.github.rskupnik.thestory.application.internal.ActionInitializer
 import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.action.ActionInjectorHandle
@@ -27,7 +24,8 @@ internal class ActionModule {
     fun actionInitializer(
             equipItemActionHandler: EquipItemActionHandler,
             findItemActionHandler: FindItemActionHandler,
-            removeItemActionHandler: RemoveItemActionHandler
+            removeItemActionHandler: RemoveItemActionHandler,
+            changeImageActionHandler: ChangeImageActionHandler
     ): ActionInitializer = ActionInitializer()
 
     @Provides @Singleton
@@ -50,5 +48,14 @@ internal class ActionModule {
             callbackReceiver: CallbackReceiver
     ): RemoveItemActionHandler = ActionHandlerInjectorHandle.removeItemActionHandler(
             actionExecutor, itemService, inventory, equipment, callbackReceiver
+    )
+
+    @Provides @Singleton
+    fun changeImageActionHandler(
+            actionExecutor: ActionExecutor,
+            itemService: ItemService,
+            callbackReceiver: CallbackReceiver
+    ): ChangeImageActionHandler = ActionHandlerInjectorHandle.changeImageActinoHandler(
+            actionExecutor, itemService, callbackReceiver
     )
 }
