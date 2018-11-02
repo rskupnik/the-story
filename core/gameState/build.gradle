@@ -11,25 +11,16 @@ buildscript {
 
 apply plugin: 'kotlin'
 apply plugin: 'org.jetbrains.dokka'
-apply plugin: 'kotlin-kapt'
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
-    compile 'com.google.dagger:dagger:2.17'
-    kapt 'com.google.dagger:dagger-compiler:2.17'
-
-    compile project(":api")
+    
     compile project(":core:shared")
-    compile project(":core:external:feedback")
-    compile project(":core:item:domain")
-    compile project(":core:action")
-    compile project(":core:action:handlers")
-    compile project(":core:gameState")
+    compile project(":core:background:domain")
 }
 
 compileKotlin {
