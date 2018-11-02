@@ -18,4 +18,8 @@ interface CallbackReceiver : Port {
     fun onNewItemFound(item: ItemView)
 
     fun onItemImageChanged(item: ItemView)
+
+    fun onEquipmentRefreshed()
+
+    fun onInventoryRefreshed()
 }

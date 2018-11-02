@@ -79,7 +79,7 @@ internal class DefaultInventory(
             }
         }
 
-        // TODO: Inform the OutputReceiver
+        callbackReceiver.onInventoryRefreshed()
     }
 
     private fun clear() {

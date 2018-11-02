@@ -7,6 +7,7 @@ import com.github.rskupnik.thestory.domain.equipment.EquipmentSlot
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.event.EventDispatcher
+import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.item.domain.ItemPlacement
 import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.shared.Context
@@ -16,7 +17,8 @@ import com.github.rskupnik.thestory.shared.entity.EntityType
 
 internal class DefaultEquipment(
         private val itemService: ItemService,
-        private val eventDispatcher: EventDispatcher
+        private val eventDispatcher: EventDispatcher,
+        private val callbackReceiver: CallbackReceiver
 ) : Equipment {
 
     private val items: MutableMap<EquipmentSlot, Reference> = HashMap()
@@ -70,7 +72,7 @@ internal class DefaultEquipment(
             }
         }
 
-        // TODO: Inform the OutputReceiver
+        callbackReceiver.onEquipmentRefreshed()
     }
 
     private fun findOccupiedSlot(reference: Reference): EquipmentSlot? = items

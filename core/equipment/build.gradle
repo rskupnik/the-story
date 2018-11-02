@@ -24,6 +24,7 @@ dependencies {
     compile project(":core:item:domain")
     compile project(":core:callback:domain")
     compile project(":core:callback:event")
+    compile project(":core:external:feedback")
     compile project(":core:event")
 }
 

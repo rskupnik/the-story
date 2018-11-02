@@ -6,6 +6,10 @@ import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.script.domain.Script
 
 internal class CallbackReceiverDelegate : ImplementationDelegate<CallbackReceiver>(), CallbackReceiver {
+    override fun onEquipmentRefreshed() = getImplementation().onEquipmentRefreshed()
+
+    override fun onInventoryRefreshed() = getImplementation().onInventoryRefreshed()
+
     override fun onItemImageChanged(item: ItemView) = getImplementation().onItemImageChanged(item)
 
     override fun onItemRemoved(item: ItemView) = getImplementation().onItemRemoved(item)
