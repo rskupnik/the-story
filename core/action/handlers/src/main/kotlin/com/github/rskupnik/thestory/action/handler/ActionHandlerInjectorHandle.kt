@@ -18,4 +18,14 @@ object ActionHandlerInjectorHandle {
     fun findItemActionHandler(actionExecutor: ActionExecutor, itemService: ItemService,
                                inventory: Inventory, callbackReceiver: CallbackReceiver): FindItemActionHandler =
             FindItemActionHandler(actionExecutor, itemService, inventory, callbackReceiver)
+
+    fun removeItemActionHandler(
+            actionExecutor: ActionExecutor,
+            itemService: ItemService,
+            inventory: Inventory,
+            equipment: Equipment,
+            callbackReceiver: CallbackReceiver
+    ): RemoveItemActionHandler = RemoveItemActionHandler(
+            actionExecutor, equipment, inventory, itemService, callbackReceiver
+    )
 }

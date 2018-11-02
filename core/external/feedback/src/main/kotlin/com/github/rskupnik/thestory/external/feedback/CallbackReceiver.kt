@@ -13,5 +13,7 @@ interface CallbackReceiver : Port {
 
     fun onItemEquipped(item: ItemView)
 
+    fun onItemRemoved(item: ItemView)
+
     fun onNewItemFound(item: ItemView)
 }

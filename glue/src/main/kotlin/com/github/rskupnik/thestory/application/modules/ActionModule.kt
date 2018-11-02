@@ -3,6 +3,7 @@ package com.github.rskupnik.thestory.application.modules
 import com.github.rskupnik.thestory.action.handler.ActionHandlerInjectorHandle
 import com.github.rskupnik.thestory.action.handler.EquipItemActionHandler
 import com.github.rskupnik.thestory.action.handler.FindItemActionHandler
+import com.github.rskupnik.thestory.action.handler.RemoveItemActionHandler
 import com.github.rskupnik.thestory.application.internal.ActionInitializer
 import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.action.ActionInjectorHandle
@@ -25,7 +26,8 @@ internal class ActionModule {
     @Provides @Singleton
     fun actionInitializer(
             equipItemActionHandler: EquipItemActionHandler,
-            findItemActionHandler: FindItemActionHandler
+            findItemActionHandler: FindItemActionHandler,
+            removeItemActionHandler: RemoveItemActionHandler
     ): ActionInitializer = ActionInitializer()
 
     @Provides @Singleton
@@ -38,4 +40,15 @@ internal class ActionModule {
     fun findItemActionHandler(actionExecutor: ActionExecutor, itemService: ItemService, inventory: Inventory,
                               callbackReceiver: CallbackReceiver): FindItemActionHandler =
             ActionHandlerInjectorHandle.findItemActionHandler(actionExecutor, itemService, inventory, callbackReceiver)
+
+    @Provides @Singleton
+    fun removeItemActionHandler(
+            actionExecutor: ActionExecutor,
+            itemService: ItemService,
+            inventory: Inventory,
+            equipment: Equipment,
+            callbackReceiver: CallbackReceiver
+    ): RemoveItemActionHandler = ActionHandlerInjectorHandle.removeItemActionHandler(
+            actionExecutor, itemService, inventory, equipment, callbackReceiver
+    )
 }
