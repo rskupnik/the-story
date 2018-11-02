@@ -1,11 +1,14 @@
 package com.github.rskupnik.thestory.application.adapter
 
+import com.github.rskupnik.thestory.background.domain.Background
 import com.github.rskupnik.thestory.external.dto.OptionLabel
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.script.domain.Script
 
 internal class CallbackReceiverDelegate : ImplementationDelegate<CallbackReceiver>(), CallbackReceiver {
+    override fun onBackgroundChanged(background: Background) = getImplementation().onBackgroundChanged(background)
+
     override fun onEquipmentRefreshed() = getImplementation().onEquipmentRefreshed()
 
     override fun onInventoryRefreshed() = getImplementation().onInventoryRefreshed()

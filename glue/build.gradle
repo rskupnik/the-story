@@ -30,6 +30,7 @@ dependencies {
     compile project(":core:action")
     compile project(":core:action:handlers")
     compile project(":core:gameState")
+    compile project(":core:background")
 }
 
 compileKotlin {

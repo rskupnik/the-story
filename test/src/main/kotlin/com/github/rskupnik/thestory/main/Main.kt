@@ -1,6 +1,7 @@
 package com.github.rskupnik.thestory.main
 
 import com.github.rskupnik.thestory.application.Application
+import com.github.rskupnik.thestory.background.domain.Background
 import com.github.rskupnik.thestory.external.asset.AssetLoader
 import com.github.rskupnik.thestory.external.asset.Image
 import com.github.rskupnik.thestory.external.asset.ImageProvider
@@ -26,6 +27,10 @@ fun main(args: Array<String>) {
 class Main {
 
     class CallbackReceiverImpl : CallbackReceiver {
+        override fun onBackgroundChanged(background: Background) {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
         override fun onEquipmentRefreshed() {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }

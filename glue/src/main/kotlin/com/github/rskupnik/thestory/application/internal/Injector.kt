@@ -20,7 +20,8 @@ import javax.inject.Singleton
     AdaptersModule::class,
     ModulesModule::class,
     ScriptModule::class,
-    GameStateModule::class
+    GameStateModule::class,
+    BackgroundModule::class
 ])
 @Singleton
 internal interface Injector {

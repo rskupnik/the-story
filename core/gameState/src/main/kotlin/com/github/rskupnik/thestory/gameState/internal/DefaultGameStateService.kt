@@ -5,9 +5,9 @@ import com.github.rskupnik.thestory.gameState.GameStateService
 
 internal class DefaultGameStateService: GameStateService {
 
-    override fun setBackground(background: Background) {
+    override fun setBackground(background: Background?) {
         GameState.background = background
     }
 
-    override fun getBackground(): Background? = GameState.background.clone()
+    override fun getBackground(): Background? = GameState.background?.clone()
 }
