@@ -6,6 +6,7 @@ import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.script.domain.Script
 
 internal class CallbackReceiverDelegate : ImplementationDelegate<CallbackReceiver>(), CallbackReceiver {
+    override fun onNewItemFound(item: ItemView) = getImplementation().onNewItemFound(item)
 
     override fun onLocationLoaded(script: Script) = getImplementation().onLocationLoaded(script)
 

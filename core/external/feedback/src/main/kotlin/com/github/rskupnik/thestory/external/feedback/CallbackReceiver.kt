@@ -12,4 +12,6 @@ interface CallbackReceiver : Port {
     fun onDisplayOptions(options: List<OptionLabel>)
 
     fun onItemEquipped(item: ItemView)
+
+    fun onNewItemFound(item: ItemView)
 }

@@ -26,6 +26,10 @@ fun main(args: Array<String>) {
 class Main {
 
     class CallbackReceiverImpl : CallbackReceiver {
+        override fun onNewItemFound(item: ItemView) {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
         override fun onItemEquipped(item: ItemView) {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }

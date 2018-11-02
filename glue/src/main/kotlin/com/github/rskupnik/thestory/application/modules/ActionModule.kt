@@ -2,10 +2,12 @@ package com.github.rskupnik.thestory.application.modules
 
 import com.github.rskupnik.thestory.action.handler.ActionHandlerInjectorHandle
 import com.github.rskupnik.thestory.action.handler.EquipItemActionHandler
+import com.github.rskupnik.thestory.action.handler.FindItemActionHandler
 import com.github.rskupnik.thestory.application.internal.ActionInitializer
 import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.action.ActionInjectorHandle
 import com.github.rskupnik.thestory.domain.equipment.Equipment
+import com.github.rskupnik.thestory.domain.inventory.Inventory
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
@@ -21,11 +23,19 @@ internal class ActionModule {
             .executor(itemService, eventDispatcher)
 
     @Provides @Singleton
-    fun actionInitializer(equipItemActionHandler: EquipItemActionHandler): ActionInitializer = ActionInitializer()
+    fun actionInitializer(
+            equipItemActionHandler: EquipItemActionHandler,
+            findItemActionHandler: FindItemActionHandler
+    ): ActionInitializer = ActionInitializer()
 
     @Provides @Singleton
     fun equipItemActionHandler(actionExecutor: ActionExecutor, equipment: Equipment, itemService: ItemService,
                                eventDispatcher: EventDispatcher, callbackReceiver: CallbackReceiver
     ): EquipItemActionHandler = ActionHandlerInjectorHandle
             .equipItemActionHandler(actionExecutor, equipment, itemService, eventDispatcher, callbackReceiver)
+
+    @Provides @Singleton
+    fun findItemActionHandler(actionExecutor: ActionExecutor, itemService: ItemService, inventory: Inventory,
+                              callbackReceiver: CallbackReceiver): FindItemActionHandler =
+            ActionHandlerInjectorHandle.findItemActionHandler(actionExecutor, itemService, inventory, callbackReceiver)
 }
