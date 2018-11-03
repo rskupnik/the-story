@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.action.handler
 
+import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.inventory.Inventory
@@ -29,11 +30,18 @@ object ActionHandlerInjectorHandle {
             actionExecutor, equipment, inventory, itemService, callbackReceiver
     )
 
-    fun changeImageActinoHandler(
+    fun changeImageActionHandler(
             actionExecutor: ActionExecutor,
             itemService: ItemService,
             callbackReceiver: CallbackReceiver
     ): ChangeImageActionHandler = ChangeImageActionHandler(
             actionExecutor, itemService, callbackReceiver
+    )
+
+    fun setBackgroundActionHandler(
+            actionExecutor: ActionExecutor,
+            backgroundService: BackgroundService
+    ): SetBackgroundActionHandler = SetBackgroundActionHandler(
+            actionExecutor, backgroundService
     )
 }

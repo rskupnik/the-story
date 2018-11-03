@@ -24,6 +24,7 @@ dependencies {
     compile project(":core:equipment:event")
     compile project(":core:external:feedback")
     compile project(":core:inventory")
+    compile project(":core:background")
 }
 
 compileKotlin {

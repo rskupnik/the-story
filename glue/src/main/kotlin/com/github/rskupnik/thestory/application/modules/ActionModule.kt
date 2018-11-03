@@ -2,6 +2,7 @@ package com.github.rskupnik.thestory.application.modules
 
 import com.github.rskupnik.thestory.action.handler.*
 import com.github.rskupnik.thestory.application.internal.ActionInitializer
+import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.action.ActionInjectorHandle
 import com.github.rskupnik.thestory.domain.equipment.Equipment
@@ -25,7 +26,8 @@ internal class ActionModule {
             equipItemActionHandler: EquipItemActionHandler,
             findItemActionHandler: FindItemActionHandler,
             removeItemActionHandler: RemoveItemActionHandler,
-            changeImageActionHandler: ChangeImageActionHandler
+            changeImageActionHandler: ChangeImageActionHandler,
+            setBackgroundActionHandler: SetBackgroundActionHandler
     ): ActionInitializer = ActionInitializer()
 
     @Provides @Singleton
@@ -55,7 +57,15 @@ internal class ActionModule {
             actionExecutor: ActionExecutor,
             itemService: ItemService,
             callbackReceiver: CallbackReceiver
-    ): ChangeImageActionHandler = ActionHandlerInjectorHandle.changeImageActinoHandler(
+    ): ChangeImageActionHandler = ActionHandlerInjectorHandle.changeImageActionHandler(
             actionExecutor, itemService, callbackReceiver
+    )
+
+    @Provides @Singleton
+    fun setBackgroundActionHandler(
+            actionExecutor: ActionExecutor,
+            backgroundService: BackgroundService
+    ): SetBackgroundActionHandler = ActionHandlerInjectorHandle.setBackgroundActionHandler(
+            actionExecutor, backgroundService
     )
 }
