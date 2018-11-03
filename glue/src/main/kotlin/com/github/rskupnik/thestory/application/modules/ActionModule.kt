@@ -3,6 +3,7 @@ package com.github.rskupnik.thestory.application.modules
 import com.github.rskupnik.thestory.action.handler.*
 import com.github.rskupnik.thestory.application.internal.ActionInitializer
 import com.github.rskupnik.thestory.background.BackgroundService
+import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.action.ActionInjectorHandle
 import com.github.rskupnik.thestory.domain.equipment.Equipment
@@ -27,7 +28,8 @@ internal class ActionModule {
             findItemActionHandler: FindItemActionHandler,
             removeItemActionHandler: RemoveItemActionHandler,
             changeImageActionHandler: ChangeImageActionHandler,
-            setBackgroundActionHandler: SetBackgroundActionHandler
+            setBackgroundActionHandler: SetBackgroundActionHandler,
+            changeStateActionHandler: ChangeStateActionHandler
     ): ActionInitializer = ActionInitializer()
 
     @Provides @Singleton
@@ -67,5 +69,14 @@ internal class ActionModule {
             backgroundService: BackgroundService
     ): SetBackgroundActionHandler = ActionHandlerInjectorHandle.setBackgroundActionHandler(
             actionExecutor, backgroundService
+    )
+
+    @Provides @Singleton
+    fun changeStateActionHandler(
+            actionExecutor: ActionExecutor,
+            itemService: ItemService,
+            objectService: ObjectService
+    ): ChangeStateActionHandler = ActionHandlerInjectorHandle.changeStateActionHandler(
+            actionExecutor, itemService, objectService
     )
 }

@@ -1,6 +1,7 @@
 package com.github.rskupnik.thestory.action.handler
 
 import com.github.rskupnik.thestory.background.BackgroundService
+import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.inventory.Inventory
@@ -43,5 +44,13 @@ object ActionHandlerInjectorHandle {
             backgroundService: BackgroundService
     ): SetBackgroundActionHandler = SetBackgroundActionHandler(
             actionExecutor, backgroundService
+    )
+
+    fun changeStateActionHandler(
+            actionExecutor: ActionExecutor,
+            itemService: ItemService,
+            objectService: ObjectService
+    ): ChangeStateActionHandler = ChangeStateActionHandler(
+            actionExecutor, itemService, objectService
     )
 }

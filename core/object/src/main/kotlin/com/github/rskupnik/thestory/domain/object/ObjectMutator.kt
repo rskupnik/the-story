@@ -8,6 +8,10 @@ class ObjectMutator private constructor(
         externalState: Map<String, Any>?
 ) : Mutator() {
 
+    companion object {
+        fun new(): Builder = Builder()
+    }
+
     private val externalStateMutator: MutatorEntry<Map<String, Any>> = set(externalState)
 
     internal fun mutate(obj: ObjectInstance) {
