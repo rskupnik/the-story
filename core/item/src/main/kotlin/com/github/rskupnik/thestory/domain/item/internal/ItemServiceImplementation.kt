@@ -3,16 +3,21 @@ package com.github.rskupnik.thestory.domain.item.internal
 import com.github.rskupnik.thestory.core.callback.domain.Callback
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
+import com.github.rskupnik.thestory.domain.item.internal.ItemInstance.Companion.restore
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.asset.Image
 import com.github.rskupnik.thestory.external.file.FileLoader
+import com.github.rskupnik.thestory.item.domain.ItemPlacement
 import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.option.domain.Option
+import com.github.rskupnik.thestory.persistence.Persistable
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.json.JsonParser
 import com.github.rskupnik.thestory.shared.util.CommonFacadeOperations
+
+typealias State = Map<String, Any?>
 
 internal class ItemServiceImplementation(
         private val fileLoader: FileLoader,
@@ -22,7 +27,7 @@ internal class ItemServiceImplementation(
         private val instanceRepository: ItemInstanceRepository
 ) : ItemService {
 
-    override val persistableKey: String = "item"
+    override val persistenceKey: String = "item"
 
     companion object {
         const val DEFINITION_PATH = "modules/unpacked/%s/definitions/items.json"
@@ -70,22 +75,28 @@ internal class ItemServiceImplementation(
         return true
     }
 
-    override fun getPersistableState(): List<ItemPersistableState> =
-        CommonFacadeOperations.getPersistableState(instanceRepository.fetchAll())
+    //region PERSISTENCE
+    override fun produceState(): List<State> =
+        instanceRepository.fetchAll().map { it.toPersistableState() }
 
-    override fun loadPersistableState(state: List<Map<String, Any>>) {
-        val loadedState = ItemPersistableState.fromRawData(state)
-        val instances = loadedState.mapNotNull { instantiateFromState(it) }
+    override fun ingestState(state: List<State>) {
+        val instances = state.mapNotNull { instantiateFromState(it) }
         instanceRepository.save(instances)
     }
 
-    private fun instantiateFromState(state: ItemPersistableState): ItemInstance? {
-        val blueprint = blueprintRepository.find(Reference.to(state.blueprint)) ?: return null
-        return ItemInstance.restore(state.id, blueprint,
-                if (state.currentImage != null) Reference.to(state.currentImage) else null,
-                state.externalState, state.placement
-        )
+    private fun instantiateFromState(state: State): ItemInstance? {
+        val blueprint = blueprintRepository.find(Reference.to(state["blueprint"] as String? ?: return null)) ?: return null
+        return Persistable.instantiate(state) {
+            ItemInstance.restore(
+                    state["id"] as String? ?: return@instantiate null,
+                    blueprint,
+                    if (state["currentImage"] != null) Reference.to(state["currentImage"] as String) else null,
+                    ExternalState.fromExistingState(state["externalState"] as Map<String, Any>),
+                    state["placement"] as ItemPlacement // TODO: Probably needs parsing
+            )
+        }
     }
+    //endregion
 
     private fun buildItemView(item: ItemInstance): ItemView? {
         val image: Image = moduleService.getImage(item.currentImageReference ?: item.blueprint.imageReference) ?: return null

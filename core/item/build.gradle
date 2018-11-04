@@ -25,6 +25,7 @@ dependencies {
     compile project(":core:module")
     compile project(":core:option:domain")
     compile project(":core:callback:domain")
+    compile project(":core:persistence")
 }
 
 compileKotlin {

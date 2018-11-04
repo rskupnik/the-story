@@ -3,11 +3,11 @@ package com.github.rskupnik.thestory.domain.item
 import com.github.rskupnik.thestory.core.callback.domain.Callback
 import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.option.domain.Option
+import com.github.rskupnik.thestory.persistence.Persister
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.persistence.PersistableProvider
 
-interface ItemService : PersistableProvider {
+interface ItemService : Persister {
 
     fun loadBlueprints(moduleReference: Reference)
 

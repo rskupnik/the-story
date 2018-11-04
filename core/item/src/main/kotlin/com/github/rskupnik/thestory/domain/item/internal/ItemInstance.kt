@@ -1,16 +1,16 @@
 package com.github.rskupnik.thestory.domain.item.internal
 
 import com.github.rskupnik.thestory.item.domain.ItemPlacement
+import com.github.rskupnik.thestory.persistence.Persistable
 import com.github.rskupnik.thestory.shared.BlueprintInstance
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
-import com.github.rskupnik.thestory.shared.persistence.Persistable
 import java.util.*
 
 internal class ItemInstance(
         override val id: String,
         override val blueprint: ItemBlueprint
-) : BlueprintInstance<ItemBlueprint>, Persistable<ItemPersistableState> {
+) : BlueprintInstance<ItemBlueprint>, Persistable {
 
     internal constructor(blueprint: ItemBlueprint) : this(UUID.randomUUID().toString(), blueprint)
 
@@ -18,9 +18,13 @@ internal class ItemInstance(
     internal var externalState: ExternalState = ExternalState()
     internal var placement: ItemPlacement? = null
 
-    override fun toPersistableState(): ItemPersistableState =
-            ItemPersistableState(id, blueprint.id, ExternalState.fromExistingState(externalState), currentImageReference?.value,
-                    placement)
+    override fun toPersistableState(): Map<String, Any?> = mapOf(
+            "id" to id,
+            "blueprint" to blueprint.id,
+            "externalState" to ExternalState.fromExistingState(externalState),
+            "currentImage" to currentImageReference?.value,
+            "placement" to placement
+    )
 
     companion object {
         internal fun restore(id: String, blueprint: ItemBlueprint, currentImageReference: Reference? = null,
