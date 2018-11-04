@@ -23,6 +23,7 @@ dependencies {
     compile project(":core:external")
     compile project(":core:module")
     compile project(":core:option:domain")
+    compile project(":core:persistence")
 }
 
 compileKotlin {
