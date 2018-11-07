@@ -4,6 +4,7 @@ import com.github.rskupnik.thestory.domain.item.ItemInjectorHandle
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.file.FileLoader
+import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
 import com.github.rskupnik.thestory.shared.json.JsonParser
 import dagger.Module
 import dagger.Provides
@@ -13,8 +14,12 @@ import javax.inject.Singleton
 class ItemModule {
 
     @Provides @Singleton
-    fun service(fileLoader: FileLoader, jsonParser: JsonParser, moduleService: ModuleService
+    fun service(
+            fileLoader: FileLoader,
+            jsonParser: JsonParser,
+            moduleService: ModuleService,
+            persistenceSubscriber: PersistenceSubscriber
     ): ItemService = ItemInjectorHandle.service(
-            fileLoader, jsonParser, moduleService
+            fileLoader, jsonParser, moduleService, persistenceSubscriber
     )
 }

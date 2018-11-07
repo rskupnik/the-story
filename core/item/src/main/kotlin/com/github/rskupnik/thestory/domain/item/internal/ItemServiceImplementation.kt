@@ -11,6 +11,7 @@ import com.github.rskupnik.thestory.item.domain.ItemPlacement
 import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.persistence.Persistable
+import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
@@ -24,13 +25,18 @@ internal class ItemServiceImplementation(
         private val jsonParser: JsonParser,
         private val moduleService: ModuleService,
         private val blueprintRepository: ItemBlueprintRepository,
-        private val instanceRepository: ItemInstanceRepository
+        private val instanceRepository: ItemInstanceRepository,
+        persistenceSubscriber: PersistenceSubscriber
 ) : ItemService {
 
     override val persistenceKey: String = "item"
 
     companion object {
         const val DEFINITION_PATH = "modules/unpacked/%s/definitions/items.json"
+    }
+
+    init {
+        persistenceSubscriber.subscribe(this)
     }
 
     override fun loadBlueprints(moduleReference: Reference) {
@@ -76,11 +82,11 @@ internal class ItemServiceImplementation(
     }
 
     //region PERSISTENCE
-    override fun produceState(): List<State> =
+    override fun produceState(): Any =
         instanceRepository.fetchAll().map { it.toPersistableState() }
 
-    override fun ingestState(state: List<State>) {
-        val instances = state.mapNotNull { instantiateFromState(it) }
+    override fun ingestState(state: Any) {
+        val instances = (state as List<State>).mapNotNull { instantiateFromState(it) }
         instanceRepository.save(instances)
     }
 

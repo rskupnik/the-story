@@ -3,6 +3,7 @@ package com.github.rskupnik.thestory.application.adapter
 import com.github.rskupnik.thestory.external.asset.AssetLoader
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.external.file.FileLoader
+import com.github.rskupnik.thestory.external.file.FileSaver
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -23,4 +24,7 @@ internal class AdaptersModule {
 
     @Provides @Singleton
     fun callbackReceiver(): CallbackReceiver = implementationExchange.getImplementation(CallbackReceiver::class)
+
+    @Provides @Singleton
+    fun fileSaver(): FileSaver = implementationExchange.getImplementation(FileSaver::class)
 }

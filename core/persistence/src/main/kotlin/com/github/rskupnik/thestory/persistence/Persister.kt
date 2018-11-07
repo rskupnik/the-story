@@ -4,7 +4,7 @@ interface Persister {
 
     val persistenceKey: String
 
-    fun produceState(): List<Map<String, Any?>>
+    fun produceState(): Any
 
-    fun ingestState(state: List<Map<String, Any?>>)
+    fun ingestState(state: Any)
 }

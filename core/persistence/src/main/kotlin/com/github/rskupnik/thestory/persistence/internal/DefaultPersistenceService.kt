@@ -22,14 +22,19 @@ internal class DefaultPersistenceService(
     }
 
     override fun save() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val module = requireNotNull(moduleService.getLoadedStandaloneModule())
+        val snapshot: MutableMap<String, Any?> = HashMap()
+
+        // TODO: GameState and PlayerData
+
+        persisters.forEach { snapshot[it.persistenceKey] = it.produceState() }
+
+        fileSaver.saveSnapshot("${module.id}.sav", snapshot)
     }
 
-    override fun readState(filename: String): State {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun readState(filename: String): State = requireNotNull(fileLoader.loadSnapshot(filename))
 
-    override fun loadState(state: State) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun loadState(state: State) = persisters.forEach {
+        it.ingestState(requireNotNull(state[it.persistenceKey]))
     }
 }
