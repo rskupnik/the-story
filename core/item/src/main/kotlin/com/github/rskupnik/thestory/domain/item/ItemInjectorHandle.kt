@@ -12,8 +12,8 @@ object ItemInjectorHandle {
     private val blueprintRepository = ItemBlueprintRepository()
     private val instanceRepository = ItemInstanceRepository()
 
-    fun service(fileLoader: FileLoader, jsonParser: JsonParser, moduleService: ModuleService
-    ): ItemService = ItemServiceImplementation(
-            fileLoader, jsonParser, moduleService, blueprintRepository, instanceRepository
-    )
+    fun service(fileLoader: FileLoader, jsonParser: JsonParser, moduleService: ModuleService): ItemService =
+            ItemServiceImplementation(
+                    fileLoader, jsonParser, moduleService, blueprintRepository, instanceRepository
+            )
 }
