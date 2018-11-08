@@ -1,0 +1,22 @@
+[
+  {
+    "id": "kobold"
+  },
+  {
+    "id": "monk",
+    "options": [
+      {
+        "id": "talk",
+        "actions": [
+          {
+            "id": "shake",
+            "params": {
+              "strength": 5.0,
+              "duration": 1000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

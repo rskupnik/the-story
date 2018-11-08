@@ -1,0 +1,10 @@
+{
+  "id": "demo",
+  "type": "STANDALONE",
+  "dependencies": [
+    "demoExt"
+  ],
+  "optionalDependencies": [
+    "demoOpt"
+  ]
+}

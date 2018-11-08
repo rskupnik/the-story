@@ -1,0 +1,30 @@
+[
+  {
+    "id": "desk_0",
+    "initialState": {
+      "used": false
+    },
+    "options": [
+      {
+        "id": "search",
+        "conditions": {
+          "used": false
+        },
+        "actions": [
+          {
+            "id": "findItem",
+            "params": {
+              "id": "torch"
+            }
+          },
+          {
+            "id": "changeState",
+            "params": {
+              "used": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

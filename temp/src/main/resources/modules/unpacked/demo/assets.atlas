@@ -1,0 +1,41 @@
+
+assets.png
+size: 128,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+health_potion
+  rotate: false
+  xy: 54, 32
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+skill_icon_slash
+  rotate: false
+  xy: 2, 10
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+sword
+  rotate: false
+  xy: 84, 2
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+torch_off
+  rotate: false
+  xy: 54, 2
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+torch_on
+  rotate: false
+  xy: 84, 32
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1

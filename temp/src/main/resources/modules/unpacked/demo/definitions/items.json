@@ -1,0 +1,176 @@
+[
+  {
+    "id": "health_potion",
+    "label": "Health Potion",
+    "image": "health_potion",
+    "options": [
+      {
+        "id": "use",
+        "actions": [
+          {
+            "id": "deleteItem"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "torch",
+    "label": "Torch",
+    "image": "torch_off",
+    "initialState": {
+      "toggled": false
+    },
+    "options": [
+      {
+        "id": "equip",
+        "contexts": ["inventory"],
+        "actions": [
+          {
+            "id": "equipItem",
+            "params": {
+              "possibleSlots": ["belt_1", "belt_2"]
+            }
+          }
+        ]
+      },
+      {
+        "id": "remove",
+        "contexts": ["equipment"],
+        "actions": [
+          {
+            "id": "removeItem"
+          }
+        ]
+      },
+      {
+        "id": "light",
+        "conditions": {
+          "toggled": false
+        },
+        "actions": [
+          {
+            "id": "changeImage",
+            "params": {
+              "image": "torch_on"
+            }
+          },
+          {
+            "id": "changeState",
+            "params": {
+              "toggled": true
+            }
+          },
+          {
+            "id": "setBackground",
+            "params": {
+              "type": "normalMapped",
+              "img": "brickwall.jpg",
+              "normalImg": "brickwall_normal.jpg"
+            },
+            "contexts": ["equipment"]
+          },
+          {
+            "id": "shake",
+            "params": {
+              "strength": 5.0,
+              "duration": 1000
+            }
+          }
+        ]
+      },
+      {
+        "id": "extinguish",
+        "conditions": {
+          "toggled": true
+        },
+        "actions": [
+          {
+            "id": "changeImage",
+            "params": {
+              "image": "torch_off"
+            }
+          },
+          {
+            "id": "changeState",
+            "params": {
+              "toggled": false
+            }
+          },
+          {
+            "id": "setBackground",
+            "params": {
+              "type": "none"
+            },
+            "contexts": ["equipment"]
+          }
+        ]
+      }
+    ],
+    "callbacks": [
+      {
+        "id": "on_equip",
+        "actions": [
+          {
+            "id": "setBackground",
+            "params": {
+              "type": "normalMapped",
+              "img": "brickwall.jpg",
+              "normalImg": "brickwall_normal.jpg"
+            },
+            "conditions": {
+              "toggled": true
+            }
+          }
+        ]
+      },
+      {
+        "id": "on_remove",
+        "actions": [
+          {
+            "id": "setBackground",
+            "params": {
+              "type": "none"
+            },
+            "conditions": {
+              "toggled": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sword",
+    "label": "Sword",
+    "image": "sword",
+    "type": "WEAPON",
+    "options": [
+      {
+        "id": "equip",
+        "contexts": ["inventory"],
+        "actions": [
+          {
+            "id": "equipItem",
+            "params": {
+              "possibleSlots": ["left_hand", "right_hand"]
+            }
+          }
+        ]
+      },
+      {
+        "id": "remove",
+        "contexts": ["equipment"],
+        "actions": [
+          {
+            "id": "removeItem"
+          }
+        ]
+      }
+    ],
+    "weaponDefinition": {
+      "wieldType": "ONE_HANDED",
+      "skills": ["slash"]
+    }
+  }
+]
