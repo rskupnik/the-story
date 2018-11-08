@@ -1,9 +1,0 @@
-{< color:#3F3F3FFF A dark cell}
-
-You're in a {< color:#3F3F3FFF dark cell} in some kind of dungeon. It's dark, not a single torch is lit. The air is stiff and moist but you can feel a tiny breeze... there has to be an exit somewhere.
-
-DemoExt module available: {module_demoext_available ? true | false}
-Unknown module available: {module_unknown_available ? true | false}
-$
-<l exits east|west|north|south
-<m custom_north type:action|id:changeLocation|module:demo|zone:default|area:1,0

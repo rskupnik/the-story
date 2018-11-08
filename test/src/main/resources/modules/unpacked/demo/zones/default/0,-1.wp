@@ -1,8 +1,0 @@
-{< color:DARK_GRAY Warsztat kowala}
-
-Znajdujesz się w pracowni kowala. Na ścianach wiszą tarcze, miecze, obuchy i oszczepy przeróżnych kształtów.
-{npc_monk_present_1 ? {< color:FIREBRICK Kowal} pochyla się nad stołem roboczym, oglądając swój najnowszy wyrób | }
-$
-<l exits north
-!$
-npc_monk_reserved_slots 1

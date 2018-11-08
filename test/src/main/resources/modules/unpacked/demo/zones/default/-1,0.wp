@@ -1,7 +1,0 @@
-{< color:#3F3F3FFF  Outside the cell}
-
-You're outside the cell, at least as far as you can tell in the total darkness. You can barely notice an {< color:#3F3F3FFF|clickable:true|id:desk_0_0|def:desk_0 old desk} in the corner.
-
-There doesn't seem to be any exit from here apart from going back to the cell.
-$
-<l exits east
