@@ -1,7 +1,7 @@
 package com.github.rskupnik.thestory.domain.inventory.internal
 
 import com.github.rskupnik.thestory.domain.inventory.Inventory
-import com.github.rskupnik.thestory.domain.inventory.InventorySlot
+import com.github.rskupnik.thestory.item.domain.InventorySlot
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.equipment.event.ItemEquippedEvent

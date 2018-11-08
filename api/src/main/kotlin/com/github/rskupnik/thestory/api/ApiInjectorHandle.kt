@@ -14,6 +14,7 @@ import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
+import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.script.ScriptService
 
 object ApiInjectorHandle {
@@ -21,10 +22,21 @@ object ApiInjectorHandle {
             itemService, equipment, inventory
     )
 
-    fun commandAPI(itemService: ItemService, objectService: ObjectService, npcService: NpcService,
-                   moduleService: ModuleService, playerFacade: PlayerFacade, scriptService: ScriptService, optionService: OptionService,
-                   equipment: Equipment, inventory: Inventory, callbackReceiver: CallbackReceiver, eventDispatcher: EventDispatcher
+    fun commandAPI(
+            itemService: ItemService,
+            objectService: ObjectService,
+            npcService: NpcService,
+            moduleService: ModuleService,
+            playerFacade: PlayerFacade,
+            persistenceService: PersistenceService,
+            scriptService: ScriptService,
+            optionService: OptionService,
+            equipment: Equipment,
+            inventory: Inventory,
+            callbackReceiver: CallbackReceiver,
+            eventDispatcher: EventDispatcher
     ): CommandAPI = CommandAPIImplementation(
-            itemService, objectService, npcService, moduleService, playerFacade, scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
+            itemService, objectService, npcService, moduleService, playerFacade, persistenceService,
+            scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
     )
 }

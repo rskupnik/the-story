@@ -29,7 +29,7 @@ internal class ItemServiceImplementation(
         persistenceSubscriber: PersistenceSubscriber
 ) : ItemService {
 
-    override val persistenceKey: String = "item"
+    override val persistenceKey: String = "items"
 
     companion object {
         const val DEFINITION_PATH = "modules/unpacked/%s/definitions/items.json"
@@ -97,8 +97,8 @@ internal class ItemServiceImplementation(
                     state["id"] as String? ?: return@instantiate null,
                     blueprint,
                     if (state["currentImage"] != null) Reference.to(state["currentImage"] as String) else null,
-                    ExternalState.fromExistingState(state["externalState"] as Map<String, Any>),
-                    state["placement"] as ItemPlacement // TODO: Probably needs parsing
+                    ExternalState.fromExistingState(state["externalState"] as Map<String, Any>?),
+                    ItemPlacement.fromRawData(state["placement"] as Map<String, Any>?)
             )
         }
     }

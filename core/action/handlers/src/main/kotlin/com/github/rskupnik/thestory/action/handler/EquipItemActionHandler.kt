@@ -4,7 +4,7 @@ import com.github.rskupnik.thestory.action.domain.Action
 import com.github.rskupnik.thestory.domain.action.AbstractActionHandler
 import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.equipment.Equipment
-import com.github.rskupnik.thestory.domain.equipment.EquipmentSlot
+import com.github.rskupnik.thestory.item.domain.EquipmentSlot
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.equipment.event.ItemEquippedEvent
 import com.github.rskupnik.thestory.event.EventDispatcher

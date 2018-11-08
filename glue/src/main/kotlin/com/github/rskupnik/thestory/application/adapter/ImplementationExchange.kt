@@ -4,6 +4,7 @@ import com.github.rskupnik.thestory.external.Port
 import com.github.rskupnik.thestory.external.asset.AssetLoader
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.external.file.FileLoader
+import com.github.rskupnik.thestory.external.file.FileSaver
 import kotlin.reflect.KClass
 
 internal class ImplementationExchange : ImplementationProvider, ImplementationSupplier {
@@ -11,7 +12,8 @@ internal class ImplementationExchange : ImplementationProvider, ImplementationSu
     private val delegates: Map<KClass<out Port>, ImplementationDelegate<out Port>> = mapOf(
         FileLoader::class to FileLoaderDelegate(),
         AssetLoader::class to AssetLoaderDelegate(),
-        CallbackReceiver::class to CallbackReceiverDelegate()
+        CallbackReceiver::class to CallbackReceiverDelegate(),
+        FileSaver::class to FileSaverDelegate()
     )
 
     override fun <T : Port> provideImplementation(klass: KClass<T>, implementation: T) {

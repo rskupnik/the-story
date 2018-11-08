@@ -19,9 +19,9 @@ interface CommandAPI {
 
     fun instantiateObject(id: String, blueprintId: String, unique: Boolean)
 
-    //fun loadGame(filename: String)
+    fun loadGame(filename: String)
 
-    //fun saveGame()
+    fun saveGame()
 
     fun loadLocation(location: LocationId)
 

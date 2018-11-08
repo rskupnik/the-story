@@ -3,7 +3,7 @@ package com.github.rskupnik.thestory.domain.equipment.internal
 import com.github.rskupnik.thestory.core.callback.domain.CallbackId
 import com.github.rskupnik.thestory.core.callback.event.CallbackTriggeredEvent
 import com.github.rskupnik.thestory.domain.equipment.Equipment
-import com.github.rskupnik.thestory.domain.equipment.EquipmentSlot
+import com.github.rskupnik.thestory.item.domain.EquipmentSlot
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.event.EventDispatcher

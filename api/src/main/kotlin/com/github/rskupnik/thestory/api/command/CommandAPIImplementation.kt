@@ -13,6 +13,7 @@ import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.option.domain.Option
+import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.script.ScriptService
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.Direction
@@ -28,7 +29,7 @@ internal class CommandAPIImplementation(
         private val moduleService: ModuleService,
         private val playerFacade: PlayerFacade,
 //        private val gameStateFacade: GameStateFacade,
-//        private val persistenceFacade: PersistenceFacade,
+        private val persistenceService: PersistenceService,
 //        private val backgroundService: BackgroundService,
         private val scriptService: ScriptService,
         private val optionService: OptionService,
@@ -78,41 +79,40 @@ internal class CommandAPIImplementation(
         method.invoke(id, Reference.to(blueprintId))
     }
 
-    /*override fun loadGame(filename: String) {
+    override fun loadGame(filename: String) {
         // TODO: GameState
         //if (!gameStateFacade.gameAtPhase(listOf(GamePhase.UNINITIALIZED)))
         //    return
 
-        val snapshot = persistenceFacade.load(filename) ?: return
+        val state = persistenceService.readState(filename)
 
-        // Initialize game state
-        initializeGame(snapshot.get("module") as String)
+        // TODO Initialize game state
+//        initializeGame(state["module"] as String)
 
-        // Set player location
-        val playerData = snapshot.get("player") as Map<String, Any>
-        val location = playerData["location"] as Map<String, Any>
-        val locationId = LocationId(location["zone"] as String, location["x"] as Int, location["y"] as Int)
-        playerFacade.currentLocation = locationId
-        loadLocation(locationId)
+        // TODO Set player location
+//        val playerData = state.get("player") as Map<String, Any>
+//        val location = playerData["location"] as Map<String, Any>
+//        val locationId = LocationId(location["zone"] as String, location["x"] as Int, location["y"] as Int)
+//        playerFacade.currentLocation = locationId
+//        loadLocation(locationId)
 
-        // Load game state
-        loadGameState(snapshot)
+        // TODO Load game state
+//        loadGameState(state)
 
         // Load data
-        persistenceFacade.loadData(snapshot)
+        persistenceService.loadState(state)
 
         // Refresh equipment and inventory
         equipment.refresh()
         inventory.refresh()
 
-        // Set status: RUNNING
-        gameStateFacade.phase = GamePhase.RUNNING
+        // TODO Set status: RUNNING
+//        gameStateFacade.phase = GamePhase.RUNNING
     }
 
     override fun saveGame() {
-        println("SAVE GAME KOTLIN")
-        persistenceFacade.save()
-    }*/
+        persistenceService.save()
+    }
 
     override fun loadLocation(location: LocationId) {
         // Load and parse the wordplay script

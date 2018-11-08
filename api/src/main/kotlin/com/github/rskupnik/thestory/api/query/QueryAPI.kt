@@ -1,8 +1,8 @@
 package com.github.rskupnik.thestory.api.query
 
 import com.github.rskupnik.thestory.control.query.result.*
-import com.github.rskupnik.thestory.domain.equipment.EquipmentSlot
-import com.github.rskupnik.thestory.domain.inventory.InventorySlot
+import com.github.rskupnik.thestory.item.domain.EquipmentSlot
+import com.github.rskupnik.thestory.item.domain.InventorySlot
 
 interface QueryAPI {
 

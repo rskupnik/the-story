@@ -8,11 +8,11 @@ package com.github.rskupnik.thestory.shared
 class ExternalState() : HashMap<String, Any>() {
 
     companion object {
-        fun fromExistingState(state: Map<String, Any>): ExternalState = ExternalState(state)
+        fun fromExistingState(state: Map<String, Any>?): ExternalState = ExternalState(state)
     }
 
     private constructor(init: Map<String, Any>?) : this() {
-        val map = requireNotNull(init)
+        val map: Map<String, Any> = init ?: return
         clear()
         for ((key, value) in map) {
             put(key, value)

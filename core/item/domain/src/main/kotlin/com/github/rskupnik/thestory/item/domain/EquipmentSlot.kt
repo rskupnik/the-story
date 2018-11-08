@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.domain.equipment
+package com.github.rskupnik.thestory.item.domain
 
 enum class EquipmentSlot {
 

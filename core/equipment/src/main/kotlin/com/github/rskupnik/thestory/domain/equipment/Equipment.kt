@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.domain.equipment
 
+import com.github.rskupnik.thestory.item.domain.EquipmentSlot
 import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.shared.Reference
 
