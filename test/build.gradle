@@ -1,0 +1,16 @@
+apply plugin: "groovy"
+
+version = "1.0"
+
+// Spock works with Java 1.7 and above
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // mandatory dependencies for using Spock
+    compile "org.codehaus.groovy:groovy-all:2.4.15"
+    testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
+}
