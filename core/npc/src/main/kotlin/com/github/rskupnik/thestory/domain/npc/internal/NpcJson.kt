@@ -6,10 +6,10 @@ import com.github.rskupnik.thestory.shared.json.DefinitionJsonRepresentation
 
 internal data class NpcJson(
         val id: String,
-        val options: List<OptionJson>
+        val options: List<OptionJson>?
 ) : BlueprintJsonRepresentation<NpcBlueprint> {
     override fun toBlueprint(): NpcBlueprint = NpcBlueprint(
             id,
-            DefinitionJsonRepresentation.convertList(options)
+            if (options != null) DefinitionJsonRepresentation.convertList(options) else emptyList()
     )
 }
