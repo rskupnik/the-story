@@ -9,7 +9,10 @@ class ClasspathFileLoader implements FileLoader {
 
     @Override
     FileHandle getFileHandle(@NotNull String path) {
-        return new ClasspathFileHandle(this.getClass().getResource("/" + path))
+        final URL url = this.getClass().getResource("/" + path)
+        if (url != null)
+            return new ClasspathFileHandle(url)
+        else return null
     }
 
     @Override
