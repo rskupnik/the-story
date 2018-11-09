@@ -9,18 +9,18 @@ import kotlin.reflect.KClass
 
 internal class ImplementationExchange : ImplementationProvider, ImplementationSupplier {
 
-    private val delegates: Map<KClass<out Port>, ImplementationDelegate<out Port>> = mapOf(
-        FileLoader::class to FileLoaderDelegate(),
-        AssetLoader::class to AssetLoaderDelegate(),
-        CallbackReceiver::class to CallbackReceiverDelegate(),
-        FileSaver::class to FileSaverDelegate()
+    private val delegates: Map<Class<out Port>, ImplementationDelegate<out Port>> = mapOf(
+        FileLoader::class.java to FileLoaderDelegate(),
+        AssetLoader::class.java  to AssetLoaderDelegate(),
+        CallbackReceiver::class.java  to CallbackReceiverDelegate(),
+        FileSaver::class.java  to FileSaverDelegate()
     )
 
-    override fun <T : Port> provideImplementation(klass: KClass<T>, implementation: T) {
+    override fun <T : Port> provideImplementation(klass: Class<T>, implementation: T) {
         (delegates[klass] as ImplementationDelegate<T>).setImplementation(implementation)
     }
 
-    override fun <T : Port> getImplementation(klass: KClass<T>): T {
+    override fun <T : Port> getImplementation(klass: Class<T>): T {
         val impl = delegates[klass] ?: throw IllegalStateException("Implementation not provided for $klass")
         return impl as T
     }

@@ -9,5 +9,5 @@ interface API {
     fun getCommandAPI(): CommandAPI
     fun getQueryAPI(): QueryAPI
 
-    fun <T : Port> provideImplementation(klass: KClass<T>, implementation: T)
+    fun <T : Port> provideImplementation(klass: Class<T>, implementation: T)
 }

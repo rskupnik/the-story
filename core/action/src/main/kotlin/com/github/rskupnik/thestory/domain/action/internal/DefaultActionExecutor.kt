@@ -48,14 +48,14 @@ internal class DefaultActionExecutor(
     }
 
     private fun contextValid(action: Action, context: Context?): Boolean =
-            if (action.contexts.isEmpty() || context == null) true
-            else action.contexts.firstOrNull { context == Context.fromString(it) } != null
+            if (action.contexts == null || action.contexts!!.isEmpty() || context == null) true
+            else action.contexts!!.firstOrNull { context == Context.fromString(it) } != null
 
     private fun conditionsMet(action: Action, entityId: EntityId?): Boolean {
-        if (entityId == null || action.conditions.isEmpty()) return true
+        if (entityId == null || action.conditions == null ||action.conditions!!.isEmpty()) return true
         val externalState = fetchExternalState(entityId) ?: return false
 
-        return action.conditions.entries.none { it.value != externalState[it.key] }
+        return action.conditions!!.entries.none { it.value != externalState[it.key] }
     }
 
     private fun fetchExternalState(entityId: EntityId): ExternalState? =

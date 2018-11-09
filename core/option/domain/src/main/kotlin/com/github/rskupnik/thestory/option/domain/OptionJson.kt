@@ -6,8 +6,8 @@ import com.github.rskupnik.thestory.shared.json.DefinitionJsonRepresentation
 data class OptionJson(
         val id: String,
         val actions: List<ActionJson>,
-        val conditions: Map<String, Any>,
-        val contexts: List<String>
+        val conditions: Map<String, Any>?,
+        val contexts: List<String>?
 ) : DefinitionJsonRepresentation<Option> {
     override fun toDefinition(): Option =
             Option(

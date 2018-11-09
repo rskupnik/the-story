@@ -26,7 +26,7 @@ class EquipItemActionHandler(
         val entityId = requireNotNull(entityId)
 
         val item = requireNotNull(itemService.getItemView(Reference.to(entityId.id)))
-        val allowedSlots = convertToAllowedSlots(requireNotNull(action.params["allowedSlots"]) as List<String>)
+        val allowedSlots = convertToAllowedSlots(requireNotNull(action.params?.get("allowedSlots")) as List<String>)
 
         // Find a free slot in equipment according to allowedSlots list and equip it
         val equipped = equipment.put(Reference.to(entityId.id), allowedSlots)

@@ -16,7 +16,7 @@ internal class APIImpl(injector: Injector) : API {
 
     override fun getQueryAPI(): QueryAPI = queryAPI
 
-    override fun <T : Port> provideImplementation(klass: KClass<T>, implementation: T) {
+    override fun <T : Port> provideImplementation(klass: Class<T>, implementation: T) {
         implementationProvider.provideImplementation(klass, implementation)
     }
 }

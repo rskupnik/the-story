@@ -7,10 +7,14 @@ sourceCompatibility = 1.7
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
     // mandatory dependencies for using Spock
     compile "org.codehaus.groovy:groovy-all:2.4.15"
     testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
+
+    testCompile project(":glue")
+    compile project(":glue")
 }

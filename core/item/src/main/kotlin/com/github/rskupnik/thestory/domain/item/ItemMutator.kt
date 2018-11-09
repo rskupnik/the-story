@@ -33,7 +33,7 @@ class ItemMutator private constructor(
             var placement: ItemPlacement? = null
     ) {
         fun currentImage(currentImage: Reference) = apply { this.currentImage = currentImage }
-        fun externalState(externalState: Map<String, Any>) = apply { this.externalState = externalState }
+        fun externalState(externalState: Map<String, Any>?) = apply { this.externalState = externalState }
         fun placement(placement: ItemPlacement) = apply { this.placement = placement }
         fun build() = ItemMutator(currentImage, externalState, placement)
     }

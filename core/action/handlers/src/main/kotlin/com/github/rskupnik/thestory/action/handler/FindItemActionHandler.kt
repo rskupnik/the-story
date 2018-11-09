@@ -18,7 +18,7 @@ class FindItemActionHandler(
     override fun id(): String = "findItem"
 
     override fun handle(action: Action, entityId: EntityId?, data: Map<String, Any>?) {
-        val blueprintId: String = requireNotNull(action.params["id"] as String)
+        val blueprintId: String = requireNotNull(action.params?.get("id") as String)
 
         // Instantiate the item
         val itemRef = requireNotNull(itemService.instantiate(Reference.to(blueprintId)))

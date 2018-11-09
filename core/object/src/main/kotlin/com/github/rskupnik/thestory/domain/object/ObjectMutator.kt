@@ -22,7 +22,7 @@ class ObjectMutator private constructor(
     data class Builder(
             var externalState: Map<String, Any>? = null
     ) {
-        fun externalState(externalState: Map<String, Any>) = apply { this.externalState = externalState }
+        fun externalState(externalState: Map<String, Any>?) = apply { this.externalState = externalState }
         fun build() = ObjectMutator(externalState)
     }
 }

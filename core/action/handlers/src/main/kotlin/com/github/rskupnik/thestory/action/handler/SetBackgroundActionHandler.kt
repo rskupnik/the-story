@@ -13,12 +13,12 @@ class SetBackgroundActionHandler(
     override fun id(): String = "setBackground"
 
     override fun handle(action: Action, entityId: EntityId?, data: Map<String, Any>?) {
-        val type = requireNotNull(action.params["type"])
+        val type = requireNotNull(action.params?.get("type"))
         when(type) {
             "none" -> backgroundService.setNoBackground()
             "normalMapped" -> backgroundService.setNormalMappedBackground(
-                    requireNotNull(action.params["img"] as String),
-                    requireNotNull(action.params["normalImg"] as String)
+                    requireNotNull(action.params?.get("img") as String),
+                    requireNotNull(action.params?.get("normalImg") as String)
             )
         }
     }

@@ -17,14 +17,14 @@ internal class AdaptersModule {
     fun implementationProvider(): ImplementationProvider = implementationExchange
 
     @Provides @Singleton
-    fun fileLoader(): FileLoader = implementationExchange.getImplementation(FileLoader::class)
+    fun fileLoader(): FileLoader = implementationExchange.getImplementation(FileLoader::class.java)
 
     @Provides @Singleton
-    fun assetLoader(): AssetLoader = implementationExchange.getImplementation(AssetLoader::class)
+    fun assetLoader(): AssetLoader = implementationExchange.getImplementation(AssetLoader::class.java)
 
     @Provides @Singleton
-    fun callbackReceiver(): CallbackReceiver = implementationExchange.getImplementation(CallbackReceiver::class)
+    fun callbackReceiver(): CallbackReceiver = implementationExchange.getImplementation(CallbackReceiver::class.java)
 
     @Provides @Singleton
-    fun fileSaver(): FileSaver = implementationExchange.getImplementation(FileSaver::class)
+    fun fileSaver(): FileSaver = implementationExchange.getImplementation(FileSaver::class.java)
 }

@@ -5,5 +5,5 @@ import kotlin.reflect.KClass
 
 interface ImplementationSupplier {
 
-    fun <T: Port> getImplementation(klass: KClass<T>): T
+    fun <T: Port> getImplementation(klass: Class<T>): T
 }

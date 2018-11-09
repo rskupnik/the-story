@@ -9,23 +9,23 @@ import com.github.rskupnik.thestory.shared.entity.EntityId
 data class Option(
         val id: String,
         val actions: List<Action>,
-        val conditions: Map<String, Any>,
-        val contexts: List<String>
+        val conditions: Map<String, Any>?,
+        val contexts: List<String>?
 ) : Definition {
     companion object {
         fun filterByContext(input: List<Option>, context: Context): List<Option> =
                 input.asSequence()
-                        .filter { !it.contexts.isEmpty() }
+                        .filter { it.contexts != null && !it.contexts.isEmpty() }
                         .filter {
-                            it.contexts.any { context == Context.fromString(it) }
+                            it.contexts!!.any { context == Context.fromString(it) }
                         }
                         .toList()
 
         fun filterByConditions(input: List<Option>, fulfilledConditions: Map<String, Any>): List<Option> =
                 input.asSequence()
-                        .filter { !it.conditions.isEmpty() }
+                        .filter { it.conditions != null && !it.conditions.isEmpty() }
                         .filter {
-                            it.conditions.all {
+                            it.conditions!!.all {
                                 fulfilledConditions[it.key] != null && fulfilledConditions[it.key] == it.value
                             }
                         }

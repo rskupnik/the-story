@@ -19,10 +19,10 @@ import java.io.InputStream
 fun main(args: Array<String>) {
     // For ad-hoc testing
     val api = Application.init()
-    api.provideImplementation(AssetLoader::class, Main.DummyAssetLoader())
-    api.provideImplementation(CallbackReceiver::class, Main.CallbackReceiverImpl())
-    api.provideImplementation(FileLoader::class, Main.DummyFileLoader())
-    api.provideImplementation(FileSaver::class, Main.DummyFileSaver())
+    api.provideImplementation(AssetLoader::class.java, Main.DummyAssetLoader())
+    api.provideImplementation(CallbackReceiver::class.java, Main.CallbackReceiverImpl())
+    api.provideImplementation(FileLoader::class.java, Main.DummyFileLoader())
+    api.provideImplementation(FileSaver::class.java, Main.DummyFileSaver())
     api.getCommandAPI().loadGame("demo.sav")
     //api.getCommandAPI().initializeGame("demo")
     //val availableModules = api.getQueryAPI().getAvailableModules()

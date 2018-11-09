@@ -19,7 +19,7 @@ class ChangeImageActionHandler(
     override fun handle(action: Action, entityId: EntityId?, data: Map<String, Any>?) {
         val entity: Reference = Reference.to(requireNotNull(entityId).id)
 
-        val image = Reference.to(requireNotNull(action.params["image"] as String))
+        val image = Reference.to(requireNotNull(action.params?.get("image") as String))
         val itemView = requireNotNull(itemService.getItemView(entity))
 
         if (itemService.mutate(entity, ItemMutator.new().currentImage(image).build())) {

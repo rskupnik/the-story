@@ -1,0 +1,20 @@
+[
+  {
+    "id": "slash",
+    "name": "Slash",
+    "icon": "skill_icon_slash",
+    "type": "WEAPON",
+    "activationType": "ACTIVE",
+    "actions": [
+      {
+        "id": "combatEffectSlash"
+      },
+      {
+        "id": "combatDealDamage",
+        "params": {
+          "exactDamage": 10
+        }
+      }
+    ]
+  }
+]
