@@ -9,7 +9,7 @@ import spock.lang.Specification
 
 class MovementSpec extends Specification {
 
-    def "should be able to move"() {
+    def "move west loads the proper location"() {
         given:
         def (API api, CallbackReceiver callbackReceiverProxy) = Setup.standardApplication()
         def CallbackReceiver callbackReceiver = Mock()
