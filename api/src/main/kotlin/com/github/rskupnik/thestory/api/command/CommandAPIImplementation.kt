@@ -132,7 +132,6 @@ internal class CommandAPIImplementation(
     }
 
     override fun movePlayer(direction: Direction) {
-        println("MOVE PLAYER KOTLIN")
         // Calculate the target location
         val targetLocation = playerFacade.getCurrentLocation().applyDirection(direction)
 
