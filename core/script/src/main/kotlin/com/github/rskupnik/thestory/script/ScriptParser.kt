@@ -79,10 +79,10 @@ class ScriptParser {
     private fun extractColorHex(color: String): Text.Color {
         val color = color.substring(1, color.length)    // Skip the '#'
         val values: Array<Int> = arrayOf(
-                Integer.parseInt(color.substring(0, 2)),
-                Integer.parseInt(color.substring(2, 4)),
-                Integer.parseInt(color.substring(4, 6)),
-                Integer.parseInt(color.substring(6, 8))
+                Integer.parseInt(color.substring(0, 2), 16),
+                Integer.parseInt(color.substring(2, 4), 16),
+                Integer.parseInt(color.substring(4, 6), 16),
+                Integer.parseInt(color.substring(6, 8), 16)
         )
         return Text.Color(values[0], values[1], values[2], values[3])
     }
