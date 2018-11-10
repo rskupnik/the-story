@@ -24,8 +24,8 @@ internal class DefaultScriptService(
                     .asSequence()
                     .map { fileLoader.getFileHandle(String.format(PATH, it.id, locationId.zone, ""+locationId.x+","+locationId.y+".wp")) }
                     .filterNotNull()
-                    .first()
-                    .let { fileLoader.loadAsString(it) }
+                    .firstOrNull()
+                    .let { fileLoader.loadAsString(it ?: return null) }
                     .let { wordplay.process(it) }
 
     override fun parse(input: WordplayOutput): Script = scriptParser.parse(input)
