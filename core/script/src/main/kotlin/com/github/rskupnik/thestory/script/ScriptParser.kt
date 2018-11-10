@@ -57,7 +57,7 @@ class ScriptParser {
                     ?.map { Exit.valueOf(it.toUpperCase()) }
                     ?.toCollection(HashSet()) ?: emptySet()
 
-    private fun findExitList(input: WordplayOutput): MetaList? = input.metaObjects.find { it.id == EXITS_LIST_ID } as MetaList
+    private fun findExitList(input: WordplayOutput): MetaList? = input.metaObjects.find { it.id == EXITS_LIST_ID } as? MetaList
 
     private fun anchoredObjectToText(obj: AnchoredObject): Text = Text(
             obj.position,

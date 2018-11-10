@@ -6,9 +6,7 @@ import spock.lang.Specification
 
 abstract class AbstractSpec extends Specification {
 
-    def CallbackReceiver mockCallbackReceiver(ApplicationContext app) {
-        def CallbackReceiver mock = Mock()
-        app.provideCallbackReceiverProxyTarget(mock)
-        return mock
+    def CallbackReceiver mockCallbackReceiver() {
+        return Mock(CallbackReceiver)
     }
 }

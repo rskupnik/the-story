@@ -2,7 +2,6 @@ package com.github.rskupnik.thestory.setup
 
 import com.github.rskupnik.thestory.application.API
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
-import com.github.rskupnik.thestory.implementations.proxy.ProxyCallbackReceiver
 
 class ApplicationContext {
 
@@ -14,8 +13,10 @@ class ApplicationContext {
         this.callbackReceiver = callbackReceiver
     }
 
-    public static ApplicationContext standardApplication() {
-        def (API api, CallbackReceiver callbackReceiver) = Setup.standardApplication()
+    public static ApplicationContext standardApplication(CallbackReceiver callbackReceiver) {
+        def API api = Setup.standardApplication()
+        if (callbackReceiver != null)
+            api.provideImplementation(CallbackReceiver.class, callbackReceiver)
         return new ApplicationContext(api, callbackReceiver)
     }
 
@@ -25,9 +26,5 @@ class ApplicationContext {
 
     CallbackReceiver getCallbackReceiver() {
         return callbackReceiver
-    }
-
-    void provideCallbackReceiverProxyTarget(CallbackReceiver callbackReceiver) {
-        ((ProxyCallbackReceiver)this.callbackReceiver).actual = callbackReceiver
     }
 }
