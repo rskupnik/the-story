@@ -137,8 +137,7 @@ internal class CommandAPIImplementation(
         val targetLocation = playerFacade.getCurrentLocation().applyDirection(direction)
 
         // Load the target location - TODO: check result
-        // TODO: uncomment when loadLocation is ready
-        //loadLocation(targetLocation)
+        loadLocation(targetLocation)
 
         // Update the player's position
         playerFacade.setCurrentLocation(targetLocation)
