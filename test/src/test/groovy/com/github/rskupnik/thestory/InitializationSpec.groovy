@@ -8,7 +8,7 @@ class InitializationSpec extends Specification {
 
     def "should initialize game without errors"() {
         given:
-        final API api = Setup.standardApplication()
+        final API api = Setup.standardApplication().first
 
         when:
         api.commandAPI.initializeGame("demo")
