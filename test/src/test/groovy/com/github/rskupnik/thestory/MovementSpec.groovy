@@ -1,22 +1,18 @@
 package com.github.rskupnik.thestory
 
-import com.github.rskupnik.thestory.application.API
-import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
-import com.github.rskupnik.thestory.implementations.proxy.ProxyCallbackReceiver
-import com.github.rskupnik.thestory.setup.Setup
-import com.github.rskupnik.thestory.shared.Direction
-import spock.lang.Specification
 
-class MovementSpec extends Specification {
+import com.github.rskupnik.thestory.setup.ApplicationContext
+import com.github.rskupnik.thestory.shared.Direction
+
+class MovementSpec extends AbstractSpec {
 
     def "move west loads the proper location"() {
         given:
-        def (API api, CallbackReceiver callbackReceiverProxy) = Setup.standardApplication()
-        def CallbackReceiver callbackReceiver = Mock()
-        ((ProxyCallbackReceiver)callbackReceiverProxy).setActual(callbackReceiver)
+        def app = ApplicationContext.standardApplication()
+        def callbackReceiver = mockCallbackReceiver(app)
 
         when:
-        api.commandAPI.movePlayer(Direction.WEST)
+        app.api.commandAPI.movePlayer(Direction.WEST)
 
         then:
         1 * callbackReceiver.onLocationLoaded(_)
