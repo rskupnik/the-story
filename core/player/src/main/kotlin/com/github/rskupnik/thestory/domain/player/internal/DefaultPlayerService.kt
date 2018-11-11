@@ -5,9 +5,11 @@ import com.github.rskupnik.thestory.domain.player.PlayerFacade
 
 internal class DefaultPlayerService : PlayerFacade {
 
+    private val player = Player()
+
     override fun setCurrentLocation(locationId: LocationId) {
-        Player.currentLocation = locationId
+        player.currentLocation = locationId
     }
 
-    override fun getCurrentLocation(): LocationId = Player.currentLocation
+    override fun getCurrentLocation(): LocationId = player.currentLocation
 }
