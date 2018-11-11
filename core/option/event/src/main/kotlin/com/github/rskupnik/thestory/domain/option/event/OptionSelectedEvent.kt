@@ -8,6 +8,6 @@ import com.github.rskupnik.thestory.shared.entity.EntityId
 data class OptionSelectedEvent(
         val option: Option,
         val externalData: Map<String, Any>?,
-        val context: Context,
+        val context: Context?,
         val entityId: EntityId
 ) : Event

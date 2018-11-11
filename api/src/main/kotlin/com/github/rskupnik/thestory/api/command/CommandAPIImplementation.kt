@@ -144,7 +144,7 @@ internal class CommandAPIImplementation(
         }
     }
 
-    override fun selectOption(id: String, type: EntityType, optionId: String, context: Context) {
+    override fun selectOption(id: String, type: EntityType, optionId: String, context: Context?) {
         val option = getOption(optionId, id, type, context) ?: return
         optionService.execute(option, null, context, EntityId(id, type))
     }
@@ -165,7 +165,7 @@ internal class CommandAPIImplementation(
         }
     }*/
 
-    private fun getOption(optionId: String, entityId: String, entityType: EntityType, context: Context): Option? {
+    private fun getOption(optionId: String, entityId: String, entityType: EntityType, context: Context?): Option? {
         val options = when(entityType) {
             EntityType.OBJECT -> objectService.getOptions(Reference.to(entityId))
             EntityType.ITEM -> itemService.getOptions(Reference.to(entityId), context)

@@ -27,5 +27,5 @@ interface CommandAPI {
 
     fun movePlayer(direction: Direction)
 
-    fun selectOption(id: String, type: EntityType, optionId: String, context: Context)
+    fun selectOption(id: String, type: EntityType, optionId: String, context: Context?)
 }
