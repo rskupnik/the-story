@@ -23,7 +23,7 @@ interface CommandAPI {
 
     fun saveGame()
 
-    fun loadLocation(location: LocationId)
+    fun loadLocation(location: LocationId): Boolean
 
     fun movePlayer(direction: Direction)
 

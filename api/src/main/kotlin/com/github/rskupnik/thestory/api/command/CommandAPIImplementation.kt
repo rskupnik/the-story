@@ -114,9 +114,9 @@ internal class CommandAPIImplementation(
         persistenceService.save()
     }
 
-    override fun loadLocation(location: LocationId) {
+    override fun loadLocation(location: LocationId): Boolean {
         // Load and parse the wordplay script
-        val wordplayOutput: WordplayOutput = scriptService.loadLocation(location) ?: return
+        val wordplayOutput: WordplayOutput = scriptService.loadLocation(location) ?: return false
 
         // Transform the wordplay script into an externally available output
         val parsedScript = scriptService.parse(wordplayOutput)
@@ -129,17 +129,19 @@ internal class CommandAPIImplementation(
         }
 
         callbackReceiver.onLocationLoaded(parsedScript)
+
+        return true
     }
 
     override fun movePlayer(direction: Direction) {
         // Calculate the target location
         val targetLocation = playerFacade.getCurrentLocation().applyDirection(direction)
 
-        // Load the target location - TODO: check result
-        loadLocation(targetLocation)
-
-        // Update the player's position
-        playerFacade.setCurrentLocation(targetLocation)
+        // Load the target location
+        if (loadLocation(targetLocation)) {
+            // Update the player's position
+            playerFacade.setCurrentLocation(targetLocation)
+        }
     }
 
     override fun selectOption(id: String, type: EntityType, optionId: String, context: Context) {
