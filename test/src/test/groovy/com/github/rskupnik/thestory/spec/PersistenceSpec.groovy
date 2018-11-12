@@ -9,12 +9,12 @@ import com.github.rskupnik.thestory.verification.SavedStateVerifier
 
 class PersistenceSpec extends AbstractSpec {
 
-    def "should save state - basic test"() {
+    def "should save empty state"() {
         given:
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
-        app.api.commandAPI.initializeGame("demo")
 
         when:
+        app.api.commandAPI.initializeGame("demo")
         app.api.commandAPI.saveGame()
 
         then:
@@ -27,12 +27,12 @@ class PersistenceSpec extends AbstractSpec {
     def "should save state - single item in inventory"() {
         given:
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+
+        when:
         app.api.commandAPI.initializeGame("demo")
         app.api.commandAPI.movePlayer(Direction.WEST)
         app.api.commandAPI.clickObject("desk_0_0")
         app.api.commandAPI.selectOption("desk_0_0", EntityType.OBJECT, "search", null)
-
-        when:
         app.api.commandAPI.saveGame()
 
         then:
