@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory
+package com.github.rskupnik.thestory.spec
 
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.setup.ApplicationContext

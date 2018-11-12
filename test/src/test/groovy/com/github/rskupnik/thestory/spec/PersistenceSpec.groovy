@@ -1,11 +1,9 @@
-package com.github.rskupnik.thestory
+package com.github.rskupnik.thestory.spec
 
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
-import com.github.rskupnik.thestory.external.file.FileSaver
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
 import com.github.rskupnik.thestory.setup.ApplicationContext
 import com.github.rskupnik.thestory.shared.Direction
-import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.entity.EntityType
 import com.github.rskupnik.thestory.verification.SavedStateVerifier
 

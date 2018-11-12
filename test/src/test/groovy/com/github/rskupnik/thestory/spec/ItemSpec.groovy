@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory
+package com.github.rskupnik.thestory.spec
 
 import spock.lang.Specification
 
