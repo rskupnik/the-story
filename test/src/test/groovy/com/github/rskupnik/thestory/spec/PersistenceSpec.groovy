@@ -42,6 +42,4 @@ class PersistenceSpec extends AbstractSpec {
         verifier.verifyItem(0, "torch", [toggled: false])
     }
 
-    // TODO: Test - click object displays list of options
-
 }
