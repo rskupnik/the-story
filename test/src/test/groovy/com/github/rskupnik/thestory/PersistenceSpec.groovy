@@ -43,10 +43,6 @@ class PersistenceSpec extends AbstractSpec {
         verifier.verifyItem(0, "torch", [toggled: false])
     }
 
-    private boolean verifyStateExists(FileSaver fileSaver, String filename) {
-        return ((InMemoryFileSaver)fileSaver).get(filename) != null
-    }
-
     // TODO: Test - click object displays list of options
 
     // TODO: Pull this class out
