@@ -13,17 +13,19 @@ import javax.inject.Singleton
 @Module
 internal class PersistenceModule {
 
+    private val handle = PersistenceInjectorHandle()
+
     @Provides @Singleton
     fun service(
             fileSaver: FileSaver,
             fileLoader: FileLoader,
             moduleService: ModuleService
-    ): PersistenceService = PersistenceInjectorHandle.service(fileSaver, fileLoader, moduleService)
+    ): PersistenceService = handle.service(fileSaver, fileLoader, moduleService)
 
     @Provides @Singleton
     fun subscriber(
             fileSaver: FileSaver,
             fileLoader: FileLoader,
             moduleService: ModuleService
-    ): PersistenceSubscriber = PersistenceInjectorHandle.subscriber(fileSaver, fileLoader, moduleService)
+    ): PersistenceSubscriber = handle.subscriber(fileSaver, fileLoader, moduleService)
 }

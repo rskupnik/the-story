@@ -5,7 +5,7 @@ import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.external.file.FileSaver
 import com.github.rskupnik.thestory.persistence.internal.DefaultPersistenceService
 
-object PersistenceInjectorHandle {
+class PersistenceInjectorHandle {
 
     private var persistenceService: DefaultPersistenceService? = null
 

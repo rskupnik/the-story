@@ -8,7 +8,6 @@ import com.github.rskupnik.thestory.shared.Direction
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.entity.EntityType
 
-// TODO: Running both fails
 class PersistenceSpec extends AbstractSpec {
 
     def "should save state - basic test"() {
