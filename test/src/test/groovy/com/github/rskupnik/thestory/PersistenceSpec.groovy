@@ -7,6 +7,7 @@ import com.github.rskupnik.thestory.setup.ApplicationContext
 import com.github.rskupnik.thestory.shared.Direction
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.entity.EntityType
+import com.github.rskupnik.thestory.verification.SavedStateVerifier
 
 class PersistenceSpec extends AbstractSpec {
 
@@ -45,37 +46,4 @@ class PersistenceSpec extends AbstractSpec {
 
     // TODO: Test - click object displays list of options
 
-    // TODO: Pull this class out
-    private class SavedStateVerifier {
-        private final Map<String, ?> state
-
-        private SavedStateVerifier(FileSaver fileSaver, String filename) {
-            this.state = ((InMemoryFileSaver)fileSaver).get(filename) as Map<String, ?>
-        }
-
-        private boolean verifyExists() {
-            return state != null
-        }
-
-        private boolean verifyItemAmount(int amount) {
-            List<Map<String, ?>> items = state.get("items")
-            return items != null && items.size() == amount
-        }
-
-        private boolean verifyItem(int index, String blueprint, Map<String, ?> externalState) {
-            List<Map<String, ?>> items = state.get("items")
-            Map<String, ?> state = items.get(index)
-            return ((String)state.get("id")).length() > 10 && ((String)state.get("blueprint")).equals(blueprint) &&
-                    verifyState((Map<String, ?>)state.get("externalState"), externalState)
-        }
-
-        private boolean verifyState(Map<String, ?> expected, Map<String, ?> given) {
-            for (Map.Entry<String, ?> entry : given) {
-                if (expected.get(entry.key) == null || !entry.value.equals(expected.get(entry.key))) {
-                    return false
-                }
-            }
-            return true
-        }
-    }
 }
