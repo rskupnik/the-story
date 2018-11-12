@@ -42,4 +42,9 @@ class PersistenceSpec extends AbstractSpec {
         verifier.verifyItem(0, "torch", [toggled: false])
     }
 
+    // TODO: Basic load game test - see if initializes after loadGame()
+
+    // TODO: Work on saving player data and game state, such as background, etc.
+
+    // TODO: More advanced saved & load tests
 }
