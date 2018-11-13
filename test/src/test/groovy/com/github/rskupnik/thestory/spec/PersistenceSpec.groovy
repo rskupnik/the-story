@@ -43,6 +43,19 @@ class PersistenceSpec extends AbstractSpec {
     }
 
     // TODO: Basic load game test - see if initializes after loadGame()
+    def "should initialize module upon load"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+
+        when:
+        app.api.commandAPI.initializeGame("demo")
+        app.api.commandAPI.loadGame("empty.sav")
+
+        then:
+        true
+        // TODO: Create the .sav file for this test
+        // TODO: Make sure module is initialized when the sav file is loaded
+    }
 
     // TODO: Work on saving player data and game state, such as background, etc.
 
