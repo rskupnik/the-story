@@ -48,7 +48,6 @@ class PersistenceSpec extends AbstractSpec {
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
 
         when:
-        app.api.commandAPI.initializeGame("demo")
         app.api.commandAPI.loadGame("empty.sav")
 
         then:
