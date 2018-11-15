@@ -21,11 +21,16 @@ internal class DefaultPlayerService(
 
     override fun getCurrentLocation(): LocationId = player.currentLocation
 
-    override fun produceState(): Any? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun produceState(): Any? = mapOf(
+            "location" to player.currentLocation
+    )
 
     override fun ingestState(state: Any?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val stateMap = (state ?: return) as Map<String, Any?>
+        setCurrentLocation(LocationId(
+                (stateMap["zone"] ?: return) as String,
+                (stateMap["x"] ?: return) as Int,
+                (stateMap["y"] ?: return) as Int
+        ))
     }
 }
