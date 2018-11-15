@@ -68,6 +68,8 @@ class PersistenceSpec extends AbstractSpec {
         // TODO: Check if game phase is RUNNING (once implemented)
     }
 
+    // TODO: Test loading background
+
     // TODO: Work on saving player data and game state, such as background, etc.
 
     // TODO: More advanced saved & load tests
