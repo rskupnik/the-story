@@ -30,9 +30,7 @@ internal class DefaultBackgroundService(
         callbackReceiver.onBackgroundChanged(newBackground)
     }
 
-    override fun produceState(): Any? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun produceState(): Any? = background?.toPersistableState()
 
     override fun ingestState(state: Any?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
