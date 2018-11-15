@@ -22,6 +22,7 @@ class PersistenceSpec extends AbstractSpec {
         savedState != null
         savedState.get("objects") != null
         savedState.get("items") != null
+        savedState.get("gameState") != null
     }
 
     def "should save state - single item in inventory"() {
