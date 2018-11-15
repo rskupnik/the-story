@@ -42,7 +42,6 @@ class PersistenceSpec extends AbstractSpec {
         verifier.verifyItem(0, "torch", [toggled: false])
     }
 
-    // TODO: Basic load game test - see if initializes after loadGame()
     def "should initialize module upon load"() {
         given:
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
@@ -52,8 +51,7 @@ class PersistenceSpec extends AbstractSpec {
 
         then:
         true
-        // TODO: Create the .sav file for this test
-        // TODO: Make sure module is initialized when the sav file is loaded
+        // TODO: Check if game phase is RUNNING (once implemented)
     }
 
     // TODO: Work on saving player data and game state, such as background, etc.
