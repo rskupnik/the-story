@@ -4,6 +4,7 @@ import com.github.rskupnik.thestory.api.command.CommandAPI
 import com.github.rskupnik.thestory.api.command.CommandAPIImplementation
 import com.github.rskupnik.thestory.api.query.QueryAPI
 import com.github.rskupnik.thestory.api.query.QueryAPIImplementationK
+import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.inventory.Inventory
@@ -29,6 +30,7 @@ object ApiInjectorHandle {
             moduleService: ModuleService,
             playerFacade: PlayerFacade,
             persistenceService: PersistenceService,
+            backgroundService: BackgroundService,
             scriptService: ScriptService,
             optionService: OptionService,
             equipment: Equipment,
@@ -36,7 +38,7 @@ object ApiInjectorHandle {
             callbackReceiver: CallbackReceiver,
             eventDispatcher: EventDispatcher
     ): CommandAPI = CommandAPIImplementation(
-            itemService, objectService, npcService, moduleService, playerFacade, persistenceService,
+            itemService, objectService, npcService, moduleService, playerFacade, persistenceService, backgroundService,
             scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
     )
 }
