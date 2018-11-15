@@ -22,9 +22,6 @@ class PersistenceSpec extends AbstractSpec {
         then:
         Map<String, ?> savedState = ((InMemoryFileSaver)app.fileSaver).get("demo.sav") as Map<String, ?>
         savedState != null
-        savedState.get("objects") != null
-        savedState.get("items") != null
-        savedState.get("gameState") != null
     }
 
     def "should save state - single item in inventory"() {
@@ -70,6 +67,8 @@ class PersistenceSpec extends AbstractSpec {
         true
         // TODO: Check if game phase is RUNNING (once implemented)
     }
+
+    // TODO: Test loading background
 
     // TODO: Work on saving player data and game state, such as background, etc.
 

@@ -27,9 +27,9 @@ class SavedStateVerifier {
     }
 
     boolean verifyNormalMappedBackground(String image, String normalImage) {
-        Map<String, ?> gameState = state.get("gameState")
-        Map<String, String> bs = gameState.get("background")
-        return bs.get("type").equals("NORMAL_MAPPED") && bs.get("image").equals(image) && bs.get("normalImage").equals(normalImage)
+        Map<String, String> bs = state.get("background")
+        return bs != null && bs.get("type").equals("NORMAL_MAPPED") && bs.get("image").equals(image) &&
+                bs.get("normalImage").equals(normalImage)
     }
 
     private static boolean verifyState(Map<String, ?> expected, Map<String, ?> given) {
