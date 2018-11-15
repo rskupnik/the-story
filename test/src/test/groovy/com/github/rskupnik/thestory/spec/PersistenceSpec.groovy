@@ -1,5 +1,7 @@
 package com.github.rskupnik.thestory.spec
 
+import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
+import com.github.rskupnik.thestory.api.command.details.background.NormalMappedBackgroundDetails
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
 import com.github.rskupnik.thestory.setup.ApplicationContext
@@ -43,7 +45,19 @@ class PersistenceSpec extends AbstractSpec {
         verifier.verifyItem(0, "torch", [toggled: false])
     }
 
-    // TODO: Add test for setting background - but need a method to do that first
+    def "should save state - background"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+
+        when:
+        app.api.commandAPI.initializeGame("demo")
+        app.api.commandAPI.setBackground(new NormalMappedBackgroundDetails("wall", "wall-normal"))
+        app.api.commandAPI.saveGame()
+
+        then:
+        def verifier = new SavedStateVerifier(app.fileSaver, "demo.sav")
+        verifier.verifyNormalMappedBackground("wall", "wall-normal")
+    }
 
     def "should initialize module upon load"() {
         given:
