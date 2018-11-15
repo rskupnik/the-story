@@ -1,6 +1,9 @@
 package com.github.rskupnik.thestory.api.command
 
 import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
+import com.github.rskupnik.thestory.api.command.details.background.NormalMappedBackgroundDetails
+import com.github.rskupnik.thestory.background.BackgroundService
+import com.github.rskupnik.thestory.background.domain.NoBackground
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
@@ -31,7 +34,7 @@ internal class CommandAPIImplementation(
         private val playerFacade: PlayerFacade,
 //        private val gameStateFacade: GameStateFacade,
         private val persistenceService: PersistenceService,
-//        private val backgroundService: BackgroundService,
+        private val backgroundService: BackgroundService,
         private val scriptService: ScriptService,
         private val optionService: OptionService,
         private val equipment: Equipment,
@@ -150,8 +153,10 @@ internal class CommandAPIImplementation(
         optionService.execute(option, null, context, EntityId(id, type))
     }
 
-    override fun setBackground(background: BackgroundDetails?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setBackground(background: BackgroundDetails?) = when (background) {
+        is NormalMappedBackgroundDetails -> backgroundService.setNormalMappedBackground(background.image, background.normalImage)
+        null -> backgroundService.setNoBackground()
+        else -> {}  // Do nothing
     }
 
     /*private fun loadGameState(snapshot: Map<String, Any>) {
