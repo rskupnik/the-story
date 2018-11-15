@@ -2,12 +2,19 @@ package com.github.rskupnik.thestory.gameState.internal
 
 import com.github.rskupnik.thestory.background.domain.Background
 import com.github.rskupnik.thestory.gameState.GameStateService
+import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
 
-internal class DefaultGameStateService: GameStateService {
+internal class DefaultGameStateService(
+        persistenceSubscriber: PersistenceSubscriber
+): GameStateService {
 
     override val persistenceKey = "gameState"
 
     private val gameState = GameState()
+
+    init {
+        persistenceSubscriber.subscribe(this)
+    }
 
     override fun setBackground(background: Background?) {
         gameState.background = background
