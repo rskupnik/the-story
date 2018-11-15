@@ -84,6 +84,8 @@ class PersistenceSpec extends AbstractSpec {
 
     // TODO: Test loading background
 
+    // TODO: Test loading player location
+
     // TODO: Work on saving player data and game state, such as background, etc.
 
     // TODO: More advanced saved & load tests
