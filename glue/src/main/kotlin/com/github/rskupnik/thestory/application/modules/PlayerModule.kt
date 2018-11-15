@@ -2,6 +2,7 @@ package com.github.rskupnik.thestory.application.modules
 
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.domain.player.PlayerInjectorHandle
+import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -10,5 +11,7 @@ import javax.inject.Singleton
 class PlayerModule {
 
     @Provides @Singleton
-    fun service(): PlayerFacade = PlayerInjectorHandle.service()
+    fun service(
+            persistenceSubscriber: PersistenceSubscriber
+    ): PlayerFacade = PlayerInjectorHandle.service(persistenceSubscriber)
 }

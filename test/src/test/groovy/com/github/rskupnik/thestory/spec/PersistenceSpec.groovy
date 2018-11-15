@@ -56,6 +56,20 @@ class PersistenceSpec extends AbstractSpec {
         verifier.verifyNormalMappedBackground("wall", "wall-normal")
     }
 
+    def "should save state - player data"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+
+        when:
+        app.api.commandAPI.initializeGame("demo")
+        app.api.commandAPI.movePlayer(Direction.WEST)
+        app.api.commandAPI.saveGame()
+
+        then:
+        def verifier = new SavedStateVerifier(app.fileSaver, "demo.sav")
+        verifier.verifyPlayerLocation("default", -1, 0)
+    }
+
     def "should initialize module upon load"() {
         given:
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
@@ -69,6 +83,8 @@ class PersistenceSpec extends AbstractSpec {
     }
 
     // TODO: Test loading background
+
+    // TODO: Test loading player location
 
     // TODO: Work on saving player data and game state, such as background, etc.
 
