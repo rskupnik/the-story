@@ -1,6 +1,7 @@
 package com.github.rskupnik.thestory.background.internal
 
 import com.github.rskupnik.thestory.background.BackgroundService
+import com.github.rskupnik.thestory.background.domain.Background
 import com.github.rskupnik.thestory.background.domain.NoBackground
 import com.github.rskupnik.thestory.background.domain.NormalMappedBackground
 import com.github.rskupnik.thestory.domain.module.ModuleService
@@ -14,8 +15,10 @@ internal class DefaultBackgroundService(
         private val callbackReceiver: CallbackReceiver
 ): BackgroundService {
 
+    private var background: Background? = null
+
     override fun setNoBackground() {
-        gameStateService.setBackground(null)
+        this.background = null
         callbackReceiver.onBackgroundChanged(NoBackground())
     }
 
@@ -24,7 +27,7 @@ internal class DefaultBackgroundService(
         val normalImg = requireNotNull(moduleService.getImage(Reference.to(normalImage)))
 
         val newBackground = NormalMappedBackground(img, normalImg, image, normalImage)
-        gameStateService.setBackground(newBackground)
+        this.background = newBackground
         callbackReceiver.onBackgroundChanged(newBackground)
     }
 }
