@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.domain
 
+import com.github.rskupnik.thestory.persistence.Persistable
 import com.github.rskupnik.thestory.shared.Direction
 
 /**
@@ -10,7 +11,7 @@ data class LocationId(
         val zone: String,
         val x: Int,
         val y: Int
-) {
+) : Persistable {
 
     /**
      * Produce a new [LocationId] pointing to a location relative to this location.
@@ -23,5 +24,11 @@ data class LocationId(
             zone,
             x + (if (direction == Direction.WEST) -1 else if (direction == Direction.EAST) 1 else 0),
             y + (if (direction == Direction.SOUTH) -1 else if (direction == Direction.NORTH) 1 else 0)
+    )
+
+    override fun toPersistableState(): Map<String, Any?>? = mapOf(
+            "zone" to zone,
+            "x" to x,
+            "y" to y
     )
 }
