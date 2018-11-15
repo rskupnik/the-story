@@ -12,6 +12,7 @@ internal class DefaultBackgroundService(
         private val moduleService: ModuleService,
         private val callbackReceiver: CallbackReceiver
 ): BackgroundService {
+    override val persistenceKey = "background"
 
     private var background: Background? = null
 
@@ -27,5 +28,13 @@ internal class DefaultBackgroundService(
         val newBackground = NormalMappedBackground(img, normalImg, image, normalImage)
         this.background = newBackground
         callbackReceiver.onBackgroundChanged(newBackground)
+    }
+
+    override fun produceState(): Any? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun ingestState(state: Any?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
