@@ -32,6 +32,13 @@ class SavedStateVerifier {
                 bs.get("normalImage").equals(normalImage)
     }
 
+    boolean verifyPlayerLocation(String zone, int x, int y) {
+        Map<String, ?> playerData = state.get("player")
+        if (playerData == null) return false
+        Map<String, ?> l = playerData.get("location")
+        return l != null && l.get("zone").equals(zone) && l.get("x").equals(x) && l.get("y").equals(y)
+    }
+
     private static boolean verifyState(Map<String, ?> expected, Map<String, ?> given) {
         for (Map.Entry<String, ?> entry : given) {
             if (expected.get(entry.key) == null || !entry.value.equals(expected.get(entry.key))) {
