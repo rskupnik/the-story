@@ -6,15 +6,21 @@ import com.github.rskupnik.thestory.background.domain.NoBackground
 import com.github.rskupnik.thestory.background.domain.NormalMappedBackground
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
+import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
 import com.github.rskupnik.thestory.shared.Reference
 
 internal class DefaultBackgroundService(
         private val moduleService: ModuleService,
-        private val callbackReceiver: CallbackReceiver
+        private val callbackReceiver: CallbackReceiver,
+        persistenceSubscriber: PersistenceSubscriber
 ): BackgroundService {
     override val persistenceKey = "background"
 
     private var background: Background? = null
+
+    init {
+        persistenceSubscriber.subscribe(this)
+    }
 
     override fun setNoBackground() {
         this.background = null
