@@ -39,6 +39,13 @@ internal class DefaultBackgroundService(
     override fun produceState(): Any? = background?.toPersistableState()
 
     override fun ingestState(state: Any?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val stateMap = (state ?: return) as Map<String, String?>
+        when (stateMap["type"]) {
+            "NORMAL_MAPPED" -> setNormalMappedBackground(
+                    stateMap["image"] ?: return,
+                    stateMap["normalImage"] ?: return
+            )
+            else -> {}
+        }
     }
 }
