@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.api.command
 
+import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
@@ -147,6 +148,10 @@ internal class CommandAPIImplementation(
     override fun selectOption(id: String, type: EntityType, optionId: String, context: Context?) {
         val option = getOption(optionId, id, type, context) ?: return
         optionService.execute(option, null, context, EntityId(id, type))
+    }
+
+    override fun setBackground(background: BackgroundDetails?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     /*private fun loadGameState(snapshot: Map<String, Any>) {
