@@ -70,8 +70,8 @@ internal class ObjectServiceImplementation(
     override fun produceState(): Any =
             instanceRepository.fetchAll().map { it.toPersistableState() }
 
-    override fun ingestState(state: Any) {
-        val instances = (state as List<State>).mapNotNull { instantiateFromState(it) }
+    override fun ingestState(state: Any?) {
+        val instances = ((state ?: return) as List<State>).mapNotNull { instantiateFromState(it) }
         instanceRepository.save(instances)
     }
 
