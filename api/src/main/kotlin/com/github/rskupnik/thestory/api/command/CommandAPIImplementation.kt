@@ -1,5 +1,9 @@
 package com.github.rskupnik.thestory.api.command
 
+import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
+import com.github.rskupnik.thestory.api.command.details.background.NormalMappedBackgroundDetails
+import com.github.rskupnik.thestory.background.BackgroundService
+import com.github.rskupnik.thestory.background.domain.NoBackground
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
@@ -30,7 +34,7 @@ internal class CommandAPIImplementation(
         private val playerFacade: PlayerFacade,
 //        private val gameStateFacade: GameStateFacade,
         private val persistenceService: PersistenceService,
-//        private val backgroundService: BackgroundService,
+        private val backgroundService: BackgroundService,
         private val scriptService: ScriptService,
         private val optionService: OptionService,
         private val equipment: Equipment,
@@ -87,7 +91,7 @@ internal class CommandAPIImplementation(
         val state = persistenceService.readState(filename)
 
         // TODO Initialize game state
-//        initializeGame(state["module"] as String)
+        initializeGame(state["module"] as String)
 
         // TODO Set player location
 //        val playerData = state.get("player") as Map<String, Any>
@@ -147,6 +151,12 @@ internal class CommandAPIImplementation(
     override fun selectOption(id: String, type: EntityType, optionId: String, context: Context?) {
         val option = getOption(optionId, id, type, context) ?: return
         optionService.execute(option, null, context, EntityId(id, type))
+    }
+
+    override fun setBackground(background: BackgroundDetails?) = when (background) {
+        is NormalMappedBackgroundDetails -> backgroundService.setNormalMappedBackground(background.image, background.normalImage)
+        null -> backgroundService.setNoBackground()
+        else -> {}  // Do nothing
     }
 
     /*private fun loadGameState(snapshot: Map<String, Any>) {

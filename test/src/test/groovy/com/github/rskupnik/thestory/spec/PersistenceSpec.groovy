@@ -1,5 +1,7 @@
 package com.github.rskupnik.thestory.spec
 
+import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
+import com.github.rskupnik.thestory.api.command.details.background.NormalMappedBackgroundDetails
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
 import com.github.rskupnik.thestory.setup.ApplicationContext
@@ -22,6 +24,7 @@ class PersistenceSpec extends AbstractSpec {
         savedState != null
         savedState.get("objects") != null
         savedState.get("items") != null
+        savedState.get("gameState") != null
     }
 
     def "should save state - single item in inventory"() {
@@ -42,7 +45,31 @@ class PersistenceSpec extends AbstractSpec {
         verifier.verifyItem(0, "torch", [toggled: false])
     }
 
-    // TODO: Basic load game test - see if initializes after loadGame()
+    def "should save state - background"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+
+        when:
+        app.api.commandAPI.initializeGame("demo")
+        app.api.commandAPI.setBackground(new NormalMappedBackgroundDetails("wall", "wall-normal"))
+        app.api.commandAPI.saveGame()
+
+        then:
+        def verifier = new SavedStateVerifier(app.fileSaver, "demo.sav")
+        verifier.verifyNormalMappedBackground("wall", "wall-normal")
+    }
+
+    def "should initialize module upon load"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+
+        when:
+        app.api.commandAPI.loadGame("empty.sav")
+
+        then:
+        true
+        // TODO: Check if game phase is RUNNING (once implemented)
+    }
 
     // TODO: Work on saving player data and game state, such as background, etc.
 

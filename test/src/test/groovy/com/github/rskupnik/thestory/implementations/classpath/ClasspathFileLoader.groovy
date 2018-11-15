@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.implementations.classpath
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.rskupnik.thestory.external.asset.Image
 import com.github.rskupnik.thestory.external.file.FileHandle
 import com.github.rskupnik.thestory.external.file.FileLoader
@@ -32,6 +33,14 @@ class ClasspathFileLoader implements FileLoader {
 
     @Override
     Map<String, Object> loadSnapshot(@NotNull String filename) {
-        return null
+        def handle = getFileHandle(filename)
+        if (handle == null) return null
+
+        def content = loadAsString(handle)
+
+        def objMapper = new ObjectMapper()
+        def snapshot = objMapper.readValue(content, Map.class)
+
+        return snapshot
     }
 }

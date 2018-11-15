@@ -1,5 +1,7 @@
 package com.github.rskupnik.thestory.background.domain
 
-interface Background {
+import com.github.rskupnik.thestory.persistence.Persistable
+
+interface Background : Persistable {
     fun clone(): Background
 }

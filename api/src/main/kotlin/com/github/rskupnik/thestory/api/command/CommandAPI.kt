@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.api.command
 
+import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
 import com.github.rskupnik.thestory.shared.Direction
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.shared.Context
@@ -28,4 +29,6 @@ interface CommandAPI {
     fun movePlayer(direction: Direction)
 
     fun selectOption(id: String, type: EntityType, optionId: String, context: Context?)
+
+    fun setBackground(background: BackgroundDetails?)
 }

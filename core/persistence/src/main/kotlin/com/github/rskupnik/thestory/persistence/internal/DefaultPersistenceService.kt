@@ -25,6 +25,9 @@ internal class DefaultPersistenceService(
         val module = requireNotNull(moduleService.getLoadedStandaloneModule())
         val snapshot: MutableMap<String, Any?> = HashMap()
 
+        // Set the module ID
+        snapshot["module"] = module.id
+
         // TODO: GameState and PlayerData
 
         persisters.forEach { snapshot[it.persistenceKey] = it.produceState() }
