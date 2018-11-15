@@ -16,9 +16,9 @@ internal class DefaultGameStateService: GameStateService {
     override fun getBackground(): Background? = gameState.background?.clone()
 
     //region PERSISTENCE
-    override fun produceState(): Any {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun produceState(): Any = mapOf(
+            "background" to gameState.background?.toPersistableState()
+    )
 
     override fun ingestState(state: Any) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
