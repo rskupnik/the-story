@@ -6,11 +6,9 @@ import com.github.rskupnik.thestory.background.domain.NoBackground
 import com.github.rskupnik.thestory.background.domain.NormalMappedBackground
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
-import com.github.rskupnik.thestory.gameState.GameStateService
 import com.github.rskupnik.thestory.shared.Reference
 
 internal class DefaultBackgroundService(
-        private val gameStateService: GameStateService,
         private val moduleService: ModuleService,
         private val callbackReceiver: CallbackReceiver
 ): BackgroundService {
