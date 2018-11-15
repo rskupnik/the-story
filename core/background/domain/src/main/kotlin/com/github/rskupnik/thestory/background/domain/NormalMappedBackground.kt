@@ -8,7 +8,7 @@ data class NormalMappedBackground(
         private val normalImage: Image,
         private val imageStr: String,
         private val normalImageStr: String
-): Background, Persistable {
+): Background {
 
     override fun toPersistableState(): Map<String, Any?> = mapOf(
             "type" to "NORMAL_MAPPED",
