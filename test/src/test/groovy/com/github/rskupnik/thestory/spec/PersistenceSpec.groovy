@@ -22,9 +22,6 @@ class PersistenceSpec extends AbstractSpec {
         then:
         Map<String, ?> savedState = ((InMemoryFileSaver)app.fileSaver).get("demo.sav") as Map<String, ?>
         savedState != null
-        savedState.get("objects") != null
-        savedState.get("items") != null
-        savedState.get("gameState") != null
     }
 
     def "should save state - single item in inventory"() {
