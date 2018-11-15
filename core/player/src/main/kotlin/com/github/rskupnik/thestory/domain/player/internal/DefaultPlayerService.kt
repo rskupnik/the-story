@@ -22,7 +22,7 @@ internal class DefaultPlayerService(
     override fun getCurrentLocation(): LocationId = player.currentLocation
 
     override fun produceState(): Any? = mapOf(
-            "location" to player.currentLocation
+            "location" to player.currentLocation.toPersistableState()
     )
 
     override fun ingestState(state: Any?) {
