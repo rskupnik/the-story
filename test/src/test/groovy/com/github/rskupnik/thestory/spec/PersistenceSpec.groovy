@@ -43,6 +43,8 @@ class PersistenceSpec extends AbstractSpec {
         verifier.verifyItem(0, "torch", [toggled: false])
     }
 
+    // TODO: Add test for setting background - but need a method to do that first
+
     def "should initialize module upon load"() {
         given:
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
