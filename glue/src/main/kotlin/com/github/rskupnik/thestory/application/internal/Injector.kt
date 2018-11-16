@@ -27,4 +27,5 @@ import javax.inject.Singleton
 @Singleton
 internal interface Injector {
     fun root(): Root
+    fun internals(): Internals
 }

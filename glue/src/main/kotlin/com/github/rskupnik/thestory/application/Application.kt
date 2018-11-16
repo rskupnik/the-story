@@ -5,8 +5,8 @@ import com.github.rskupnik.thestory.application.internal.DaggerInjector
 import com.github.rskupnik.thestory.application.internal.Injector
 
 object Application {
-    fun init(): API {
+    fun init(internals: MutableMap<Class<out Any>, Any>? = null): API {
         val injector: Injector = DaggerInjector.create()
-        return APIImpl(injector)
+        return APIImpl(injector, internals)
     }
 }
