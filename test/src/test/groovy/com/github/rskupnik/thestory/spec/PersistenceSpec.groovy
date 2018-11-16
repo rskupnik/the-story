@@ -2,6 +2,7 @@ package com.github.rskupnik.thestory.spec
 
 import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
 import com.github.rskupnik.thestory.api.command.details.background.NormalMappedBackgroundDetails
+import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
 import com.github.rskupnik.thestory.setup.ApplicationContext
@@ -75,7 +76,7 @@ class PersistenceSpec extends AbstractSpec {
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
 
         when:
-        app.api.commandAPI.loadGame("empty.sav")
+        app.api.commandAPI.loadGame("saves/empty.sav")
 
         then:
         true
@@ -83,6 +84,17 @@ class PersistenceSpec extends AbstractSpec {
     }
 
     // TODO: Test loading background
+    def "should load background"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+        def spy = enableSpy(app, BackgroundService.class)
+
+        when:
+        app.api.commandAPI.loadGame("saves/background.sav")
+
+        then:
+        1 * ((BackgroundService)spy.adaptee).ingestState(_)
+    }
 
     // TODO: Test loading player location
 

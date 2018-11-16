@@ -23,12 +23,12 @@ import javax.inject.Singleton
 @Module
 class ApiModule {
 
-    @Provides @Singleton
+    @Provides
     fun queryAPI(itemService: ItemService, equipment: Equipment, inventory: Inventory): QueryAPI = ApiInjectorHandle.queryAPI(
             itemService, equipment, inventory
     )
 
-    @Provides @Singleton
+    @Provides
     fun commandAPI(
             itemService: ItemService,
             objectService: ObjectService,
