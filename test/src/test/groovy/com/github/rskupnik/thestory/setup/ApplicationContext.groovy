@@ -5,6 +5,7 @@ import com.github.rskupnik.thestory.application.internal.InternalsContainer
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.external.file.FileSaver
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
+import spock.mock.MockingApi
 
 class ApplicationContext {
 
@@ -34,8 +35,12 @@ class ApplicationContext {
         return new ApplicationContext(api, callbackReceiver, fileSaver, internalsContainer)
     }
 
-    void enableSpy(Class<Object> clazz) {
+    void enableSpy(Object obj) {
+        internalsContainer.internals.substitute(obj.class, obj)
+    }
 
+    Object getInternalImpl(Class<Object> clazz) {
+        return internalsContainer.internals.implementations[clazz]
     }
 
     API getApi() {
