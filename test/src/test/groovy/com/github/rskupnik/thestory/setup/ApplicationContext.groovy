@@ -5,6 +5,7 @@ import com.github.rskupnik.thestory.application.internal.InternalsContainer
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.external.file.FileSaver
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
+import com.github.rskupnik.thestory.shared.Service
 import spock.mock.MockingApi
 
 class ApplicationContext {
@@ -39,7 +40,7 @@ class ApplicationContext {
         internalsContainer.internals.substitute(obj.class, obj)
     }
 
-    Object getInternalImpl(Class<Object> clazz) {
+    Object getInternalImpl(Class<? extends Service> clazz) {
         return internalsContainer.internals.implementations[clazz]
     }
 

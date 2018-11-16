@@ -8,11 +8,12 @@ import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 internal class BackgroundModule {
 
-    @Provides
+    @Provides @Singleton
     fun service(
             internals: Internals,
             moduleService: ModuleService,
