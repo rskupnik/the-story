@@ -8,15 +8,15 @@ import com.github.rskupnik.thestory.implementations.classpath.ClasspathFileLoade
 import com.github.rskupnik.thestory.implementations.dummy.DummyAssetLoader
 
 class Setup {
-    static API application(FileLoader fileLoader, AssetLoader assetLoader) {
-        final API api = Application.INSTANCE.init()
+    static API application(FileLoader fileLoader, AssetLoader assetLoader, Map<Class<Object>, Object> internals = null) {
+        final API api = Application.INSTANCE.init(internals)
         api.provideImplementation(FileLoader.class, fileLoader)
         api.provideImplementation(AssetLoader.class, assetLoader)
 
         return api
     }
 
-    static API standardApplication() {
-        return application(new ClasspathFileLoader(), new DummyAssetLoader())
+    static API standardApplication(Map<Class<Object>, Object> internals = null) {
+        return application(new ClasspathFileLoader(), new DummyAssetLoader(), internals)
     }
 }
