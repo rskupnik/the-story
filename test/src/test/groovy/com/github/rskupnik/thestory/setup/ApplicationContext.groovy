@@ -33,6 +33,10 @@ class ApplicationContext {
         return new ApplicationContext(api, callbackReceiver, fileSaver, internals)
     }
 
+    void enableSpy(Class<Object> clazz) {
+
+    }
+
     API getApi() {
         return api
     }
