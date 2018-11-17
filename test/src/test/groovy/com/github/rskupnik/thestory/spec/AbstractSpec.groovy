@@ -13,10 +13,9 @@ abstract class AbstractSpec extends Specification {
         return Mock(CallbackReceiver)
     }
 
-    protected <T extends Service> Proxy enableSpy(ApplicationContext app, Class<T> clazz) {
-        def proxy = new Proxy().wrap(app.getInternalImpl(clazz))
-        def spy = Spy(proxy)
-        app.enableSpy(spy)
+    protected <T extends Service> Service enableSpy(ApplicationContext app, Class<T> clazz) {
+        def spy = Spy(app.getInternalImpl(clazz))
+        app.enableSpy(clazz, spy)
         return spy
     }
 }

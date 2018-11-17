@@ -15,6 +15,7 @@ dependencies {
     compile "org.codehaus.groovy:groovy-all:2.4.15"
     testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
     testCompile "net.bytebuddy:byte-buddy:1.9.2"
+    testCompile group: 'org.objenesis', name: 'objenesis', version: '2.6'
 
     testCompile project(":glue")
     compile project(":glue")

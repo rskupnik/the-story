@@ -1,6 +1,7 @@
 package com.github.rskupnik.thestory.setup
 
 import com.github.rskupnik.thestory.application.API
+import com.github.rskupnik.thestory.application.delegates.ServiceDelegate
 import com.github.rskupnik.thestory.application.internal.InternalsContainer
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.external.file.FileSaver
@@ -36,12 +37,12 @@ class ApplicationContext {
         return new ApplicationContext(api, callbackReceiver, fileSaver, internalsContainer)
     }
 
-    void enableSpy(Object obj) {
-        internalsContainer.internals.substitute(obj.class, obj)
+    public  void enableSpy(Class<Service> clazz, Service obj) {
+        internalsContainer.internals.substitute(clazz, obj)
     }
 
-    Object getInternalImpl(Class<? extends Service> clazz) {
-        return internalsContainer.internals.implementations[clazz]
+    Service getInternalImpl(Class<? extends Service> clazz) {
+        return (internalsContainer.internals.implementations[clazz] as ServiceDelegate).target
     }
 
     API getApi() {

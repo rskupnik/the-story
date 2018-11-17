@@ -93,7 +93,7 @@ class PersistenceSpec extends AbstractSpec {
         app.api.commandAPI.loadGame("saves/background.sav")
 
         then:
-        1 * ((BackgroundService)spy.adaptee).ingestState(_)
+        1 * ((BackgroundService)spy).ingestState(_)
     }
 
     // TODO: Test loading player location

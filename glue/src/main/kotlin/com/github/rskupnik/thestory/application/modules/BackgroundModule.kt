@@ -19,7 +19,10 @@ internal class BackgroundModule {
             moduleService: ModuleService,
             callbackReceiver: CallbackReceiver,
             persistenceSubscriber: PersistenceSubscriber
-    ): BackgroundService = internals.getOrCreate(BackgroundService::class) {
-        BackgroundInjectorHandle.service(moduleService, callbackReceiver, persistenceSubscriber)
+    ): BackgroundService {
+        val bs = internals.getOrCreate(BackgroundService::class) {
+            BackgroundInjectorHandle.service(moduleService, callbackReceiver, persistenceSubscriber)
+        }
+        return bs
     }
 }

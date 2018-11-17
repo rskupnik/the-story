@@ -9,7 +9,7 @@ import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
 import com.github.rskupnik.thestory.shared.Reference
 
-internal class DefaultBackgroundService(
+internal open class DefaultBackgroundService(
         private val moduleService: ModuleService,
         private val callbackReceiver: CallbackReceiver,
         persistenceSubscriber: PersistenceSubscriber
