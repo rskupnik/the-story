@@ -84,7 +84,6 @@ class PersistenceSpec extends AbstractSpec {
         // TODO: Check if game phase is RUNNING (once implemented)
     }
 
-    // TODO: Test loading background
     def "should load state"() {
         given:
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
@@ -96,6 +95,8 @@ class PersistenceSpec extends AbstractSpec {
         then:
         1 * ((PersistenceService)spy).loadState(_)
     }
+
+    // TODO: Test loading background - need to solve the problem with BackgroundService registering itself for persistence
 
     // TODO: Test loading player location
 
