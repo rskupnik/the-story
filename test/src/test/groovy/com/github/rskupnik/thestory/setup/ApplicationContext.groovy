@@ -1,13 +1,12 @@
 package com.github.rskupnik.thestory.setup
 
 import com.github.rskupnik.thestory.application.API
-import com.github.rskupnik.thestory.application.delegates.ServiceDelegate
+
 import com.github.rskupnik.thestory.application.internal.InternalsContainer
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.external.file.FileSaver
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
 import com.github.rskupnik.thestory.shared.Service
-import spock.mock.MockingApi
 
 class ApplicationContext {
 
