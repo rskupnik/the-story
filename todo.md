@@ -16,4 +16,4 @@ This phase is about reviving the project and making it work as it did before the
 9. ~~Rework how background is stored~~
 10. _Test if loading game sets the background properly_ \[12\]
 11. Test loading player location
-12. Solve the problem with registering for persistence
+12. Solve the problem with registering for persistence - use an initializer of some sorts for this?
