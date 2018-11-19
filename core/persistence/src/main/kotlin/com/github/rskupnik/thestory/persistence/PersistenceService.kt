@@ -1,6 +1,8 @@
 package com.github.rskupnik.thestory.persistence
 
-interface PersistenceService {
+import com.github.rskupnik.thestory.shared.Service
+
+interface PersistenceService : Service {
 
     fun save()
 

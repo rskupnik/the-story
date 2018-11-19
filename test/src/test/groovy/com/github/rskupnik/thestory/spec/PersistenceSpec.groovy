@@ -2,8 +2,10 @@ package com.github.rskupnik.thestory.spec
 
 import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
 import com.github.rskupnik.thestory.api.command.details.background.NormalMappedBackgroundDetails
+import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
+import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.setup.ApplicationContext
 import com.github.rskupnik.thestory.shared.Direction
 import com.github.rskupnik.thestory.shared.entity.EntityType
@@ -75,14 +77,26 @@ class PersistenceSpec extends AbstractSpec {
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
 
         when:
-        app.api.commandAPI.loadGame("empty.sav")
+        app.api.commandAPI.loadGame("saves/empty.sav")
 
         then:
         true
         // TODO: Check if game phase is RUNNING (once implemented)
     }
 
-    // TODO: Test loading background
+    def "should load state"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+        def spy = enableSpy(app, PersistenceService.class)
+
+        when:
+        app.api.commandAPI.loadGame("saves/background.sav")
+
+        then:
+        1 * ((PersistenceService)spy).loadState(_)
+    }
+
+    // TODO: Test loading background - need to solve the problem with BackgroundService registering itself for persistence
 
     // TODO: Test loading player location
 

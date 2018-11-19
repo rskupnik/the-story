@@ -1,8 +1,9 @@
 package com.github.rskupnik.thestory.background
 
 import com.github.rskupnik.thestory.persistence.Persister
+import com.github.rskupnik.thestory.shared.Service
 
-interface BackgroundService : Persister {
+interface BackgroundService : Service, Persister {
 
     fun setNoBackground()
 

@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.application.modules
 
+import com.github.rskupnik.thestory.application.internal.Internals
 import com.github.rskupnik.thestory.background.BackgroundInjectorHandle
 import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.domain.module.ModuleService
@@ -14,10 +15,10 @@ internal class BackgroundModule {
 
     @Provides @Singleton
     fun service(
+            internals: Internals,
             moduleService: ModuleService,
             callbackReceiver: CallbackReceiver,
             persistenceSubscriber: PersistenceSubscriber
-    ): BackgroundService = BackgroundInjectorHandle.service(
-            moduleService, callbackReceiver, persistenceSubscriber
-    )
+    ): BackgroundService = BackgroundInjectorHandle.service(moduleService, callbackReceiver, persistenceSubscriber)
+
 }
