@@ -9,7 +9,7 @@ import com.github.rskupnik.thestory.persistence.Persister
 
 typealias State = Map<String, Any?>
 
-internal class DefaultPersistenceService(
+internal open class DefaultPersistenceService(
         private val fileSaver: FileSaver,
         private val fileLoader: FileLoader,
         private val moduleService: ModuleService

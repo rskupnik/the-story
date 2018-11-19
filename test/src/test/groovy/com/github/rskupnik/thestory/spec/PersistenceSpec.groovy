@@ -84,7 +84,7 @@ class PersistenceSpec extends AbstractSpec {
     }
 
     // TODO: Test loading background
-    def "should load background"() {
+    def "should load state"() {
         given:
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
         def spy = enableSpy(app, BackgroundService.class)

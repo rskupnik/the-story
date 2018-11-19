@@ -1,5 +1,8 @@
 package com.github.rskupnik.thestory.application.modules
 
+import com.github.rskupnik.thestory.application.delegates.PersistenceServiceDelegate
+import com.github.rskupnik.thestory.application.delegates.PersistenceSubscriberDelegate
+import com.github.rskupnik.thestory.application.internal.Internals
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.external.file.FileSaver
@@ -17,15 +20,21 @@ internal class PersistenceModule {
 
     @Provides @Singleton
     fun service(
+            internals: Internals,
             fileSaver: FileSaver,
             fileLoader: FileLoader,
             moduleService: ModuleService
-    ): PersistenceService = handle.service(fileSaver, fileLoader, moduleService)
+    ): PersistenceService = internals.getOrCreateDelegate(PersistenceService::class) {
+        PersistenceServiceDelegate(handle.service(fileSaver, fileLoader, moduleService))
+    }
 
     @Provides @Singleton
     fun subscriber(
+            internals: Internals,
             fileSaver: FileSaver,
             fileLoader: FileLoader,
             moduleService: ModuleService
-    ): PersistenceSubscriber = handle.subscriber(fileSaver, fileLoader, moduleService)
+    ): PersistenceSubscriber = internals.getOrCreateDelegate(PersistenceSubscriber::class) {
+        PersistenceSubscriberDelegate(handle.subscriber(fileSaver, fileLoader, moduleService))
+    }
 }
