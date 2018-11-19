@@ -23,11 +23,6 @@ internal class BackgroundModule {
             moduleService: ModuleService,
             callbackReceiver: CallbackReceiver,
             persistenceSubscriber: PersistenceSubscriber
-    ): BackgroundService {
-        return internals.getOrCreateDelegate(BackgroundService::class) {
-            BackgroundServiceDelegate(BackgroundInjectorHandle.service(moduleService, callbackReceiver, persistenceSubscriber))
-        }
-    }
-
+    ): BackgroundService = BackgroundServiceDelegate(BackgroundInjectorHandle.service(moduleService, callbackReceiver, persistenceSubscriber))
 
 }

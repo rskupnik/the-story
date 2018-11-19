@@ -34,7 +34,5 @@ internal class PersistenceModule {
             fileSaver: FileSaver,
             fileLoader: FileLoader,
             moduleService: ModuleService
-    ): PersistenceSubscriber = internals.getOrCreateDelegate(PersistenceSubscriber::class) {
-        PersistenceSubscriberDelegate(handle.subscriber(fileSaver, fileLoader, moduleService))
-    }
+    ): PersistenceSubscriber = PersistenceSubscriberDelegate(handle.subscriber(fileSaver, fileLoader, moduleService))
 }
