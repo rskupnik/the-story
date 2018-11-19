@@ -1,5 +1,6 @@
 package com.github.rskupnik.thestory.application.modules
 
+import com.github.rskupnik.thestory.application.delegates.BackgroundServiceDelegate
 import com.github.rskupnik.thestory.application.internal.Internals
 import com.github.rskupnik.thestory.background.BackgroundInjectorHandle
 import com.github.rskupnik.thestory.background.BackgroundService
@@ -20,9 +21,12 @@ internal class BackgroundModule {
             callbackReceiver: CallbackReceiver,
             persistenceSubscriber: PersistenceSubscriber
     ): BackgroundService {
-        val bs = internals.getOrCreate(BackgroundService::class) {
-            BackgroundInjectorHandle.service(moduleService, callbackReceiver, persistenceSubscriber)
+        var delegate = internals.get(BackgroundService::class)
+        if (delegate == null) {
+            delegate = BackgroundServiceDelegate(BackgroundInjectorHandle.service(moduleService, callbackReceiver, persistenceSubscriber))
+            internals.put(BackgroundService::class, delegate)
         }
-        return bs
+
+        return delegate as BackgroundService
     }
 }

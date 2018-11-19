@@ -37,12 +37,12 @@ class ApplicationContext {
         return new ApplicationContext(api, callbackReceiver, fileSaver, internalsContainer)
     }
 
-    public  void enableSpy(Class<Service> clazz, Service obj) {
+    public <T extends Service> void enableSpy(Class<T> clazz, T obj) {
         internalsContainer.internals.substitute(clazz, obj)
     }
 
-    Service getInternalImpl(Class<? extends Service> clazz) {
-        return (internalsContainer.internals.implementations[clazz] as ServiceDelegate).target
+    public <T extends Service> T getInternalImpl(Class<T> clazz) {
+        return internalsContainer.internals.retrieve(clazz)
     }
 
     API getApi() {
