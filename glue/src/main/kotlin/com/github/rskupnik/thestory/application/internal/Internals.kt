@@ -16,7 +16,17 @@ class Internals internal constructor() {
 
     internal fun <T : Service, R : ServiceDelegate<T>> get(clazz: KClass<out T>): R? = implementations[clazz.java] as R?
 
-    internal fun <T : Service, R : ServiceDelegate<T>> put(clazz: KClass<out T>, delegate: R) {
+    internal fun <S : Service, D : ServiceDelegate<S>> getOrCreateDelegate(clazz: KClass<S>, creator: () -> D): S {
+        var delegate = get(clazz)
+        if (delegate == null) {
+            delegate = creator.invoke()
+            put(clazz, delegate)
+        }
+
+        return delegate as S
+    }
+
+    private fun <T : Service, R : ServiceDelegate<T>> put(clazz: KClass<out T>, delegate: R) {
         implementations[clazz.java] = delegate
     }
 }

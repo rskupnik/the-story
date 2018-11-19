@@ -1,15 +1,18 @@
 package com.github.rskupnik.thestory.application.modules
 
 import com.github.rskupnik.thestory.application.delegates.BackgroundServiceDelegate
+import com.github.rskupnik.thestory.application.delegates.ServiceDelegate
 import com.github.rskupnik.thestory.application.internal.Internals
 import com.github.rskupnik.thestory.background.BackgroundInjectorHandle
 import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
+import com.github.rskupnik.thestory.shared.Service
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
+import kotlin.reflect.KClass
 
 @Module
 internal class BackgroundModule {
@@ -21,12 +24,10 @@ internal class BackgroundModule {
             callbackReceiver: CallbackReceiver,
             persistenceSubscriber: PersistenceSubscriber
     ): BackgroundService {
-        var delegate = internals.get(BackgroundService::class)
-        if (delegate == null) {
-            delegate = BackgroundServiceDelegate(BackgroundInjectorHandle.service(moduleService, callbackReceiver, persistenceSubscriber))
-            internals.put(BackgroundService::class, delegate)
+        return internals.getOrCreateDelegate(BackgroundService::class) {
+            BackgroundServiceDelegate(BackgroundInjectorHandle.service(moduleService, callbackReceiver, persistenceSubscriber))
         }
-
-        return delegate as BackgroundService
     }
+
+
 }
