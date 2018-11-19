@@ -5,6 +5,7 @@ import com.github.rskupnik.thestory.api.command.details.background.NormalMappedB
 import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
+import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.setup.ApplicationContext
 import com.github.rskupnik.thestory.shared.Direction
 import com.github.rskupnik.thestory.shared.entity.EntityType
@@ -87,13 +88,13 @@ class PersistenceSpec extends AbstractSpec {
     def "should load state"() {
         given:
         def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
-        def spy = enableSpy(app, BackgroundService.class)
+        def spy = enableSpy(app, PersistenceService.class)
 
         when:
         app.api.commandAPI.loadGame("saves/background.sav")
 
         then:
-        1 * ((BackgroundService)spy).ingestState(_)
+        1 * ((PersistenceService)spy).loadState(_)
     }
 
     // TODO: Test loading player location
