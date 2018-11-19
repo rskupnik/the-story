@@ -1,7 +1,6 @@
 package com.github.rskupnik.thestory.application.internal
 
 import com.github.rskupnik.thestory.application.delegates.RuntimeDelegate
-import com.github.rskupnik.thestory.application.delegates.ServiceDelegate
 import com.github.rskupnik.thestory.shared.Service
 import kotlin.reflect.KClass
 

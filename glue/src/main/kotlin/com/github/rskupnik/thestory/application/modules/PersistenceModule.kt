@@ -1,7 +1,6 @@
 package com.github.rskupnik.thestory.application.modules
 
 import com.github.rskupnik.thestory.application.delegates.PersistenceServiceDelegate
-import com.github.rskupnik.thestory.application.delegates.PersistenceSubscriberDelegate
 import com.github.rskupnik.thestory.application.internal.Internals
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.file.FileLoader
@@ -34,5 +33,5 @@ internal class PersistenceModule {
             fileSaver: FileSaver,
             fileLoader: FileLoader,
             moduleService: ModuleService
-    ): PersistenceSubscriber = PersistenceSubscriberDelegate(handle.subscriber(fileSaver, fileLoader, moduleService))
+    ): PersistenceSubscriber = handle.subscriber(fileSaver, fileLoader, moduleService)
 }
