@@ -3,7 +3,7 @@ package com.github.rskupnik.thestory.domain.player.internal
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 
-internal class DefaultPlayerService : PlayerFacade {
+internal open class DefaultPlayerService : PlayerFacade {
     override val persistenceKey = "player"
 
     private val player = Player()
