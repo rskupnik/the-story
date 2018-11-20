@@ -17,5 +17,6 @@ class BackgroundSpec extends AbstractSpec {
 
         then:
         1 * ((BackgroundService)spy).setNoBackground()
+        0 * ((BackgroundService)spy).setNormalMappedBackground(_, _)
     }
 }
