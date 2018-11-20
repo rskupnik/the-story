@@ -38,6 +38,6 @@ internal open class DefaultPersistenceService(
     override fun readState(filename: String): State = requireNotNull(fileLoader.loadSnapshot(filename))
 
     override fun loadState(state: State) = persisters.forEach {
-        it.ingestState(state[it.persistenceKey] ?: return)
+        it.ingestState(state[it.persistenceKey])
     }
 }
