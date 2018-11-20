@@ -16,6 +16,7 @@ import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.persistence.PersistenceService
+import com.github.rskupnik.thestory.persistence.init.PersistenceInitializer
 import com.github.rskupnik.thestory.script.ScriptService
 import dagger.Module
 import dagger.Provides
@@ -50,5 +51,9 @@ class ApiModule {
     )
 
     @Provides
-    fun initializer(): Initializer = ApiInjectorHandle.initializer()
+    fun initializer(
+            persistenceInitializer: PersistenceInitializer
+    ): Initializer = ApiInjectorHandle.initializer(arrayOf(
+            persistenceInitializer
+    ))
 }

@@ -8,6 +8,8 @@ import com.github.rskupnik.thestory.external.file.FileSaver
 import com.github.rskupnik.thestory.persistence.PersistenceInjectorHandle
 import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
+import com.github.rskupnik.thestory.persistence.init.PersistenceInitializer
+import com.github.rskupnik.thestory.persistence.init.PersistenceInitializerInjectionHandle
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -34,4 +36,7 @@ internal class PersistenceModule {
             fileLoader: FileLoader,
             moduleService: ModuleService
     ): PersistenceSubscriber = handle.subscriber(fileSaver, fileLoader, moduleService)
+
+    @Provides @Singleton
+    fun initializer(): PersistenceInitializer = PersistenceInitializerInjectionHandle.initializer()
 }

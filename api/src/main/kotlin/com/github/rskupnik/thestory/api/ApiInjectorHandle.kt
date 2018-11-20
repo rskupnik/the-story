@@ -19,6 +19,7 @@ import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.persistence.init.PersistenceInitializer
 import com.github.rskupnik.thestory.script.ScriptService
+import com.github.rskupnik.thestory.shared.ServiceInitializer
 
 object ApiInjectorHandle {
     fun queryAPI(itemService: ItemService, equipment: Equipment, inventory: Inventory): QueryAPI = QueryAPIImplementationK(
@@ -44,9 +45,5 @@ object ApiInjectorHandle {
             scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
     )
 
-    fun initializer(
-            persistenceInitializer: PersistenceInitializer
-    ): Initializer = Initializer(arrayOf(
-            persistenceInitializer
-    ))
+    fun initializer(initializers: Array<ServiceInitializer>): Initializer = Initializer(initializers)
 }
