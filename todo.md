@@ -12,7 +12,7 @@ This phase is about reviving the project and making it work as it did before the
 5. ~~Load player location~~
 6. ~~Load game state (background)~~
 7. ~~Add a test-specific library to get hands on internal services (in order to spy on them)~~
-8. Test the setBackground command
+8. ~~Test the setBackground command~~
 9. ~~Rework how background is stored~~
 10. _Test if loading game sets the background properly_ \[12\]
 11. Test loading player location
