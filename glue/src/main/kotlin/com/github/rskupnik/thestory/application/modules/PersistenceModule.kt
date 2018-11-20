@@ -6,6 +6,7 @@ import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.module.ModuleService
+import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.external.file.FileSaver
 import com.github.rskupnik.thestory.persistence.PersistenceInjectorHandle
@@ -45,8 +46,9 @@ internal class PersistenceModule {
             persistenceSubscriber: PersistenceSubscriber,
             backgroundService: BackgroundService,
             itemService: ItemService,
-            objectService: ObjectService
+            objectService: ObjectService,
+            playerFacade: PlayerFacade
     ): PersistenceInitializer = PersistenceInitializerInjectionHandle.initializer(persistenceSubscriber, arrayOf(
-            backgroundService, itemService, objectService
+            backgroundService, itemService, objectService, playerFacade
     ))
 }
