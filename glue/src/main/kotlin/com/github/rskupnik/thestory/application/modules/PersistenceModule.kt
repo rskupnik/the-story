@@ -35,7 +35,6 @@ internal class PersistenceModule {
 
     @Provides @Singleton
     fun subscriber(
-            internals: Internals,
             fileSaver: FileSaver,
             fileLoader: FileLoader,
             moduleService: ModuleService
