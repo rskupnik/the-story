@@ -2,6 +2,7 @@ package com.github.rskupnik.thestory.api
 
 import com.github.rskupnik.thestory.api.command.CommandAPI
 import com.github.rskupnik.thestory.api.command.CommandAPIImplementation
+import com.github.rskupnik.thestory.api.init.Initializer
 import com.github.rskupnik.thestory.api.query.QueryAPI
 import com.github.rskupnik.thestory.api.query.QueryAPIImplementationK
 import com.github.rskupnik.thestory.background.BackgroundService
@@ -41,4 +42,6 @@ object ApiInjectorHandle {
             itemService, objectService, npcService, moduleService, playerFacade, persistenceService, backgroundService,
             scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
     )
+
+    fun initializer(): Initializer = Initializer()
 }
