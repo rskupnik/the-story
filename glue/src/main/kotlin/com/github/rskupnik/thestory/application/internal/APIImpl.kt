@@ -16,6 +16,7 @@ internal class APIImpl(
 
     init {
         internalsContainer?.set(injector.internals())
+        injector.root().initializer.init()
     }
 
     override fun getCommandAPI(): CommandAPI = commandAPI

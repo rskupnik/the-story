@@ -8,9 +8,8 @@ import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
 object BackgroundInjectorHandle {
     fun service(
             moduleService: ModuleService,
-            callbackReceiver: CallbackReceiver,
-            persistenceSubscriber: PersistenceSubscriber
+            callbackReceiver: CallbackReceiver
     ): BackgroundService = DefaultBackgroundService(
-            moduleService, callbackReceiver, persistenceSubscriber
+            moduleService, callbackReceiver
     )
 }

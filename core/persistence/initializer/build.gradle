@@ -14,29 +14,12 @@ apply plugin: 'org.jetbrains.dokka'
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 
-    compile project(":core:shared")
-    compile project(":core:location")
-    compile project(":core:item")
-    compile project(":core:item:domain")
-    compile project(":core:object")
-    compile project(":core:npc")
-    compile project(":core:module")
-    compile project(":core:player")
-    compile project(":core:option")
-    compile project(":core:option:domain")
-    compile project(":core:inventory")
-    compile project(":core:equipment")
-    compile project(":core:external")
-    compile project(":core:external:feedback")
-    compile project(":core:script")
     compile project(":core:persistence")
-    compile project(":core:persistence:initializer")
     compile project(":core:background")
 }
 

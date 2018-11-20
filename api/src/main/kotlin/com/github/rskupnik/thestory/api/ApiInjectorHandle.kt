@@ -2,6 +2,7 @@ package com.github.rskupnik.thestory.api
 
 import com.github.rskupnik.thestory.api.command.CommandAPI
 import com.github.rskupnik.thestory.api.command.CommandAPIImplementation
+import com.github.rskupnik.thestory.api.init.Initializer
 import com.github.rskupnik.thestory.api.query.QueryAPI
 import com.github.rskupnik.thestory.api.query.QueryAPIImplementationK
 import com.github.rskupnik.thestory.background.BackgroundService
@@ -16,7 +17,9 @@ import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.persistence.PersistenceService
+import com.github.rskupnik.thestory.persistence.init.PersistenceInitializer
 import com.github.rskupnik.thestory.script.ScriptService
+import com.github.rskupnik.thestory.shared.ServiceInitializer
 
 object ApiInjectorHandle {
     fun queryAPI(itemService: ItemService, equipment: Equipment, inventory: Inventory): QueryAPI = QueryAPIImplementationK(
@@ -41,4 +44,6 @@ object ApiInjectorHandle {
             itemService, objectService, npcService, moduleService, playerFacade, persistenceService, backgroundService,
             scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
     )
+
+    fun initializer(initializers: Array<ServiceInitializer>): Initializer = Initializer(initializers)
 }

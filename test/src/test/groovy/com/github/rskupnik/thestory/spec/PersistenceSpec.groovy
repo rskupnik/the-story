@@ -96,7 +96,17 @@ class PersistenceSpec extends AbstractSpec {
         1 * ((PersistenceService)spy).loadState(_)
     }
 
-    // TODO: Test loading background - need to solve the problem with BackgroundService registering itself for persistence
+    def "should load state - background"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+        def spy = enableSpy(app, BackgroundService.class)
+
+        when:
+        app.api.commandAPI.loadGame("saves/background.sav")
+
+        then:
+        1 * ((BackgroundService)spy).ingestState(_)
+    }
 
     // TODO: Test loading player location
 

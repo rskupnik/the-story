@@ -3,7 +3,6 @@ package com.github.rskupnik.thestory.domain.item.internal
 import com.github.rskupnik.thestory.core.callback.domain.Callback
 import com.github.rskupnik.thestory.domain.item.ItemMutator
 import com.github.rskupnik.thestory.domain.item.ItemService
-import com.github.rskupnik.thestory.domain.item.internal.ItemInstance.Companion.restore
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.asset.Image
 import com.github.rskupnik.thestory.external.file.FileLoader
@@ -11,12 +10,10 @@ import com.github.rskupnik.thestory.item.domain.ItemPlacement
 import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.persistence.Persistable
-import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.ExternalState
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.json.JsonParser
-import com.github.rskupnik.thestory.shared.util.CommonFacadeOperations
 
 typealias State = Map<String, Any?>
 
@@ -25,18 +22,13 @@ internal class ItemServiceImplementation(
         private val jsonParser: JsonParser,
         private val moduleService: ModuleService,
         private val blueprintRepository: ItemBlueprintRepository,
-        private val instanceRepository: ItemInstanceRepository,
-        persistenceSubscriber: PersistenceSubscriber
+        private val instanceRepository: ItemInstanceRepository
 ) : ItemService {
 
     override val persistenceKey: String = "items"
 
     companion object {
         const val DEFINITION_PATH = "modules/unpacked/%s/definitions/items.json"
-    }
-
-    init {
-        persistenceSubscriber.subscribe(this)
     }
 
     override fun loadBlueprints(moduleReference: Reference) {

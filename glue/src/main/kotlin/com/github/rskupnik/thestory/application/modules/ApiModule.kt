@@ -2,6 +2,7 @@ package com.github.rskupnik.thestory.application.modules
 
 import com.github.rskupnik.thestory.api.ApiInjectorHandle
 import com.github.rskupnik.thestory.api.command.CommandAPI
+import com.github.rskupnik.thestory.api.init.Initializer
 import com.github.rskupnik.thestory.api.query.QueryAPI
 import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
@@ -15,6 +16,7 @@ import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.persistence.PersistenceService
+import com.github.rskupnik.thestory.persistence.init.PersistenceInitializer
 import com.github.rskupnik.thestory.script.ScriptService
 import dagger.Module
 import dagger.Provides
@@ -47,4 +49,11 @@ class ApiModule {
             itemService, objectService, npcService, moduleService, playerFacade, persistenceService, backgroundService,
             scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
     )
+
+    @Provides
+    fun initializer(
+            persistenceInitializer: PersistenceInitializer
+    ): Initializer = ApiInjectorHandle.initializer(arrayOf(
+            persistenceInitializer
+    ))
 }

@@ -2,12 +2,17 @@ package com.github.rskupnik.thestory.application.modules
 
 import com.github.rskupnik.thestory.application.delegates.PersistenceServiceDelegate
 import com.github.rskupnik.thestory.application.internal.Internals
+import com.github.rskupnik.thestory.background.BackgroundService
+import com.github.rskupnik.thestory.domain.`object`.ObjectService
+import com.github.rskupnik.thestory.domain.item.ItemService
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.external.file.FileSaver
 import com.github.rskupnik.thestory.persistence.PersistenceInjectorHandle
 import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
+import com.github.rskupnik.thestory.persistence.init.PersistenceInitializer
+import com.github.rskupnik.thestory.persistence.init.PersistenceInitializerInjectionHandle
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -34,4 +39,14 @@ internal class PersistenceModule {
             fileLoader: FileLoader,
             moduleService: ModuleService
     ): PersistenceSubscriber = handle.subscriber(fileSaver, fileLoader, moduleService)
+
+    @Provides @Singleton
+    fun initializer(
+            persistenceSubscriber: PersistenceSubscriber,
+            backgroundService: BackgroundService,
+            itemService: ItemService,
+            objectService: ObjectService
+    ): PersistenceInitializer = PersistenceInitializerInjectionHandle.initializer(persistenceSubscriber, arrayOf(
+            backgroundService, itemService, objectService
+    ))
 }
