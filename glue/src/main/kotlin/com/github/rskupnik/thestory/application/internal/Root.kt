@@ -1,6 +1,7 @@
 package com.github.rskupnik.thestory.application.internal
 
 import com.github.rskupnik.thestory.api.command.CommandAPI
+import com.github.rskupnik.thestory.api.init.Initializer
 import com.github.rskupnik.thestory.api.query.QueryAPI
 import com.github.rskupnik.thestory.application.adapter.ImplementationProvider
 import javax.inject.Inject
@@ -10,5 +11,6 @@ internal class Root
         val queryAPI: QueryAPI,
         val commandAPI: CommandAPI,
         val implementationProvider: ImplementationProvider,
-        val actionInitializer: ActionInitializer
+        val actionInitializer: ActionInitializer,
+        val initializer: Initializer
 )
