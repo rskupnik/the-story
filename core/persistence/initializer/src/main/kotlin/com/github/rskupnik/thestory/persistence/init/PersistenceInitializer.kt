@@ -5,6 +5,6 @@ import com.github.rskupnik.thestory.shared.ServiceInitializer
 class PersistenceInitializer : ServiceInitializer {
 
     override fun init() {
-
+        println("PERSISTENCE INITIALIZE")
     }
 }

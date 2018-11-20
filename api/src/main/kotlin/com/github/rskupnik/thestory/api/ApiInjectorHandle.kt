@@ -17,6 +17,7 @@ import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.persistence.PersistenceService
+import com.github.rskupnik.thestory.persistence.init.PersistenceInitializer
 import com.github.rskupnik.thestory.script.ScriptService
 
 object ApiInjectorHandle {
@@ -43,5 +44,9 @@ object ApiInjectorHandle {
             scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
     )
 
-    fun initializer(): Initializer = Initializer()
+    fun initializer(
+            persistenceInitializer: PersistenceInitializer
+    ): Initializer = Initializer(arrayOf(
+            persistenceInitializer
+    ))
 }

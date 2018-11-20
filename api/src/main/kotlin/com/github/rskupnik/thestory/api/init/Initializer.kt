@@ -1,8 +1,13 @@
 package com.github.rskupnik.thestory.api.init
 
-class Initializer {
+import com.github.rskupnik.thestory.persistence.init.PersistenceInitializer
+import com.github.rskupnik.thestory.shared.ServiceInitializer
+
+class Initializer(
+        private val initializers: Array<ServiceInitializer>
+) {
 
     fun init() {
-        println("INITIALIZE")
+        initializers.forEach { it.init() }
     }
 }

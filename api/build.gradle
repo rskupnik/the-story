@@ -36,6 +36,7 @@ dependencies {
     compile project(":core:external:feedback")
     compile project(":core:script")
     compile project(":core:persistence")
+    compile project(":core:persistence:initializer")
     compile project(":core:background")
 }
 
