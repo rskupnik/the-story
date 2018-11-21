@@ -2,18 +2,11 @@ package com.github.rskupnik.thestory.domain.player.internal
 
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
-import com.github.rskupnik.thestory.persistence.PersistenceSubscriber
 
-internal class DefaultPlayerService(
-        persistenceSubscriber: PersistenceSubscriber
-) : PlayerFacade {
+internal open class DefaultPlayerService : PlayerFacade {
     override val persistenceKey = "player"
 
     private val player = Player()
-
-    init {
-        persistenceSubscriber.subscribe(this)
-    }
 
     override fun setCurrentLocation(locationId: LocationId) {
         player.currentLocation = locationId

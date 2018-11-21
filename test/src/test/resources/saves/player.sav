@@ -1,0 +1,10 @@
+{
+    "module": "demo",
+    "player": {
+        "location": {
+            "zone": "demo",
+            "x": 0,
+            "y": 0
+        }
+    }
+}

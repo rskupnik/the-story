@@ -3,6 +3,7 @@ package com.github.rskupnik.thestory.spec
 import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
 import com.github.rskupnik.thestory.api.command.details.background.NormalMappedBackgroundDetails
 import com.github.rskupnik.thestory.background.BackgroundService
+import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
 import com.github.rskupnik.thestory.persistence.PersistenceService
@@ -108,7 +109,17 @@ class PersistenceSpec extends AbstractSpec {
         1 * ((BackgroundService)spy).ingestState(_)
     }
 
-    // TODO: Test loading player location
+    def "should load player location"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+        def spy = enableSpy(app, PlayerFacade.class)
+
+        when:
+        app.api.commandAPI.loadGame("saves/player.sav")
+
+        then:
+        1 * ((PlayerFacade)spy).ingestState(["location": ["zone": "demo", "x": 0, "y": 0]])
+    }
 
     // TODO: Work on saving player data and game state, such as background, etc.
 
