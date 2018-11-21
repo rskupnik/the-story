@@ -18,11 +18,6 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
-    
-    compile project(":core:shared")
-    compile project(":core:background:domain")
-    compile project(":core:persistence")
-    compile project(":core:gameState:domain")
 }
 
 compileKotlin {
