@@ -15,5 +15,5 @@ This phase is about reviving the project and making it work as it did before the
 8. ~~Test the setBackground command~~
 9. ~~Rework how background is stored~~
 10. ~~Test if loading game sets the background properly~~
-11. Test loading player location
+11. ~~Test loading player location~~
 12. ~~Solve the problem with registering for persistence - use an initializer of some sorts for this?~~
