@@ -1,10 +1,10 @@
 {
-    "module": "demo",
-    "items": [],
-    "objects": [],
-    "background": {
-        "type": "NORMAL_MAPPED",
-        "image": "wall",
-        "normalImage": "wallNormal"
-    }
-}
+     "module": "demo",
+     "items": [],
+     "objects": [],
+     "background": {
+         "type": "NORMAL_MAPPED",
+         "image": "wall",
+         "normalImage": "wallNormal"
+     }
+ }
