@@ -17,3 +17,4 @@ This phase is about reviving the project and making it work as it did before the
 10. ~~Test if loading game sets the background properly~~
 11. ~~Test loading player location~~
 12. ~~Solve the problem with registering for persistence - use an initializer of some sorts for this?~~
+13. Add kdocs for interfaces and important classes
