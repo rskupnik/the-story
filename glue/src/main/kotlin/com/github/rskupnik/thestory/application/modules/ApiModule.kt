@@ -15,6 +15,7 @@ import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
+import com.github.rskupnik.thestory.gameState.GameStateService
 import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.persistence.init.PersistenceInitializer
 import com.github.rskupnik.thestory.script.ScriptService
@@ -26,8 +27,13 @@ import javax.inject.Singleton
 class ApiModule {
 
     @Provides
-    fun queryAPI(itemService: ItemService, equipment: Equipment, inventory: Inventory): QueryAPI = ApiInjectorHandle.queryAPI(
-            itemService, equipment, inventory
+    fun queryAPI(
+            itemService: ItemService,
+            equipment: Equipment,
+            inventory: Inventory,
+            gameStateService: GameStateService
+    ): QueryAPI = ApiInjectorHandle.queryAPI(
+            itemService, equipment, inventory, gameStateService
     )
 
     @Provides
@@ -37,6 +43,7 @@ class ApiModule {
             npcService: NpcService,
             moduleService: ModuleService,
             playerFacade: PlayerFacade,
+            gameStateService: GameStateService,
             persistenceService: PersistenceService,
             backgroundService: BackgroundService,
             optionService: OptionService,
@@ -46,8 +53,8 @@ class ApiModule {
             callbackReceiver: CallbackReceiver,
             eventDispatcher: EventDispatcher
     ): CommandAPI = ApiInjectorHandle.commandAPI(
-            itemService, objectService, npcService, moduleService, playerFacade, persistenceService, backgroundService,
-            scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
+            itemService, objectService, npcService, moduleService, playerFacade, gameStateService, persistenceService,
+            backgroundService, scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
     )
 
     @Provides

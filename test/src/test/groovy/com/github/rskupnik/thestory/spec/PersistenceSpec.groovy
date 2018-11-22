@@ -5,6 +5,7 @@ import com.github.rskupnik.thestory.api.command.details.background.NormalMappedB
 import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
+import com.github.rskupnik.thestory.gamestate.domain.GamePhase
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
 import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.setup.ApplicationContext
@@ -81,8 +82,7 @@ class PersistenceSpec extends AbstractSpec {
         app.api.commandAPI.loadGame("saves/empty.sav")
 
         then:
-        true
-        // TODO: Check if game phase is RUNNING (once implemented)
+        app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
     }
 
     def "should load state"() {
@@ -95,6 +95,7 @@ class PersistenceSpec extends AbstractSpec {
 
         then:
         1 * ((PersistenceService)spy).loadState(_)
+        app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
     }
 
     def "should load state - background"() {
@@ -107,6 +108,7 @@ class PersistenceSpec extends AbstractSpec {
 
         then:
         1 * ((BackgroundService)spy).ingestState(_)
+        app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
     }
 
     def "should load player location"() {
@@ -119,6 +121,23 @@ class PersistenceSpec extends AbstractSpec {
 
         then:
         1 * ((PlayerFacade)spy).ingestState(["location": ["zone": "demo", "x": 0, "y": 0]])
+        app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
+    }
+
+    def "should only load game state once"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+        def spy = enableSpy(app, PersistenceService.class)
+
+        when:
+        app.api.commandAPI.loadGame("saves/empty.sav")
+        app.api.commandAPI.loadGame("saves/empty.sav")  // This one should just return at the beginning
+
+        then:
+        // Persistence should only be triggered once
+        1 * ((PersistenceService)spy).readState(_)
+        1 * ((PersistenceService)spy).loadState(_)
+        app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
     }
 
     // TODO: Work on saving player data and game state, such as background, etc.

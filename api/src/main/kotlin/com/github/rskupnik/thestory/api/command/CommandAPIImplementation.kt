@@ -16,6 +16,8 @@ import com.github.rskupnik.thestory.domain.option.OptionService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.event.EventDispatcher
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
+import com.github.rskupnik.thestory.gameState.GameStateService
+import com.github.rskupnik.thestory.gamestate.domain.GamePhase
 import com.github.rskupnik.thestory.option.domain.Option
 import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.script.ScriptService
@@ -32,7 +34,7 @@ internal class CommandAPIImplementation(
         private val npcService: NpcService,
         private val moduleService: ModuleService,
         private val playerFacade: PlayerFacade,
-//        private val gameStateFacade: GameStateFacade,
+        private val gameStateService: GameStateService,
         private val persistenceService: PersistenceService,
         private val backgroundService: BackgroundService,
         private val scriptService: ScriptService,
@@ -59,8 +61,8 @@ internal class CommandAPIImplementation(
     }*/
 
     override fun initializeGame(module: String) {
-//        if (!gameStateFacade.gameAtPhase(listOf(GamePhase.UNINITIALIZED)))
-//            return
+        if (!gameStateService.gameAtPhase(listOf(GamePhase.UNINITIALIZED)))
+            return
 
         for (moduleRef in moduleService.load(module)) {
             objectService.loadBlueprints(moduleRef)
@@ -68,7 +70,7 @@ internal class CommandAPIImplementation(
             npcService.loadBlueprints(moduleRef)
         }
 
-//        gameStateFacade.phase = GamePhase.RUNNING
+        gameStateService.setPhase(GamePhase.RUNNING)
     }
 
     override fun instantiateNpc(npc: String, location: LocationId) {
@@ -84,13 +86,11 @@ internal class CommandAPIImplementation(
     }
 
     override fun loadGame(filename: String) {
-        // TODO: GameState
-        //if (!gameStateFacade.gameAtPhase(listOf(GamePhase.UNINITIALIZED)))
-        //    return
+        if (!gameStateService.gameAtPhase(listOf(GamePhase.UNINITIALIZED)))
+            return
 
         val state = persistenceService.readState(filename)
 
-        // TODO Initialize game state
         initializeGame(state["module"] as String)
 
         // TODO Set player location
@@ -100,7 +100,6 @@ internal class CommandAPIImplementation(
 //        playerFacade.currentLocation = locationId
 //        loadLocation(locationId)
 
-        // TODO Load game state
 //        loadGameState(state)
 
         // Load data
@@ -110,8 +109,7 @@ internal class CommandAPIImplementation(
         equipment.refresh()
         inventory.refresh()
 
-        // TODO Set status: RUNNING
-//        gameStateFacade.phase = GamePhase.RUNNING
+        gameStateService.setPhase(GamePhase.RUNNING)
     }
 
     override fun saveGame() {
