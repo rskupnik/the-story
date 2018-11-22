@@ -10,7 +10,7 @@ import com.github.rskupnik.thestory.external.file.FileLoader
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.json.JsonParser
 
-internal class ModuleServiceImplementation(
+internal open class ModuleServiceImplementation(
         private val fileLoader: FileLoader,
         private val assetLoader: AssetLoader,
         private val jsonParser: JsonParser,

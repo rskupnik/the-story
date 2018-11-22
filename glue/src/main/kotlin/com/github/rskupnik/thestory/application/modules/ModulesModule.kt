@@ -1,5 +1,7 @@
 package com.github.rskupnik.thestory.application.modules
 
+import com.github.rskupnik.thestory.application.delegates.ModuleServiceDelegate
+import com.github.rskupnik.thestory.application.internal.Internals
 import com.github.rskupnik.thestory.domain.module.ModuleInjectorHandle
 import com.github.rskupnik.thestory.domain.module.ModuleService
 import com.github.rskupnik.thestory.external.asset.AssetLoader
@@ -13,6 +15,12 @@ import javax.inject.Singleton
 class ModulesModule {
 
     @Provides @Singleton
-    fun service(fileLoader: FileLoader, assetLoader: AssetLoader, jsonParser: JsonParser): ModuleService =
-            ModuleInjectorHandle.service(fileLoader, assetLoader, jsonParser)
+    fun service(
+            internals: Internals,
+            fileLoader: FileLoader,
+            assetLoader: AssetLoader,
+            jsonParser: JsonParser
+    ): ModuleService = internals.getOrCreateDelegate(ModuleService::class) {
+        ModuleServiceDelegate(ModuleInjectorHandle.service(fileLoader, assetLoader, jsonParser))
+    }
 }
