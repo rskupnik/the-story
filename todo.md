@@ -6,7 +6,7 @@ This phase is about reviving the project and making it work as it did before the
 
 1. ~~Introduce a setBackground command~~
 2. ~~Make it possible to save game state (only background state for now)~~
-3. Implement game phases  
+3. ~~Implement game phases~~  
    Also includes making sure each place that depends on phases uses those
 4. ~~Save player location~~
 5. ~~Load player location~~
@@ -18,3 +18,4 @@ This phase is about reviving the project and making it work as it did before the
 11. ~~Test loading player location~~
 12. ~~Solve the problem with registering for persistence - use an initializer of some sorts for this?~~
 13. Add kdocs for interfaces and important classes
+14. Implement Console and related commands functionality
