@@ -2,6 +2,7 @@ package com.github.rskupnik.thestory.domain.action.internal
 
 import com.github.rskupnik.thestory.action.domain.Action
 import com.github.rskupnik.thestory.core.callback.event.CallbackTriggeredEvent
+import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.domain.action.ActionHandler
 import com.github.rskupnik.thestory.domain.item.ItemService
@@ -15,7 +16,7 @@ import com.github.rskupnik.thestory.shared.entity.EntityType
 
 internal class DefaultActionExecutor(
         private val itemService: ItemService,
-        // TODO: add objectService
+        private val objectService: ObjectService,
         eventDispatcher: EventDispatcher
 ) : ActionExecutor {
 
@@ -61,7 +62,7 @@ internal class DefaultActionExecutor(
     private fun fetchExternalState(entityId: EntityId): ExternalState? =
             when (entityId.type) {
                 EntityType.ITEM -> itemService.getItemView(Reference.to(entityId.id))?.externalState
-                EntityType.OBJECT -> null // TODO: Handle Object here
+                EntityType.OBJECT -> objectService.getObjectView(Reference.to(entityId.id))?.externalState
                 else -> null
             }
 }

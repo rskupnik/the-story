@@ -19,8 +19,11 @@ import javax.inject.Singleton
 internal class ActionModule {
 
     @Provides @Singleton
-    fun executor(itemService: ItemService, eventDispatcher: EventDispatcher): ActionExecutor = ActionInjectorHandle
-            .executor(itemService, eventDispatcher)
+    fun executor(
+            itemService: ItemService,
+            objectService: ObjectService,
+            eventDispatcher: EventDispatcher
+    ): ActionExecutor = ActionInjectorHandle.executor(itemService, objectService, eventDispatcher)
 
     @Provides @Singleton
     fun actionInitializer(
