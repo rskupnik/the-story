@@ -124,6 +124,22 @@ class PersistenceSpec extends AbstractSpec {
         app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
     }
 
+    def "should only load game state once"() {
+        given:
+        def app = ApplicationContext.standardApplication(Mock(CallbackReceiver))
+        def spy = enableSpy(app, PersistenceService.class)
+
+        when:
+        app.api.commandAPI.loadGame("saves/empty.sav")
+        app.api.commandAPI.loadGame("saves/empty.sav")  // This one should just return at the beginning
+
+        then:
+        // Persistence should only be triggered once
+        1 * ((PersistenceService)spy).readState(_)
+        1 * ((PersistenceService)spy).loadState(_)
+        app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
+    }
+
     // TODO: Work on saving player data and game state, such as background, etc.
 
     // TODO: More advanced saved & load tests
