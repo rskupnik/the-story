@@ -9,4 +9,6 @@ internal class DefaultGameStateService : GameStateService {
     override fun setPhase(phase: GamePhase) {
         gameState.phase = phase
     }
+
+    override fun gameAtPhase(allowedPhases: List<GamePhase>): Boolean = allowedPhases.any { it == gameState.phase }
 }
