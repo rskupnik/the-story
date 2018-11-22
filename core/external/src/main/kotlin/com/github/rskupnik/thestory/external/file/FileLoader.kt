@@ -45,7 +45,6 @@ interface FileLoader : Port {
     fun loadAsImage(fileHandle: FileHandle): Image
 
     /**
-     * TODO: Can the return type of this method be more defined?
      * Load a game state snapshot as a [Map] containing a [String] key and [List]
      * value, which in turn is a list of [Map] of [String] and [Object] pairs.
      *

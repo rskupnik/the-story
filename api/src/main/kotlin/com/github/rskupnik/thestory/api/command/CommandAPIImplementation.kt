@@ -3,7 +3,6 @@ package com.github.rskupnik.thestory.api.command
 import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
 import com.github.rskupnik.thestory.api.command.details.background.NormalMappedBackgroundDetails
 import com.github.rskupnik.thestory.background.BackgroundService
-import com.github.rskupnik.thestory.background.domain.NoBackground
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
@@ -93,15 +92,6 @@ internal class CommandAPIImplementation(
 
         initializeGame(state["module"] as String)
 
-        // TODO Set player location
-//        val playerData = state.get("player") as Map<String, Any>
-//        val location = playerData["location"] as Map<String, Any>
-//        val locationId = LocationId(location["zone"] as String, location["x"] as Int, location["y"] as Int)
-//        playerFacade.currentLocation = locationId
-//        loadLocation(locationId)
-
-//        loadGameState(state)
-
         // Load data
         persistenceService.loadState(state)
 
@@ -156,22 +146,6 @@ internal class CommandAPIImplementation(
         null -> backgroundService.setNoBackground()
         else -> {}  // Do nothing
     }
-
-    /*private fun loadGameState(snapshot: Map<String, Any>) {
-        val gameState = snapshot["gameState"] as Map<String, Any>
-        restoreBackground(gameState)
-    }
-
-    private fun restoreBackground(gameState: Map<String, Any>) {
-        val background = gameState["background"] as Map<String, Any>
-        val type = BackgroundType.valueOf(background["type"] as String)
-        when (type) {
-            BackgroundType.EMPTY -> backgroundService.setNoBackground()
-            BackgroundType.NORMAL_MAPPED ->
-                backgroundService.setNormalMappedBackground(background["image"] as String,
-                        background["normalImage"] as String)
-        }
-    }*/
 
     private fun getOption(optionId: String, entityId: String, entityType: EntityType, context: Context?): Option? {
         val options = when(entityType) {

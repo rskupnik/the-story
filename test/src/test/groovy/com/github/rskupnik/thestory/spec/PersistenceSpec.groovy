@@ -1,6 +1,6 @@
 package com.github.rskupnik.thestory.spec
 
-import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
+
 import com.github.rskupnik.thestory.api.command.details.background.NormalMappedBackgroundDetails
 import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
@@ -139,8 +139,4 @@ class PersistenceSpec extends AbstractSpec {
         1 * ((PersistenceService)spy).loadState(_)
         app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
     }
-
-    // TODO: Work on saving player data and game state, such as background, etc.
-
-    // TODO: More advanced saved & load tests
 }

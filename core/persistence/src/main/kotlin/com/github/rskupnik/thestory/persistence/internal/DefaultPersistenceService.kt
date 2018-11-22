@@ -28,8 +28,6 @@ internal open class DefaultPersistenceService(
         // Set the module ID
         snapshot["module"] = module.id
 
-        // TODO: GameState and PlayerData
-
         persisters.forEach { snapshot[it.persistenceKey] = it.produceState() }
 
         fileSaver.saveSnapshot("${module.id}.sav", snapshot)
