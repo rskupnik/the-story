@@ -6,11 +6,14 @@ import com.github.rskupnik.thestory.item.domain.EquipmentSlot
 import com.github.rskupnik.thestory.domain.inventory.Inventory
 import com.github.rskupnik.thestory.item.domain.InventorySlot
 import com.github.rskupnik.thestory.domain.item.ItemService
+import com.github.rskupnik.thestory.gameState.GameStateService
+import com.github.rskupnik.thestory.gamestate.domain.GamePhase
 
 internal class QueryAPIImplementationK(
         private val itemService: ItemService,
         private val equipment: Equipment,
-        private val inventory: Inventory
+        private val inventory: Inventory,
+        private val gameStateService: GameStateService
 ) : QueryAPI {
 
     override fun getAvailableModules(): AvailableModules {
@@ -32,4 +35,6 @@ internal class QueryAPIImplementationK(
     override fun getSingleItemFromInventory(slot: InventorySlot): InventorySingleItem {
         return InventorySingleItem(itemService.getItemView(inventory.get(slot) ?: return InventorySingleItem(null)))
     }
+
+    override fun getCurrentGamePhase(): GamePhase = gameStateService.getPhase()
 }

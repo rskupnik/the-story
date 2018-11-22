@@ -1,6 +1,7 @@
 package com.github.rskupnik.thestory.api.query
 
 import com.github.rskupnik.thestory.control.query.result.*
+import com.github.rskupnik.thestory.gamestate.domain.GamePhase
 import com.github.rskupnik.thestory.item.domain.EquipmentSlot
 import com.github.rskupnik.thestory.item.domain.InventorySlot
 
@@ -15,4 +16,6 @@ interface QueryAPI {
     fun getInventoryContent(): InventoryContent
 
     fun getSingleItemFromInventory(slot: InventorySlot): InventorySingleItem
+
+    fun getCurrentGamePhase(): GamePhase
 }
