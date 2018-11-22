@@ -5,6 +5,7 @@ import com.github.rskupnik.thestory.api.command.details.background.NormalMappedB
 import com.github.rskupnik.thestory.background.BackgroundService
 import com.github.rskupnik.thestory.domain.player.PlayerFacade
 import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
+import com.github.rskupnik.thestory.gamestate.domain.GamePhase
 import com.github.rskupnik.thestory.implementations.inmemory.InMemoryFileSaver
 import com.github.rskupnik.thestory.persistence.PersistenceService
 import com.github.rskupnik.thestory.setup.ApplicationContext
@@ -81,8 +82,7 @@ class PersistenceSpec extends AbstractSpec {
         app.api.commandAPI.loadGame("saves/empty.sav")
 
         then:
-        true
-        // TODO: Check if game phase is RUNNING (once implemented)
+        app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
     }
 
     def "should load state"() {
