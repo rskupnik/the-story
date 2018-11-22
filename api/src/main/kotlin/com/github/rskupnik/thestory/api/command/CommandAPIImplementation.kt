@@ -91,7 +91,6 @@ internal class CommandAPIImplementation(
 
         val state = persistenceService.readState(filename)
 
-        // TODO Initialize game state
         initializeGame(state["module"] as String)
 
         // TODO Set player location
@@ -101,7 +100,6 @@ internal class CommandAPIImplementation(
 //        playerFacade.currentLocation = locationId
 //        loadLocation(locationId)
 
-        // TODO Load game state
 //        loadGameState(state)
 
         // Load data
