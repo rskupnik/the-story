@@ -95,6 +95,7 @@ class PersistenceSpec extends AbstractSpec {
 
         then:
         1 * ((PersistenceService)spy).loadState(_)
+        app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
     }
 
     def "should load state - background"() {
@@ -107,6 +108,7 @@ class PersistenceSpec extends AbstractSpec {
 
         then:
         1 * ((BackgroundService)spy).ingestState(_)
+        app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
     }
 
     def "should load player location"() {
@@ -119,6 +121,7 @@ class PersistenceSpec extends AbstractSpec {
 
         then:
         1 * ((PlayerFacade)spy).ingestState(["location": ["zone": "demo", "x": 0, "y": 0]])
+        app.api.queryAPI.getCurrentGamePhase() == GamePhase.RUNNING
     }
 
     // TODO: Work on saving player data and game state, such as background, etc.
