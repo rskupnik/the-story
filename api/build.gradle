@@ -38,6 +38,7 @@ dependencies {
     compile project(":core:persistence")
     compile project(":core:persistence:initializer")
     compile project(":core:background")
+    compile project(":core:console")
 }
 
 compileKotlin {

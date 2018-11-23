@@ -5,6 +5,7 @@ import com.github.rskupnik.thestory.api.command.CommandAPI
 import com.github.rskupnik.thestory.api.init.Initializer
 import com.github.rskupnik.thestory.api.query.QueryAPI
 import com.github.rskupnik.thestory.background.BackgroundService
+import com.github.rskupnik.thestory.core.console.ConsoleService
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.inventory.Inventory
@@ -50,11 +51,13 @@ class ApiModule {
             scriptService: ScriptService,
             equipment: Equipment,
             inventory: Inventory,
+            consoleService: ConsoleService,
             callbackReceiver: CallbackReceiver,
             eventDispatcher: EventDispatcher
     ): CommandAPI = ApiInjectorHandle.commandAPI(
             itemService, objectService, npcService, moduleService, playerFacade, gameStateService, persistenceService,
-            backgroundService, scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
+            backgroundService, scriptService, optionService, equipment, inventory, consoleService, callbackReceiver,
+            eventDispatcher
     )
 
     @Provides
