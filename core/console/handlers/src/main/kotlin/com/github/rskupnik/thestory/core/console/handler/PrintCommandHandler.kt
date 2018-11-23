@@ -2,7 +2,7 @@ package com.github.rskupnik.thestory.core.console.handler
 
 import com.github.rskupnik.thestory.core.console.ConsoleService
 
-internal class PrintCommandHandler(
+class PrintCommandHandler(
         consoleService: ConsoleService
 ) : AbstractCommandHandler(consoleService) {
 
