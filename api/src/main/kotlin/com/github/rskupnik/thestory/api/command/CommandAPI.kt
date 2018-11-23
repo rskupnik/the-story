@@ -6,6 +6,12 @@ import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.shared.Context
 import com.github.rskupnik.thestory.shared.entity.EntityType
 
+/**
+ * The main interface for issuing commands for the application to perform.
+ *
+ * This is the place where the higher layers can issue commands for the application to execute.
+ * In simple words - this is where you tell the game to do stuff.
+ */
 interface CommandAPI {
 
     fun clickItem(id: String, context: Context)
