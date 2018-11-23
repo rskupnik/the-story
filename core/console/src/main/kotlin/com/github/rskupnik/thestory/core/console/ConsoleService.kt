@@ -4,5 +4,5 @@ interface ConsoleService {
 
     fun register(handler: CommandHandler)
 
-    fun execute(id: String, params: Array<Any>?)
+    fun execute(cmd: String)
 }

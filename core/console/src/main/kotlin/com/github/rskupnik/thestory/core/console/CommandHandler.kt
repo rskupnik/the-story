@@ -4,5 +4,5 @@ interface CommandHandler {
 
     fun id(): String
 
-    fun handle(params: Array<Any>?)
+    fun handle(params: Array<String>)
 }

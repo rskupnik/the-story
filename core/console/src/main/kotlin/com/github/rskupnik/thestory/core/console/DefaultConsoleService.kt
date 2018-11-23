@@ -8,7 +8,13 @@ internal class DefaultConsoleService : ConsoleService {
         handlers[handler.id()] = handler
     }
 
-    override fun execute(id: String, params: Array<Any>?) {
+    override fun execute(cmd: String) {
+        val (id, params) = parse(cmd)
         handlers[id]?.handle(params)
+    }
+
+    private fun parse(cmd: String): Pair<String, Array<String>> {
+        val temp = cmd.split(" ")
+        return Pair(temp[0], temp.subList(1, temp.size).toTypedArray())
     }
 }

@@ -8,7 +8,7 @@ internal class PrintCommandHandler(
 
     override fun id(): String = "print"
 
-    override fun handle(params: Array<Any>?) {
+    override fun handle(params: Array<String>) {
         println("HELLO CONSOLE COMMAND")
     }
 }
