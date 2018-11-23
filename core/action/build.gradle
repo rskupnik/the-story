@@ -43,5 +43,6 @@ compileTestKotlin {
 dokka {
     outputFormat = 'markdown'
     outputDirectory = "$buildDir/doc"
+    includes = ["module.md"]
 }
 
