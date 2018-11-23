@@ -1,4 +1,4 @@
-package com.github.rskupnik.thestory.control.query.result
+package com.github.rskupnik.thestory.api.query.result
 
 import com.github.rskupnik.thestory.item.domain.ItemView
 
