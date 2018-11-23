@@ -6,6 +6,7 @@ import com.github.rskupnik.thestory.api.init.Initializer
 import com.github.rskupnik.thestory.api.query.QueryAPI
 import com.github.rskupnik.thestory.api.query.QueryAPIImplementationK
 import com.github.rskupnik.thestory.background.BackgroundService
+import com.github.rskupnik.thestory.core.console.ConsoleService
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
 import com.github.rskupnik.thestory.domain.inventory.Inventory
@@ -45,11 +46,13 @@ object ApiInjectorHandle {
             optionService: OptionService,
             equipment: Equipment,
             inventory: Inventory,
+            consoleService: ConsoleService,
             callbackReceiver: CallbackReceiver,
             eventDispatcher: EventDispatcher
     ): CommandAPI = CommandAPIImplementation(
             itemService, objectService, npcService, moduleService, playerFacade, gameStateService, persistenceService,
-            backgroundService, scriptService, optionService, equipment, inventory, callbackReceiver, eventDispatcher
+            backgroundService, scriptService, optionService, equipment, inventory, consoleService, callbackReceiver,
+            eventDispatcher
     )
 
     fun initializer(initializers: Array<ServiceInitializer>): Initializer = Initializer(initializers)

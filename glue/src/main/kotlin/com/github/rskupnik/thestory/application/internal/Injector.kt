@@ -23,7 +23,8 @@ import javax.inject.Singleton
     ScriptModule::class,
     GameStateModule::class,
     BackgroundModule::class,
-    PersistenceModule::class
+    PersistenceModule::class,
+    ConsoleModule::class
 ])
 @Singleton
 internal interface Injector {

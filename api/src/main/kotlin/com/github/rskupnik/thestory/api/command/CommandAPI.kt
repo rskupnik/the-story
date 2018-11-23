@@ -12,7 +12,7 @@ interface CommandAPI {
 
     fun clickObject(id: String)
 
-    //fun executeConsole(id: String, params: Array<String>)
+    fun executeConsole(cmd: String)
 
     fun initializeGame(module: String)
 

@@ -3,6 +3,7 @@ package com.github.rskupnik.thestory.api.command
 import com.github.rskupnik.thestory.api.command.details.background.BackgroundDetails
 import com.github.rskupnik.thestory.api.command.details.background.NormalMappedBackgroundDetails
 import com.github.rskupnik.thestory.background.BackgroundService
+import com.github.rskupnik.thestory.core.console.ConsoleService
 import com.github.rskupnik.thestory.domain.LocationId
 import com.github.rskupnik.thestory.domain.`object`.ObjectService
 import com.github.rskupnik.thestory.domain.equipment.Equipment
@@ -40,6 +41,7 @@ internal class CommandAPIImplementation(
         private val optionService: OptionService,
         private val equipment: Equipment,
         private val inventory: Inventory,
+        private val consoleService: ConsoleService,
         private val callbackReceiver: CallbackReceiver,
         private val eventDispatcher: EventDispatcher
 ) : CommandAPI {
@@ -54,10 +56,9 @@ internal class CommandAPIImplementation(
         callbackReceiver.onDisplayOptions(Option.optionsToLabels(EntityId(id, EntityType.OBJECT), options))
     }
 
-    /*override fun executeConsole(id: String, params: Array<String>) {
-        println("EXECUTE CONSOLE KOTLIN")
-        eventDispatcher.dispatch(ExecuteConsoleCommandEvent(id, params))
-    }*/
+    override fun executeConsole(cmd: String) {
+        consoleService.execute(cmd)
+    }
 
     override fun initializeGame(module: String) {
         if (!gameStateService.gameAtPhase(listOf(GamePhase.UNINITIALIZED)))

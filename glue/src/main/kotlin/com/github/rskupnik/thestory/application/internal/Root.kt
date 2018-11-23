@@ -12,5 +12,6 @@ internal class Root
         val commandAPI: CommandAPI,
         val implementationProvider: ImplementationProvider,
         val actionInitializer: ActionInitializer,
+        val consoleCommandInitializer: ConsoleCommandInitializer,
         val initializer: Initializer
 )
