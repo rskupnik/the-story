@@ -4,6 +4,9 @@ import com.github.rskupnik.thestory.item.domain.EquipmentSlot
 import com.github.rskupnik.thestory.item.domain.ItemView
 import com.github.rskupnik.thestory.shared.Reference
 
+/**
+ * Contains logic for manipulating the player's equipment.
+ */
 interface Equipment {
 
     fun put(reference: Reference, slot: EquipmentSlot): Boolean
