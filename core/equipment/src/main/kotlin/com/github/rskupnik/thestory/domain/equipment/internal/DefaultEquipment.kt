@@ -64,7 +64,7 @@ internal class DefaultEquipment(
         // Purge the existing storage
         items.clear()
 
-        // Put all existing items in the storage if their placement is in inventory
+        // Put all existing items in the storage if their placement is in equipment
         existingItems.forEach {
             if (it.placement != null && it.placement?.context == Context.EQUIPMENT) {
                 val slot = it.placement?.slot as EquipmentSlot
