@@ -1,4 +1,3 @@
 package com.github.rskupnik.thestory.event
 
-interface Event {
-}
+interface Event
