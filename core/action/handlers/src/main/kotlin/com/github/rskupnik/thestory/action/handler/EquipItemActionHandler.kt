@@ -12,6 +12,11 @@ import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
+/**
+ * Handles equip-an-item action.
+ *
+ * The item will only be equipped if it exists and a slot it is allowed in is free.
+ */
 class EquipItemActionHandler(
         actionExecutor: ActionExecutor,
         private val equipment: Equipment,

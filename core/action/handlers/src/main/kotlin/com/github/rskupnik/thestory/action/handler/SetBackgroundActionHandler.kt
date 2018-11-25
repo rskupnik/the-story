@@ -6,6 +6,9 @@ import com.github.rskupnik.thestory.domain.action.AbstractActionHandler
 import com.github.rskupnik.thestory.domain.action.ActionExecutor
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
+/**
+ * Handles setting a background.
+ */
 class SetBackgroundActionHandler(
         actionExecutor: ActionExecutor,
         private val backgroundService: BackgroundService

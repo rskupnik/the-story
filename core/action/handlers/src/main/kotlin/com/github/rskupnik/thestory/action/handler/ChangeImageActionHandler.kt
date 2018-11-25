@@ -9,6 +9,11 @@ import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
+/**
+ * Handles changing an image of an item.
+ *
+ * For example, when lighting a torch.
+ */
 class ChangeImageActionHandler(
         actionExecutor: ActionExecutor,
         private val itemService: ItemService,

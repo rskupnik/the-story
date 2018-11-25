@@ -10,6 +10,11 @@ import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
+/**
+ * Handles removing an item from equipment and putting it into inventory.
+ *
+ * Will fail if there is no free slot found in inventory.
+ */
 class RemoveItemActionHandler(
         actionExecutor: ActionExecutor,
         private val equipment: Equipment,

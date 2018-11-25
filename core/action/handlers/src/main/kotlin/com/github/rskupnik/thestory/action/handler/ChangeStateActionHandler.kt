@@ -11,6 +11,11 @@ import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
 import com.github.rskupnik.thestory.shared.entity.EntityType
 
+/**
+ * Handles a change in external state.
+ *
+ * For example, when a torch is lit, this action will set the "toggled" key to "true" or "false".
+ */
 class ChangeStateActionHandler(
         actionExecutor: ActionExecutor,
         private val itemService: ItemService,

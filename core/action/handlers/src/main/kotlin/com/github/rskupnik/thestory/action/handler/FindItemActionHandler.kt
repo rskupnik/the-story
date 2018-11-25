@@ -9,6 +9,11 @@ import com.github.rskupnik.thestory.external.feedback.CallbackReceiver
 import com.github.rskupnik.thestory.shared.Reference
 import com.github.rskupnik.thestory.shared.entity.EntityId
 
+/**
+ * Handles finding an item, for example in an object.
+ *
+ * This will basically create a new instance of an item from the blueprint id and put it in the inventory.
+ */
 class FindItemActionHandler(
         actionExecutor: ActionExecutor,
         private val itemService: ItemService,
