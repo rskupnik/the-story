@@ -5,7 +5,7 @@ import com.github.rskupnik.thestory.external.asset.Image
 
 /**
  * This class is the main [Port] that the Application uses to interact with the underlying OS, storage hardware or
- * filesystem.
+ * filesystem (loading).
  *
  * The user of the Application must provide an implementation for this interface.
  */
