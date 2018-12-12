@@ -4,8 +4,8 @@ import com.github.rskupnik.thestory.external.asset.Image
 import com.github.rskupnik.thestory.persistence.Persistable
 
 data class NormalMappedBackground(
-        private val image: Image,
-        private val normalImage: Image,
+        val image: Image,
+        val normalImage: Image,
         private val imageStr: String,
         private val normalImageStr: String
 ): Background {
